@@ -1,0 +1,17 @@
+# Dependencias
+node_modules/
+
+# Builds
+dist/
+.astro/
+
+# Agente / credenciales locales (recomendación Spec Kit)
+.claude/
+
+# Sistema
+.DS_Store
+
+# Entorno
+.env
+.env.*
+!.env.example
