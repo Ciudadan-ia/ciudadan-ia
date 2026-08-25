@@ -1,0 +1,110 @@
+/* ============================================================
+   CIUDADAN-IA — tokens de diseño
+   Identidad: cálido comunitario contemporáneo. Paleta textil:
+   grana cochinilla (acento), añil (enlaces/secundario), maíz
+   (destacados), sobre papel arcilla cálido.
+   ============================================================ */
+
+@font-face {
+  font-family: 'Gentium Plus';
+  src: url('/fonts/gentium-plus-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gentium Plus';
+  src: url('/fonts/gentium-plus-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Gentium Plus';
+  src: url('/fonts/gentium-plus-400-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/noto-sans-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/noto-sans-500.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Noto Sans';
+  src: url('/fonts/noto-sans-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Superficies */
+  --paper: #faf4ee;
+  --surface: #f3eae1;
+  --surface-2: #ece0d4;
+  --line: #dccdbe;
+
+  /* Tinta */
+  --ink: #2a211c;
+  --ink-soft: #5c4c41;
+
+  /* Paleta textil */
+  --cochinilla: #a81d54;
+  --cochinilla-soft: #f6e2ea;
+  --anil: #2f5178;
+  --anil-soft: #e2e9f2;
+  --maiz: #9a6b1c;
+  --maiz-soft: #f5e9d2;
+
+  /* Semánticos */
+  --link: var(--anil);
+  --accent: var(--cochinilla);
+  --focus: var(--cochinilla);
+
+  /* Tipografía — Gentium Plus (SIL) cubre saltillo/glotal/diacríticos apilados */
+  --font-body: 'Gentium Plus', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
+
+  --text-base: 1.075rem;
+  --leading: 1.65;
+  --measure: 68ch;
+
+  /* Espaciado */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+  --space-6: 4rem;
+
+  --wrap: 1080px;
+  --radius: 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #211a16;
+    --surface: #2b221d;
+    --surface-2: #352a24;
+    --line: #453730;
+    --ink: #f0e6dc;
+    --ink-soft: #c2ae9f;
+    --cochinilla: #ec6d9d;
+    --cochinilla-soft: #3d2230;
+    --anil: #8fb0d8;
+    --anil-soft: #26313f;
+    --maiz: #dfa94f;
+    --maiz-soft: #3b2f1d;
+  }
+}

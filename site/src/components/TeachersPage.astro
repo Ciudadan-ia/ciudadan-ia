@@ -1,0 +1,91 @@
+---
+/** Puerta docente (US3/FR de audiencia): contenido por tema con respuesta corta visible. */
+import Base from '../layouts/Base.astro';
+import { ALL_LANGS, langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { articleSlug, listArticlesForLang } from '../lib/content';
+import NewsletterBlock from './NewsletterBlock.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const alternates = Object.fromEntries(ALL_LANGS.map((l) => [l, `${langPath(l)}/docentes/`]));
+
+const articles = (await listArticlesForLang(lang)).filter((a) => a.data.audience.includes('docentes'));
+const others = (await listArticlesForLang(lang)).filter((a) => !a.data.audience.includes('docentes'));
+
+const byTopic = new Map<string, typeof articles>();
+for (const a of [...articles, ...others]) {
+  const list = byTopic.get(a.data.topic) ?? [];
+  list.push(a);
+  byTopic.set(a.data.topic, list);
+}
+const href = (a: (typeof articles)[number]) => `${langPath(lang)}/articulos/${articleSlug(a)}/`;
+---
+
+<Base lang={lang} title={t.doors.docentes} description={t.doors.docentes} alternates={alternates}>
+  <div class="wrap measure teachers">
+    <h1>{t.doors.docentes}</h1>
+    <p class="teachers-intro" lang="es">
+      Cada pieza empieza con una respuesta corta pensada para leerse en clase en menos de dos
+      minutos; la capa profunda es opcional. Todo el contenido es
+      <a href="/transparencia/">CC BY 4.0</a>: puedes copiarlo, imprimirlo y adaptarlo citando
+      la fuente. La <a href="#newsletter">newsletter docente</a> avisa de cada pieza nueva.
+    </p>
+
+    {[...byTopic.entries()].map(([topic, list]) => (
+      <section class="topic-block">
+        <h2 class="eyebrow">{t.topics[topic]}</h2>
+        <ul>
+          {list.map((a) => (
+            <li>
+              <h3><a href={href(a)}>{a.data.title}</a></h3>
+              <p>{a.data.summary}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+
+    <div id="newsletter">
+      <NewsletterBlock lang={lang} segment="docentes" />
+    </div>
+  </div>
+</Base>
+
+<style>
+  .teachers {
+    padding-block: var(--space-5);
+  }
+  .teachers-intro {
+    color: var(--ink-soft);
+  }
+  .topic-block {
+    border-top: 1px solid var(--line);
+    padding-block: var(--space-3);
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+  h3 {
+    font-size: 1.1rem;
+    margin-bottom: var(--space-1);
+  }
+  h3 a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  h3 a:hover {
+    color: var(--accent);
+  }
+  li p {
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+  }
+</style>

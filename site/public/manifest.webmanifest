@@ -1,0 +1,15 @@
+{
+  "name": "CIUDADAN-IA",
+  "short_name": "CIUDADAN-IA",
+  "description": "La inteligencia artificial explicada en tu idioma",
+  "lang": "es",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf4ee",
+  "theme_color": "#a81d54",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

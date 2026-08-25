@@ -1,0 +1,12 @@
+---
+import FoundationalPage from '../components/FoundationalPage.astro';
+import { FOUNDATIONAL_SLUGS, type FoundationalSlug } from '../lib/content';
+
+export function getStaticPaths() {
+  return FOUNDATIONAL_SLUGS.map((pagina) => ({ params: { pagina } }));
+}
+
+const pagina = Astro.params.pagina as FoundationalSlug;
+---
+
+<FoundationalPage slug={pagina} lang="es" />

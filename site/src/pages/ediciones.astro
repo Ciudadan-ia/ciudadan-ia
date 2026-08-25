@@ -1,0 +1,72 @@
+---
+/** Índice de ediciones (patrón BBC): cada lengua con su portada y sus números. */
+import Base from '../layouts/Base.astro';
+import { LANGUAGES, langPath } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { getLanguageStats } from '../lib/content';
+
+const t = UI.es;
+const stats = await getLanguageStats();
+---
+
+<Base lang="es" title={t.allEditions} description="Las ediciones de CIUDADAN-IA por lengua">
+  <div class="wrap measure editions">
+    <h1>{t.allEditions}</h1>
+    <ul>
+      {stats.map((s) => (
+        <li>
+          <a href={`${langPath(s.lang)}/` || '/'} lang={s.lang} data-lang-choice={s.lang} class="edition-link">
+            <strong>{LANGUAGES[s.lang].endonym}</strong>
+            <span lang="es" class="edition-meta">
+              {LANGUAGES[s.lang].nameEs} · <span class="num">{s.articles}</span> {t.counters.articles}
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="editions-note">
+      ¿Falta tu lengua? Este proyecto crece lengua por lengua, con hablantes que validan cada
+      traducción — nunca anunciamos una lengua sin contenido real.
+      <a href="/contribuye/">Ayúdanos a sumar la tuya</a>.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .editions {
+    padding-block: var(--space-5);
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+  .edition-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    text-decoration: none;
+    color: var(--ink);
+    font-family: var(--font-ui);
+  }
+  .edition-link:hover {
+    border-color: var(--accent);
+  }
+  .edition-link strong {
+    font-size: 1.15rem;
+  }
+  .edition-meta {
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+  }
+  .editions-note {
+    margin-top: var(--space-4);
+    color: var(--ink-soft);
+  }
+</style>

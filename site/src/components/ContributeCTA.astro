@@ -1,0 +1,53 @@
+---
+/** CTA de contribución de fricción cero (FR-017) — en el primer scroll de la portada. */
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+---
+
+<a class="contribute-cta" href={`${langPath(lang)}/contribuye/`}>
+  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false">
+    <rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.8" />
+    <path d="M5 11a7 7 0 0 0 14 0M12 18v3M8.5 21h7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+  </svg>
+  <span>{t.contribute}</span>
+  <span class="cta-arrow" aria-hidden="true">→</span>
+</a>
+
+<style>
+  .contribute-cta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    margin-block: var(--space-3);
+    background: var(--cochinilla);
+    color: #fff;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-family: var(--font-ui);
+    font-weight: 500;
+  }
+  .contribute-cta:hover {
+    opacity: 0.92;
+  }
+  .contribute-cta:focus-visible {
+    outline-color: var(--ink);
+  }
+  svg {
+    flex-shrink: 0;
+  }
+  .cta-arrow {
+    margin-left: auto;
+  }
+  @media (prefers-color-scheme: dark) {
+    .contribute-cta {
+      color: #211a16;
+    }
+  }
+</style>

@@ -1,0 +1,46 @@
+---
+import { render } from 'astro:content';
+import Lite from '../../../../layouts/Lite.astro';
+import type { Lang } from '../../../../i18n/languages';
+import { UI } from '../../../../i18n/ui';
+import { allArticles, articleSlug, isPublished, resolveArticleForLang } from '../../../../lib/content';
+
+export async function getStaticPaths() {
+  const entries = await allArticles();
+  return entries
+    .filter((e) => e.data.lang !== 'es' && isPublished(e))
+    .map((e) => ({ params: { lang: e.data.lang, slug: articleSlug(e) } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const { slug } = Astro.params;
+const resolved = await resolveArticleForLang(slug!, lang);
+if (resolved.mode === 'missing') throw new Error(`Artículo ${lang} no encontrado: ${slug}`);
+const entry = resolved.entry;
+const { Content } = await render(entry);
+const t = UI[lang];
+---
+
+<Lite lang={lang} title={entry.data.title} description={entry.data.summary}>
+  <article>
+    <h1>{entry.data.title}</h1>
+    <p class="meta">
+      {t.credits.author}: {entry.data.author}
+      {entry.data.translator && <> · {t.credits.translator}: {entry.data.translator}</>}
+      {entry.data.validator && <> · {t.credits.validator}: {entry.data.validator}</>}
+    </p>
+    {resolved.mode === 'bilingual' && <p class="meta" lang={lang}>⚠ {t.translationNotice}</p>}
+    <p><strong>{entry.data.summary}</strong></p>
+    <Content />
+    {resolved.mode === 'bilingual' && (
+      <>
+        <hr />
+        <section lang="es">
+          <h2>{resolved.original.data.title}</h2>
+          <p><strong>{resolved.original.data.summary}</strong></p>
+          <p><a href={`/lite/articulos/${slug}/`}>Original completo en español →</a></p>
+        </section>
+      </>
+    )}
+  </article>
+</Lite>

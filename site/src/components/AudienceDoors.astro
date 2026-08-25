@@ -1,0 +1,54 @@
+---
+/** Tres puertas de entrada por audiencia (patrón "empieza aquí" del benchmark). */
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const p = langPath(lang);
+
+const doors = [
+  { href: `${p}/articulos/que-es-un-llm/`, label: t.doors.general, color: 'var(--anil)' },
+  { href: `${p}/docentes/`, label: t.doors.docentes, color: 'var(--maiz)' },
+  { href: `${p}/articulos/la-ia-y-tu-lengua/`, label: t.doors.comunidades, color: 'var(--cochinilla)' },
+];
+---
+
+<nav class="doors" aria-label={t.doors.general}>
+  {doors.map((d) => (
+    <a class="door" href={d.href} style={`--door-color: ${d.color}`}>
+      <span>{d.label}</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  ))}
+</nav>
+
+<style>
+  .doors {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-3);
+    padding-block: var(--space-4);
+  }
+  .door {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--door-color);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--ink);
+    text-decoration: none;
+    font-family: var(--font-ui);
+    font-weight: 500;
+  }
+  .door:hover {
+    background: var(--surface-2);
+  }
+</style>

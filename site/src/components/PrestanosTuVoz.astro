@@ -1,0 +1,54 @@
+---
+/** Fallback cuando un artículo no tiene narración (FR-016): CTA en lugar de player roto. */
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+---
+
+<aside class="lend-voice">
+  <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false">
+    <rect x="9" y="3" width="6" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.8" />
+    <path d="M5 11a7 7 0 0 0 14 0M12 18v3M8.5 21h7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+  </svg>
+  <div>
+    <p class="lend-title">{t.lendVoice}</p>
+    <p class="lend-body">{t.lendVoiceBody}</p>
+    <a class="lend-cta" href={`${langPath(lang)}/contribuye/`}>{t.contributeShort} →</a>
+  </div>
+</aside>
+
+<style>
+  .lend-voice {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    margin: var(--space-4) 0;
+    padding: var(--space-3);
+    background: var(--cochinilla-soft);
+    border: 1px dashed var(--cochinilla);
+    border-radius: var(--radius);
+    font-family: var(--font-ui);
+  }
+  svg {
+    flex-shrink: 0;
+    color: var(--cochinilla);
+    margin-top: 2px;
+  }
+  .lend-title {
+    font-weight: 700;
+    margin-bottom: var(--space-1);
+  }
+  .lend-body {
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    margin-bottom: var(--space-2);
+  }
+  .lend-cta {
+    font-weight: 500;
+  }
+</style>

@@ -1,0 +1,62 @@
+---
+/**
+ * Layout lite (patrón text.npr.org): una columna, fuentes del sistema (cero
+ * webfonts), CSS mínimo inline, apto para 2G e impresión. Objetivo <50 KB.
+ */
+import type { Lang } from '../i18n/languages';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+}
+const { lang, title, description } = Astro.props;
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · CIUDADAN-IA lite</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex" />
+    <style>
+      body {
+        max-width: 42rem;
+        margin: 0 auto;
+        padding: 1rem;
+        font-family: Georgia, 'Times New Roman', serif;
+        line-height: 1.6;
+        color: #222;
+        background: #fff;
+      }
+      a { color: #2f5178; }
+      header, footer {
+        font-family: system-ui, sans-serif;
+        font-size: 0.85rem;
+        border-block: 1px solid #ccc;
+        padding-block: 0.5rem;
+        margin-block: 1rem;
+      }
+      h1 { font-size: 1.5rem; line-height: 1.25; }
+      h2 { font-size: 1.2rem; }
+      .meta { color: #555; font-size: 0.9rem; }
+      /* Tema único claro, deliberado: la ruta lite está pensada para
+         impresión y pantallas de gama baja; colores literales verificables. */
+      @media print {
+        header, footer { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="/lite/">CIUDADAN-IA · lite</a> — <a href="/">versión completa</a>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      CC BY 4.0 · <a href="/gobernanza-de-datos/">gobernanza</a> · <a href="/contribuye/">participa</a>
+    </footer>
+  </body>
+</html>

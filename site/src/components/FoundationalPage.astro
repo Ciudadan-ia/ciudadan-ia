@@ -1,0 +1,43 @@
+---
+/** Página fundacional (constitución VII) con fallback bilingüe-suave al español. */
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { ALL_LANGS, langPath, type Lang } from '../i18n/languages';
+import { getFoundationalPage, type FoundationalSlug } from '../lib/content';
+import TranslationNotice from './TranslationNotice.astro';
+
+interface Props {
+  slug: FoundationalSlug;
+  lang: Lang;
+}
+const { slug, lang } = Astro.props;
+const { page, fallback } = await getFoundationalPage(slug, lang);
+const { Content } = await render(page);
+const alternates = Object.fromEntries(ALL_LANGS.map((l) => [l, `${langPath(l)}/${slug}/`]));
+const updated = page.data.updated.toISOString().slice(0, 10);
+---
+
+<Base lang={fallback ? 'es' : lang} title={page.data.title} description={page.data.title} alternates={alternates}>
+  <article class="wrap page measure">
+    <h1>{page.data.title}</h1>
+    <p class="page-updated num">{updated}</p>
+    {page.data.status === 'traducido-ia' && <TranslationNotice lang={lang} />}
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .page {
+    padding-block: var(--space-5);
+  }
+  .page-updated {
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+  .prose :global(h2) {
+    margin-top: var(--space-4);
+  }
+</style>

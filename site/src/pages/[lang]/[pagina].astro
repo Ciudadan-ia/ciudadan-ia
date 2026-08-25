@@ -1,0 +1,15 @@
+---
+import FoundationalPage from '../../components/FoundationalPage.astro';
+import type { Lang } from '../../i18n/languages';
+import { FOUNDATIONAL_SLUGS, getActiveLanguages, type FoundationalSlug } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const active = (await getActiveLanguages()).filter((l) => l !== 'es');
+  return active.flatMap((lang) => FOUNDATIONAL_SLUGS.map((pagina) => ({ params: { lang, pagina } })));
+}
+
+const lang = Astro.params.lang as Lang;
+const pagina = Astro.params.pagina as FoundationalSlug;
+---
+
+<FoundationalPage slug={pagina} lang={lang} />

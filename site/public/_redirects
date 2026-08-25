@@ -1,0 +1,2 @@
+# Redirects de Cloudflare Pages — los slugs publicados son estables (contracts):
+# si un slug cambia, el redirect 301 se agrega aquí, nunca se rompe la URL.

@@ -1,0 +1,79 @@
+---
+/**
+ * Bloque de newsletter: promesa explícita + día fijo (benchmark: El Surti /
+ * The Algorithm). Form HTML puro → Pages Function (contracts/forms.md).
+ */
+import type { Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  /** Preseleccionar el segmento docentes (puerta docente, FR-019). */
+  segment?: 'general' | 'docentes';
+}
+const { lang, segment = 'general' } = Astro.props;
+const t = UI[lang];
+const ts = Date.now();
+---
+
+<aside class="newsletter" aria-label="Newsletter">
+  <p class="newsletter-promise">{t.newsletterPromise}</p>
+  <form method="post" action="/api/suscribir">
+    <label class="visually-hidden" for="nl-email">{t.newsletterEmail}</label>
+    <input id="nl-email" type="email" name="email" required placeholder={t.newsletterEmail} autocomplete="email" />
+    <input type="hidden" name="segmento" value={segment} />
+    <input type="hidden" name="lengua" value={lang} />
+    <input type="hidden" name="_t" value={ts} />
+    <p class="hp-field" aria-hidden="true">
+      <label>No llenar / do not fill<input type="text" name="_hp" tabindex="-1" autocomplete="off" /></label>
+    </p>
+    <button type="submit">{t.newsletterButton}</button>
+  </form>
+</aside>
+
+<style>
+  .newsletter {
+    background: var(--anil-soft);
+    border: 1px solid var(--anil);
+    border-radius: var(--radius);
+    padding: var(--space-4);
+    margin-block: var(--space-4);
+  }
+  .newsletter-promise {
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: var(--space-3);
+  }
+  form {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+  input[type='email'] {
+    flex: 1 1 220px;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper);
+  }
+  button {
+    padding: var(--space-2) var(--space-4);
+    border: none;
+    border-radius: var(--radius);
+    background: var(--anil);
+    color: var(--paper);
+    font-family: var(--font-ui);
+    font-weight: 700;
+    cursor: pointer;
+  }
+  button:hover {
+    opacity: 0.9;
+  }
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+    height: 1px;
+    overflow: hidden;
+  }
+</style>

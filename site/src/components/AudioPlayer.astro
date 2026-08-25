@@ -1,0 +1,89 @@
+---
+/**
+ * Player de audio accesible (constitución VI): <audio> nativo (teclado y lector
+ * de pantalla sin JS), transcripción visible, descarga y licencia de
+ * retransmisión para radios comunitarias.
+ */
+import type { Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+
+interface Props {
+  src: string;
+  durationSec: number;
+  lang: Lang;
+  narrator?: string;
+  /** La transcripción es el propio cuerpo del artículo; aquí un extracto o texto alterno. */
+  transcript?: string;
+}
+const { src, durationSec, lang, narrator, transcript } = Astro.props;
+const t = UI[lang];
+const min = Math.floor(durationSec / 60);
+const sec = String(durationSec % 60).padStart(2, '0');
+---
+
+<figure class="audio-player">
+  <figcaption>
+    <span class="audio-label">{t.listen}</span>
+    {narrator && <span class="audio-narrator">— {t.credits.narrator}: {narrator}</span>}
+    <span class="audio-duration num">({min}:{sec})</span>
+  </figcaption>
+  <audio controls preload="none" src={src}></audio>
+  <p class="audio-actions">
+    <a href={src} download>{t.download}</a>
+    <span class="audio-license">{t.rebroadcast}</span>
+  </p>
+  {transcript && (
+    <details>
+      <summary>{t.transcript}</summary>
+      <p>{transcript}</p>
+    </details>
+  )}
+</figure>
+
+<style>
+  .audio-player {
+    margin: var(--space-4) 0;
+    padding: var(--space-3);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-family: var(--font-ui);
+  }
+  figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: baseline;
+    margin-bottom: var(--space-2);
+    font-size: 0.92rem;
+  }
+  .audio-label {
+    font-weight: 700;
+  }
+  .audio-narrator,
+  .audio-duration {
+    color: var(--ink-soft);
+  }
+  audio {
+    width: 100%;
+  }
+  .audio-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: baseline;
+    margin: var(--space-2) 0 0;
+    font-size: 0.86rem;
+  }
+  .audio-license {
+    color: var(--ink-soft);
+  }
+  details {
+    margin-top: var(--space-2);
+    font-size: 0.95rem;
+  }
+  summary {
+    cursor: pointer;
+    font-weight: 500;
+  }
+</style>

@@ -1,0 +1,31 @@
+---
+import Lite from '../../layouts/Lite.astro';
+import { listArticlesForLang, articleSlug, readingTimeMin } from '../../lib/content';
+import { getActiveLanguages, } from '../../lib/content';
+import { LANGUAGES, langPath } from '../../i18n/languages';
+
+const articles = await listArticlesForLang('es');
+const active = await getActiveLanguages();
+---
+
+<Lite lang="es" title="Portada" description="CIUDADAN-IA en versión ligera de solo texto">
+  <h1>CIUDADAN-IA</h1>
+  <p class="meta">La inteligencia artificial explicada en tu idioma — versión ligera, solo texto.</p>
+  <ul>
+    {articles.map((a) => (
+      <li>
+        <a href={`/lite/articulos/${articleSlug(a)}/`}>{a.data.title}</a>
+        <span class="meta"> · {readingTimeMin(a)} min</span>
+      </li>
+    ))}
+  </ul>
+  <h2>Otras lenguas</h2>
+  <p>
+    {active.filter((l) => l !== 'es').map((l, i) => (
+      <>
+        {i > 0 && ' · '}
+        <a href={`${langPath(l)}/`} lang={l}>{LANGUAGES[l].endonym}</a>
+      </>
+    ))}
+  </p>
+</Lite>

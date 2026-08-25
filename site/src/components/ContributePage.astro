@@ -1,0 +1,171 @@
+---
+/**
+ * Formulario de interés de contribución (FR-017/018, contracts/forms.md):
+ * 5 campos, sin cuenta, consentimiento en lenguaje llano JUNTO al checkbox,
+ * completable en <30 s. HTML puro → Pages Function.
+ */
+import Base from '../layouts/Base.astro';
+import { ALL_LANGS, langPath, LANGUAGES, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+const t = UI[lang];
+const alternates = Object.fromEntries(ALL_LANGS.map((l) => [l, `${langPath(l)}/contribuye/`]));
+const ts = Date.now();
+
+// El consentimiento y las etiquetas del formulario se muestran también en español
+// mientras la UI en lengua está pendiente de validación (lang correcto por bloque).
+---
+
+<Base lang={lang} title={t.contributeShort} description={t.contribute} alternates={alternates}>
+  <div class="wrap measure contribute">
+    <h1>{t.contribute}</h1>
+
+    <form method="post" action="/api/contribuir">
+      <div class="field">
+        <label for="c-nombre" lang="es">Tu nombre o seudónimo</label>
+        <input id="c-nombre" name="nombre" type="text" required maxlength="120" autocomplete="name" />
+      </div>
+
+      <div class="field">
+        <label for="c-contacto" lang="es">Correo o teléfono (para responderte)</label>
+        <input id="c-contacto" name="contacto" type="text" required maxlength="160" />
+      </div>
+
+      <div class="field">
+        <label for="c-lengua" lang="es">¿Qué lengua hablas?</label>
+        <input
+          id="c-lengua"
+          name="lengua"
+          type="text"
+          required
+          maxlength="80"
+          list="lenguas-sugeridas"
+        />
+        <datalist id="lenguas-sugeridas">
+          {ALL_LANGS.map((l) => (
+            <option value={LANGUAGES[l].endonym} />
+          ))}
+        </datalist>
+        <p class="field-hint" lang="es">Puede ser una lengua que aún no cubrimos — eso nos interesa especialmente.</p>
+      </div>
+
+      <fieldset class="field">
+        <legend lang="es">¿Cómo quieres participar?</legend>
+        <label class="radio"><input type="radio" name="aporte" value="voz" required /> <span lang="es">Prestar mi voz (narrar artículos)</span></label>
+        <label class="radio"><input type="radio" name="aporte" value="correccion" /> <span lang="es">Corregir traducciones</span></label>
+        <label class="radio"><input type="radio" name="aporte" value="historia" /> <span lang="es">Contar una historia o proponer un tema</span></label>
+      </fieldset>
+
+      <div class="field">
+        <label for="c-mensaje" lang="es">¿Algo más que quieras contarnos? (opcional)</label>
+        <textarea id="c-mensaje" name="mensaje" rows="4" maxlength="2000"></textarea>
+      </div>
+
+      <div class="consent" lang="es">
+        <label class="radio">
+          <input type="checkbox" name="consentimiento" value="si" required />
+          <span>
+            Entiendo y acepto esto: mis datos de contacto se usan <strong>solo</strong> para
+            responderme sobre esta colaboración. Nada de lo que envíe aquí se vende ni se
+            comparte con terceros. Mi voz y mis textos seguirán siendo míos y de mi
+            comunidad — el proyecto se rige por
+            <a href="/gobernanza-de-datos/">¿Quién es dueño de tu voz?</a>.
+          </span>
+        </label>
+      </div>
+
+      <input type="hidden" name="_t" value={ts} />
+      <input type="hidden" name="pagina_lengua" value={lang} />
+      <p class="hp-field" aria-hidden="true">
+        <label>No llenar / do not fill<input type="text" name="_hp" tabindex="-1" autocomplete="off" /></label>
+      </p>
+
+      <button type="submit">{t.contributeShort} →</button>
+    </form>
+  </div>
+</Base>
+
+<style>
+  .contribute {
+    padding-block: var(--space-5);
+  }
+  form {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+  .field {
+    display: grid;
+    gap: var(--space-1);
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  label,
+  legend {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  input[type='text'],
+  textarea {
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper);
+    max-width: 480px;
+  }
+  textarea {
+    max-width: var(--measure);
+  }
+  .field-hint {
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .radio {
+    display: flex;
+    gap: var(--space-2);
+    align-items: flex-start;
+    font-weight: 400;
+    margin-block: var(--space-1);
+  }
+  .consent {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: var(--space-3);
+    font-size: 0.95rem;
+  }
+  button {
+    justify-self: start;
+    padding: var(--space-2) var(--space-5);
+    border: none;
+    border-radius: var(--radius);
+    background: var(--cochinilla);
+    color: #fff;
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  button:hover {
+    opacity: 0.92;
+  }
+  .hp-field {
+    position: absolute;
+    left: -9999px;
+    height: 1px;
+    overflow: hidden;
+  }
+  @media (prefers-color-scheme: dark) {
+    button {
+      color: #211a16;
+    }
+  }
+</style>

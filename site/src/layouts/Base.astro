@@ -1,0 +1,171 @@
+---
+import '../styles/tokens.css';
+import '../styles/base.css';
+import { LANGUAGES, langPath, type Lang } from '../i18n/languages';
+import { UI, UI_VALIDATED } from '../i18n/ui';
+import LanguageSelector from '../components/LanguageSelector.astro';
+import GovernanceFooter from '../components/GovernanceFooter.astro';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  /** URLs equivalentes de esta página en otras lenguas (para hreflang y el selector). */
+  alternates?: Partial<Record<Lang, string>>;
+}
+
+const { lang, title, description, alternates = {} } = Astro.props;
+const t = UI[lang];
+const currentPath = Astro.url.pathname;
+---
+
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · CIUDADAN-IA</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#a81d54" />
+    {Object.entries(alternates).map(([l, url]) => (
+      <link rel="alternate" hreflang={l} href={new URL(url as string, Astro.site)} />
+    ))}
+    <link rel="canonical" href={new URL(currentPath, Astro.site)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">{t.skipToContent}</a>
+
+    <div id="aviso-copia" class="saved-copy" hidden>{t.offline.savedCopy}</div>
+    <div id="sugerencia-lengua" class="lang-suggestion" hidden></div>
+
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href={`${langPath(lang)}/` || '/'}>
+          <svg class="brand-mark" viewBox="0 0 28 28" width="28" height="28" aria-hidden="true" focusable="false">
+            <rect x="0" y="2" width="28" height="5" fill="var(--cochinilla)" />
+            <rect x="0" y="11" width="28" height="5" fill="var(--anil)" />
+            <rect x="0" y="20" width="28" height="5" fill="var(--maiz)" />
+          </svg>
+          <span class="brand-name">CIUDADAN-IA</span>
+        </a>
+        <LanguageSelector lang={lang} alternates={alternates} />
+      </div>
+      {!UI_VALIDATED[lang] && (
+        <div class="wrap">
+          <p class="ui-notice" lang="es">
+            La interfaz en {LANGUAGES[lang].nameEs} fue traducida con IA y está pendiente de
+            validación por hablantes. <a href={`${langPath(lang)}/contribuye/`}>Ayúdanos a corregirla</a>.
+          </p>
+        </div>
+      )}
+    </header>
+
+    <main id="contenido">
+      <slot />
+    </main>
+
+    <GovernanceFooter lang={lang} />
+
+    <script>
+      // Mejora progresiva. Sin JS: el selector del header es la vía de corrección (FR-003).
+      // 1) Registro del service worker (PWA).
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      }
+      // 2) Aviso de copia guardada (inyectado cuando la página vino del caché del SW).
+      if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+        navigator.serviceWorker.addEventListener('message', (ev) => {
+          if (ev.data === 'from-cache') {
+            const el = document.getElementById('aviso-copia');
+            if (el) el.hidden = false;
+          }
+        });
+      }
+      // 3) Sugerencia de lengua por Accept-Language del navegador, con persistencia.
+      try {
+        const pageLang = document.documentElement.lang;
+        const stored = localStorage.getItem('lengua-preferida');
+        const nav = (navigator.language || '').slice(0, 2);
+        const alts = JSON.parse(document.getElementById('alt-urls')?.textContent || '{}');
+        const target = stored && stored !== pageLang ? stored : !stored && nav && nav !== pageLang ? nav : null;
+        if (target && alts[target]) {
+          const box = document.getElementById('sugerencia-lengua');
+          if (box) {
+            const labels = { es: 'Español', en: 'English', nah: 'Nāhuatlahtōlli', yua: "Maaya t'aan" };
+            const a = document.createElement('a');
+            a.href = alts[target];
+            a.textContent = (labels as Record<string, string>)[target] + ' →';
+            box.append(a);
+            box.hidden = false;
+          }
+        }
+        // Persistir la lengua de la página visitada deliberadamente.
+        document.querySelectorAll('[data-lang-choice]').forEach((el) => {
+          el.addEventListener('click', () => {
+            try {
+              localStorage.setItem('lengua-preferida', (el as HTMLElement).dataset.langChoice || '');
+            } catch {}
+          });
+        });
+      } catch {}
+    </script>
+    <script type="application/json" id="alt-urls" set:html={JSON.stringify(alternates)} />
+
+    <style>
+      .site-header {
+        border-bottom: 1px solid var(--line);
+        background: var(--paper);
+      }
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-3);
+        padding-block: var(--space-3);
+        flex-wrap: wrap;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        text-decoration: none;
+        color: var(--ink);
+      }
+      .brand-name {
+        font-family: var(--font-ui);
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        font-size: 1.05rem;
+      }
+      .ui-notice {
+        font-family: var(--font-ui);
+        font-size: 0.85rem;
+        color: var(--ink-soft);
+        background: var(--maiz-soft);
+        border-left: 3px solid var(--maiz);
+        padding: var(--space-2) var(--space-3);
+        margin: 0 0 var(--space-3);
+      }
+      .saved-copy,
+      .lang-suggestion {
+        font-family: var(--font-ui);
+        font-size: 0.9rem;
+        text-align: center;
+        padding: var(--space-2) var(--space-3);
+      }
+      .saved-copy {
+        background: var(--maiz-soft);
+        border-bottom: 1px solid var(--maiz);
+      }
+      .lang-suggestion {
+        background: var(--anil-soft);
+        border-bottom: 1px solid var(--anil);
+      }
+      main {
+        min-height: 60vh;
+      }
+    </style>
+  </body>
+</html>

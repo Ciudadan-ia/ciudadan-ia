@@ -1,0 +1,91 @@
+---
+/**
+ * Footer de gobernanza (constitución VII): fundacionales, licencias, versión
+ * ligera. La gobernanza es contenido de primera clase, visible en todo el sitio.
+ */
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { getFoundationalPage, FOUNDATIONAL_SLUGS } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+  /** Ruta lite equivalente de la página actual, si existe. */
+  liteHref?: string;
+}
+
+const { lang, liteHref = '/lite/' } = Astro.props;
+const t = UI[lang];
+const p = langPath(lang);
+
+const links = await Promise.all(
+  FOUNDATIONAL_SLUGS.map(async (slug) => {
+    const { page } = await getFoundationalPage(slug, lang);
+    return { slug, title: page.data.title };
+  }),
+);
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <nav aria-label={t.footer.governance}>
+        <p class="footer-label">{t.footer.governance}</p>
+        <ul>
+          {links.map(({ slug, title }) => (
+            <li><a href={`${p}/${slug}/`}>{title}</a></li>
+          ))}
+        </ul>
+      </nav>
+      <div>
+        <p class="footer-label">CIUDADAN-IA</p>
+        <p class="footer-tagline">{t.siteTagline}</p>
+        <p><a href={liteHref}>{t.footer.liteVersion}</a> · <a href="/ediciones/">{t.allEditions}</a></p>
+      </div>
+    </div>
+    <p class="footer-licenses">{t.footer.licenses}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--space-6);
+    border-top: 1px solid var(--line);
+    background: var(--surface);
+    font-family: var(--font-ui);
+    font-size: 0.92rem;
+    padding-block: var(--space-5) var(--space-4);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-4);
+  }
+  .footer-label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 var(--space-2);
+  }
+  .footer-tagline {
+    color: var(--ink-soft);
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-1);
+  }
+  a {
+    color: var(--ink);
+  }
+  .footer-licenses {
+    margin: var(--space-4) 0 0;
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-size: 0.84rem;
+  }
+</style>

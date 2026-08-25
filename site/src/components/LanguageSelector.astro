@@ -1,0 +1,138 @@
+---
+/**
+ * Selector de lenguas — 3 capas con endónimos, nunca banderas (benchmark:
+ * Wikipedia/Common Voice). Funciona sin JS vía <details>. Solo lista lenguas
+ * ACTIVAS (constitución II). Enlaza a la página equivalente cuando existe
+ * (alternates) o a la portada de esa edición.
+ */
+import { LANGUAGES, langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { getActiveLanguages } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+  alternates?: Partial<Record<Lang, string>>;
+}
+
+const { lang, alternates = {} } = Astro.props;
+const t = UI[lang];
+const active = await getActiveLanguages();
+const featured = active.filter((l) => LANGUAGES[l].featured);
+const others = active.filter((l) => !LANGUAGES[l].featured);
+
+function urlFor(l: Lang): string {
+  return alternates[l] ?? (langPath(l) ? `${langPath(l)}/` : '/');
+}
+---
+
+<details class="lang-selector">
+  <summary>
+    <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false">
+      <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="1.6" />
+      <path d="M2 10h16M10 2c-2.7 2.3-4 5-4 8s1.3 5.7 4 8c2.7-2.3 4-5 4-8s-1.3-5.7-4-8z" fill="none" stroke="currentColor" stroke-width="1.3" />
+    </svg>
+    <span>{LANGUAGES[lang].endonym}</span>
+    <span class="visually-hidden">— {t.languageSelector}</span>
+  </summary>
+  <div class="lang-panel">
+    <p class="lang-group-label">{t.featuredLanguages}</p>
+    <ul>
+      {featured.map((l) => (
+        <li>
+          <a href={urlFor(l)} lang={l} data-lang-choice={l} aria-current={l === lang ? 'page' : undefined}>
+            {LANGUAGES[l].endonym}
+          </a>
+        </li>
+      ))}
+    </ul>
+    {others.length > 0 && (
+      <>
+        <p class="lang-group-label">{t.otherLanguages}</p>
+        <ul>
+          {others.map((l) => (
+            <li>
+              <a href={urlFor(l)} lang={l} data-lang-choice={l} aria-current={l === lang ? 'page' : undefined}>
+                {LANGUAGES[l].endonym}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+    <p class="lang-all">
+      <a href="/ediciones/">{t.allEditions}</a>
+    </p>
+  </div>
+</details>
+
+<style>
+  .lang-selector {
+    position: relative;
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    cursor: pointer;
+    list-style: none;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    font-weight: 500;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary::after {
+    content: '▾';
+    font-size: 0.7em;
+  }
+  .lang-panel {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 4px);
+    z-index: 50;
+    min-width: 220px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.12);
+    padding: var(--space-3);
+  }
+  .lang-group-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 var(--space-1);
+  }
+  ul {
+    list-style: none;
+    margin: 0 0 var(--space-3);
+    padding: 0;
+  }
+  li a {
+    display: block;
+    padding: var(--space-2);
+    text-decoration: none;
+    color: var(--ink);
+    border-radius: var(--radius);
+  }
+  li a:hover {
+    background: var(--surface);
+  }
+  li a[aria-current='page'] {
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .lang-all {
+    margin: 0;
+    border-top: 1px solid var(--line);
+    padding-top: var(--space-2);
+    font-size: 0.85rem;
+  }
+</style>

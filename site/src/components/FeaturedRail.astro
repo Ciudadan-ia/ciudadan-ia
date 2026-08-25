@@ -1,0 +1,117 @@
+---
+/** Dos destacadas + carriles temáticos (jerarquía clara — anti-modelo: portada plana). */
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import type { Article } from '../lib/content';
+import { articleSlug, readingTimeMin } from '../lib/content';
+import TopicArt from './TopicArt.astro';
+
+interface Props {
+  featured: Article[];
+  rest: Article[];
+  lang: Lang;
+}
+const { featured, rest, lang } = Astro.props;
+const t = UI[lang];
+const href = (a: Article) => `${langPath(lang)}/articulos/${articleSlug(a)}/`;
+
+// Carriles: agrupar el resto por tema, en orden de aparición.
+const byTopic = new Map<string, Article[]>();
+for (const a of rest) {
+  const list = byTopic.get(a.data.topic) ?? [];
+  list.push(a);
+  byTopic.set(a.data.topic, list);
+}
+---
+
+{featured.length > 0 && (
+  <div class="featured-grid">
+    {featured.map((a) => (
+      <article class="featured-card">
+        <a href={href(a)} tabindex="-1" aria-hidden="true"><TopicArt topic={a.data.topic} /></a>
+        <p class="eyebrow">{t.topics[a.data.topic]}</p>
+        <h3><a href={href(a)}>{a.data.title}</a></h3>
+        <p class="card-summary">{a.data.summary}</p>
+      </article>
+    ))}
+  </div>
+)}
+
+{[...byTopic.entries()].map(([topic, articles]) => (
+  <section class="rail" aria-labelledby={`rail-${topic}`}>
+    <h3 class="rail-title eyebrow" id={`rail-${topic}`}>{t.topics[topic]}</h3>
+    <ul class="rail-list">
+      {articles.map((a) => (
+        <li>
+          <a href={href(a)} class="rail-link">
+            <span class="rail-headline">{a.data.title}</span>
+            <span class="rail-meta num">{t.readingTime(readingTimeMin(a))}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+))}
+
+<style>
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
+    padding-block: var(--space-4);
+    border-top: 1px solid var(--line);
+  }
+  .featured-card h3 {
+    font-size: 1.25rem;
+    margin: var(--space-2) 0;
+  }
+  .featured-card h3 a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .featured-card h3 a:hover {
+    color: var(--accent);
+  }
+  .featured-card .eyebrow {
+    margin: var(--space-2) 0 0;
+  }
+  .card-summary {
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+  }
+  .rail {
+    border-top: 1px solid var(--line);
+    padding-block: var(--space-3);
+  }
+  .rail-title {
+    margin: 0 0 var(--space-2);
+  }
+  .rail-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2);
+  }
+  .rail-link {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    align-items: baseline;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .rail-link:hover .rail-headline {
+    color: var(--accent);
+  }
+  .rail-headline {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+  }
+  .rail-meta {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+</style>

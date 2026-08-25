@@ -1,0 +1,72 @@
+---
+/**
+ * QA tipográfico interno (T030, constitución — Restricciones técnicas):
+ * verifica que Gentium Plus y Noto Sans rendericen saltillo, glotal y
+ * diacríticos apilados. Excluida del sitemap; no enlazada desde el sitio.
+ */
+import Base from '../layouts/Base.astro';
+
+const samples = [
+  { label: 'Saltillo mayúscula (U+A78B)', text: 'Ꞌ — CHAꞋAK, MEEꞋEX' },
+  { label: 'Saltillo minúscula (U+A78C)', text: 'ꞌ — maꞌ, kaꞌan, jaꞌ' },
+  { label: 'Oclusiva glotal IPA (U+0294)', text: 'ʔ — ʔiʔ, haʔ' },
+  { label: 'Apóstrofo modificador (U+02BC)', text: 'ʼ — maʼalob, tʼaan, kʼiin' },
+  { label: 'Vocales largas con macrón (nah)', text: 'ā ē ī ō — Nāhuatlahtōlli, tōnatiuh, cīcītlāltin' },
+  { label: 'Diacríticos apilados (tono + nasal)', text: 'ã́ ẽ̀ ĩ́ õ̃ ṹ — ą́ę́į́ǫ́ų́' },
+  { label: 'Combinantes sueltos (U+0300–036F)', text: 'á è ĩ ö ǔ ñ' },
+  { label: 'Español completo', text: '¿Qué? ¡Ñandú! — áéíóú üñ «comillas» — 1.234,56' },
+];
+---
+
+<Base lang="es" title="QA tipográfico" description="Verificación interna de caracteres">
+  <div class="wrap measure" style="padding-block: var(--space-5);">
+    <h1>QA tipográfico</h1>
+    <p>
+      Cada muestra debe verse sin cuadros vacíos (□) ni sustituciones de otra fuente.
+      Probar también en Android de gama baja.
+    </p>
+    <table>
+      <thead><tr><th>Caso</th><th>Gentium Plus (cuerpo)</th><th>Noto Sans (UI)</th></tr></thead>
+      <tbody>
+        {samples.map((s) => (
+          <tr>
+            <th scope="row">{s.label}</th>
+            <td style="font-family: var(--font-body); font-size: 1.4rem;">{s.text}</td>
+            <td style="font-family: var(--font-ui); font-size: 1.25rem;">{s.text}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <h2>Itálica y negrita</h2>
+    <p style="font-family: var(--font-body);">
+      <em>Kutscher ihkwilohki: ā ē ī ō, maꞌ, tʼaan</em> · <strong>Ꞌ ꞌ ʔ ʼ ā́ 1234567890</strong>
+    </p>
+  </div>
+</Base>
+
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th,
+  td {
+    text-align: left;
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--line);
+    vertical-align: baseline;
+  }
+  thead th {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+  }
+  tbody th {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+</style>

@@ -1,0 +1,14 @@
+---
+import ContributePage from '../../components/ContributePage.astro';
+import type { Lang } from '../../i18n/languages';
+import { getActiveLanguages } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const active = await getActiveLanguages();
+  return active.filter((l) => l !== 'es').map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+---
+
+<ContributePage lang={lang} />

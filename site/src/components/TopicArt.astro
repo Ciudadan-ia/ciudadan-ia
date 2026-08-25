@@ -1,0 +1,93 @@
+---
+/**
+ * Pieza visual vectorial por tema — patrones geométricos de inspiración textil
+ * contemporánea (identidad: cálido comunitario, sin clichés folklóricos).
+ * Vector = peso ínfimo y nitidez en cualquier pantalla (constitución III).
+ */
+interface Props {
+  topic: string;
+  class?: string;
+}
+const { topic, class: className = '' } = Astro.props;
+
+// Composición determinista por tema: [colorA, colorB, patrón]
+const ART: Record<string, { a: string; b: string; pattern: 'zigzag' | 'steps' | 'diamonds' | 'waves' | 'bands' | 'seeds' }> = {
+  tecnologia: { a: 'var(--anil)', b: 'var(--cochinilla)', pattern: 'steps' },
+  seguridad: { a: 'var(--cochinilla)', b: 'var(--ink-soft)', pattern: 'zigzag' },
+  trabajo: { a: 'var(--maiz)', b: 'var(--anil)', pattern: 'bands' },
+  educacion: { a: 'var(--anil)', b: 'var(--maiz)', pattern: 'waves' },
+  derechos: { a: 'var(--cochinilla)', b: 'var(--maiz)', pattern: 'diamonds' },
+  'lengua-cultura': { a: 'var(--maiz)', b: 'var(--cochinilla)', pattern: 'seeds' },
+};
+const art = ART[topic] ?? ART.tecnologia;
+---
+
+<svg class={`topic-art ${className}`} viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" role="presentation" aria-hidden="true" focusable="false">
+  <rect width="320" height="180" fill="var(--surface-2)" />
+  {art.pattern === 'zigzag' && (
+    <g>
+      {[0, 1, 2, 3].map((row) => (
+        <path
+          d={`M0 ${35 + row * 40} ${Array.from({ length: 8 }, (_, i) => `L${(i + 0.5) * 40} ${15 + row * 40} L${(i + 1) * 40} ${35 + row * 40}`).join(' ')}`}
+          fill="none"
+          stroke={row % 2 ? art.b : art.a}
+          stroke-width="7"
+        />
+      ))}
+    </g>
+  )}
+  {art.pattern === 'steps' && (
+    <g>
+      {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+        <rect x={i * 40} y={150 - ((i * 37) % 120)} width="34" height="200" fill={i % 2 ? art.b : art.a} opacity={0.85 - (i % 3) * 0.15} />
+      ))}
+    </g>
+  )}
+  {art.pattern === 'diamonds' && (
+    <g>
+      {[0, 1, 2, 3, 4, 5].map((i) =>
+        [0, 1, 2].map((j) => (
+          <rect x={i * 56 + (j % 2) * 28} y={j * 56 + 6} width="34" height="34" transform={`rotate(45 ${i * 56 + (j % 2) * 28 + 17} ${j * 56 + 23})`} fill={(i + j) % 2 ? art.a : art.b} opacity="0.9" />
+        )),
+      )}
+    </g>
+  )}
+  {art.pattern === 'waves' && (
+    <g>
+      {[0, 1, 2, 3, 4].map((row) => (
+        <path
+          d={`M-10 ${25 + row * 35} ${Array.from({ length: 6 }, (_, i) => `q 28 ${row % 2 ? -26 : 26} 56 0`).join(' ')}`}
+          fill="none"
+          stroke={row % 2 ? art.a : art.b}
+          stroke-width="8"
+          stroke-linecap="round"
+        />
+      ))}
+    </g>
+  )}
+  {art.pattern === 'bands' && (
+    <g>
+      {[0, 1, 2, 3, 4, 5, 6].map((i) => (
+        <rect x="0" y={i * 26} width="320" height={i % 3 === 1 ? 18 : 10} fill={i % 2 ? art.a : art.b} opacity={i % 3 === 2 ? 0.45 : 0.9} />
+      ))}
+    </g>
+  )}
+  {art.pattern === 'seeds' && (
+    <g>
+      {[0, 1, 2, 3, 4, 5, 6, 7].map((i) =>
+        [0, 1, 2, 3].map((j) => (
+          <ellipse cx={20 + i * 40} cy={24 + j * 44} rx="11" ry={18} fill={(i + j) % 3 === 0 ? art.b : art.a} opacity={(i + j) % 2 ? 0.9 : 0.55} transform={`rotate(${(i % 2 ? 20 : -20)} ${20 + i * 40} ${24 + j * 44})`} />
+        )),
+      )}
+    </g>
+  )}
+</svg>
+
+<style>
+  .topic-art {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+  }
+</style>

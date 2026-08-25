@@ -1,0 +1,64 @@
+---
+/** Voz de la semana (FR-013): una persona hablante con nombre y territorio. */
+import type { Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { getLatestVoice } from '../lib/content';
+import AudioPlayer from './AudioPlayer.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const voice = await getLatestVoice();
+---
+
+{voice && (
+  <section class="voice-week" aria-labelledby="voice-week-title">
+    <p class="eyebrow" id="voice-week-title">{t.voiceOfWeek}</p>
+    <blockquote>
+      <p class="voice-quote" lang={voice.data.lang}>«{voice.data.quote}»</p>
+      {voice.data.lang !== lang && voice.data.quoteEs !== voice.data.quote && (
+        <p class="voice-quote-es" lang="es">{voice.data.quoteEs}</p>
+      )}
+      <footer class="voice-attribution">
+        <cite>{voice.data.name}</cite> · {voice.data.territory}
+      </footer>
+    </blockquote>
+    {voice.data.audio && (
+      <AudioPlayer src={voice.data.audio.src} durationSec={voice.data.audio.durationSec} lang={lang} narrator={voice.data.name} />
+    )}
+  </section>
+)}
+
+<style>
+  .voice-week {
+    border-top: 1px solid var(--line);
+    padding-block: var(--space-4);
+  }
+  blockquote {
+    margin: 0;
+    border-left: 4px solid var(--cochinilla);
+    padding-left: var(--space-4);
+  }
+  .voice-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.45;
+    max-width: var(--measure);
+  }
+  .voice-quote-es {
+    color: var(--ink-soft);
+    font-size: 1rem;
+  }
+  .voice-attribution {
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+  cite {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--ink);
+  }
+</style>

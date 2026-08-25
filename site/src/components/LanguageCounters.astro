@@ -1,0 +1,68 @@
+---
+/** Contadores vivos por lengua (FR-012) — gamificación colectiva estilo Common Voice. */
+import { LANGUAGES, langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { getLanguageStats } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+const stats = await getLanguageStats();
+---
+
+<section class="counters" aria-label={t.allEditions}>
+  {stats.map((s) => (
+    <a class="counter-card" href={`${langPath(s.lang)}/` || '/'} lang={s.lang}>
+      <span class="counter-lang">{LANGUAGES[s.lang].endonym}</span>
+      <span class="counter-nums" lang={lang}>
+        <strong class="num">{s.articles}</strong> {t.counters.articles}
+        {s.audios > 0 && (
+          <>
+            {' · '}
+            <strong class="num">{s.audios}</strong> {t.counters.audios}
+          </>
+        )}
+        {' · '}
+        <strong class="num">{s.people}</strong> {t.counters.people}
+      </span>
+    </a>
+  ))}
+</section>
+
+<style>
+  .counters {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: var(--space-3);
+    padding-block: var(--space-4);
+    border-top: 1px solid var(--line);
+  }
+  .counter-card {
+    display: grid;
+    gap: var(--space-1);
+    padding: var(--space-3);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--ink);
+    font-family: var(--font-ui);
+  }
+  .counter-card:hover {
+    border-color: var(--accent);
+  }
+  .counter-lang {
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+  .counter-nums {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .counter-nums strong {
+    color: var(--accent);
+    font-size: 1rem;
+  }
+</style>

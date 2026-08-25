@@ -1,0 +1,53 @@
+---
+/** Portada completa (FR-011..013, FR-017, FR-019) — compartida entre ediciones. */
+import Base from '../layouts/Base.astro';
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { listArticlesForLang, getActiveLanguages, articleSlug } from '../lib/content';
+import Hero from './Hero.astro';
+import FeaturedRail from './FeaturedRail.astro';
+import AudienceDoors from './AudienceDoors.astro';
+import LanguageCounters from './LanguageCounters.astro';
+import ContributeCTA from './ContributeCTA.astro';
+import NewsletterBlock from './NewsletterBlock.astro';
+import VoiceOfTheWeek from './VoiceOfTheWeek.astro';
+import TranslationNotice from './TranslationNotice.astro';
+import { LANGUAGES } from '../i18n/languages';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = UI[lang];
+
+const articles = await listArticlesForLang(lang);
+const dominante = articles.find((a) => a.data.featured === 'dominante') ?? articles[0];
+const destacadas = articles.filter((a) => a.data.featured === 'destacada' && a !== dominante).slice(0, 2);
+const rest = articles.filter((a) => a !== dominante && !destacadas.includes(a));
+const hasUnvalidated = LANGUAGES[lang].indigenous && articles.some((a) => a.data.status === 'traducido-ia');
+
+const active = await getActiveLanguages();
+const alternates = Object.fromEntries(active.map((l) => [l, `${langPath(l)}/` || '/']));
+---
+
+<Base lang={lang} title={t.siteTagline} description={t.siteTagline} alternates={alternates}>
+  <div class="wrap">
+    <h1 class="visually-hidden">CIUDADAN-IA — {t.siteTagline}</h1>
+
+    {dominante && <Hero article={dominante} lang={lang} />}
+
+    <ContributeCTA lang={lang} />
+
+    {hasUnvalidated && <TranslationNotice lang={lang} />}
+
+    <AudienceDoors lang={lang} />
+
+    <FeaturedRail featured={destacadas} rest={rest} lang={lang} />
+
+    <LanguageCounters lang={lang} />
+
+    <VoiceOfTheWeek lang={lang} />
+
+    <NewsletterBlock lang={lang} />
+  </div>
+</Base>

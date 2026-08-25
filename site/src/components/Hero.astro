@@ -1,0 +1,63 @@
+---
+/** Historia dominante de portada: pieza visual + titular de dos tiempos + respuesta corta. */
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import type { Article } from '../lib/content';
+import { articleSlug } from '../lib/content';
+import TopicArt from './TopicArt.astro';
+
+interface Props {
+  article: Article;
+  lang: Lang;
+}
+const { article, lang } = Astro.props;
+const t = UI[lang];
+const href = `${langPath(lang)}/articulos/${articleSlug(article)}/`;
+---
+
+<article class="hero">
+  <a class="hero-art" href={href} tabindex="-1" aria-hidden="true">
+    <TopicArt topic={article.data.topic} />
+  </a>
+  <div class="hero-text">
+    <p class="eyebrow">{t.topics[article.data.topic]}</p>
+    <h2 class="hero-title"><a href={href}>{article.data.title}</a></h2>
+    <p class="hero-summary">{article.data.summary}</p>
+    <p class="hero-more"><a href={href}>{t.readDeep} →</a></p>
+  </div>
+</article>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: var(--space-4);
+    align-items: center;
+    padding-block: var(--space-5);
+  }
+  @media (max-width: 720px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+  }
+  .hero-title {
+    font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+    margin-bottom: var(--space-3);
+  }
+  .hero-title a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .hero-title a:hover {
+    color: var(--accent);
+  }
+  .hero-summary {
+    font-size: 1.12rem;
+    color: var(--ink-soft);
+    max-width: var(--measure);
+  }
+  .hero-more {
+    font-family: var(--font-ui);
+    font-weight: 500;
+  }
+</style>

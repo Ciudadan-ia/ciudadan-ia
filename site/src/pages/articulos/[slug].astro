@@ -1,0 +1,16 @@
+---
+import ArticlePage from '../../components/ArticlePage.astro';
+import { allArticles, articleSlug, isPublished, resolveArticleForLang } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const entries = await allArticles();
+  const slugs = [...new Set(entries.filter((e) => e.data.lang === 'es' && isPublished(e)).map(articleSlug))];
+  return slugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const resolved = await resolveArticleForLang(slug!, 'es');
+if (resolved.mode === 'missing') throw new Error(`Artículo es no encontrado: ${slug}`);
+---
+
+<ArticlePage resolved={resolved} lang="es" />

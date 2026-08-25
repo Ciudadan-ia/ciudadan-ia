@@ -1,0 +1,72 @@
+---
+/**
+ * Vista bilingüe en paralelo (FR-009): traducción junto al original, párrafo a
+ * párrafo cuando el ancho lo permite, alternado en pantallas angostas. Cada
+ * columna declara su lang (WCAG 3.1.2) — y el par produce corpus alineado.
+ */
+import { render } from 'astro:content';
+import type { Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import type { Article } from '../lib/content';
+
+interface Props {
+  translation: Article;
+  original: Article;
+  lang: Lang;
+}
+const { translation, original, lang } = Astro.props;
+const t = UI[lang];
+const { Content: TranslationContent } = await render(translation);
+const { Content: OriginalContent } = await render(original);
+---
+
+<p class="bilingual-hint">{t.bilingualHint}</p>
+<div class="bilingual">
+  <section class="bilingual-col" lang={translation.data.lang}>
+    <h2 class="bilingual-label">{translation.data.title}</h2>
+    <p class="col-summary">{translation.data.summary}</p>
+    <TranslationContent />
+  </section>
+  <section class="bilingual-col bilingual-original" lang="es">
+    <h2 class="bilingual-label">{original.data.title}</h2>
+    <p class="col-summary">{original.data.summary}</p>
+    <OriginalContent />
+  </section>
+</div>
+
+<style>
+  .bilingual-hint {
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  .bilingual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .bilingual {
+      grid-template-columns: 1fr;
+    }
+    .bilingual-original {
+      border-top: 2px solid var(--line);
+      padding-top: var(--space-3);
+    }
+  }
+  .bilingual-col :global(h2),
+  .bilingual-col :global(h3) {
+    font-size: 1.15rem;
+  }
+  .bilingual-label {
+    font-size: 1.3rem;
+  }
+  .col-summary {
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .bilingual-original {
+    color: var(--ink-soft);
+  }
+</style>

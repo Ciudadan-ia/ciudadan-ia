@@ -1,0 +1,19 @@
+---
+import ArticlePage from '../../../components/ArticlePage.astro';
+import type { Lang } from '../../../i18n/languages';
+import { allArticles, articleSlug, isPublished, resolveArticleForLang } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const entries = await allArticles();
+  return entries
+    .filter((e) => e.data.lang !== 'es' && isPublished(e))
+    .map((e) => ({ params: { lang: e.data.lang, slug: articleSlug(e) } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const { slug } = Astro.params;
+const resolved = await resolveArticleForLang(slug!, lang);
+if (resolved.mode === 'missing') throw new Error(`Artículo ${lang} no encontrado: ${slug}`);
+---
+
+<ArticlePage resolved={resolved} lang={lang} />
