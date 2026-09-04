@@ -1,0 +1,197 @@
+[
+  {
+    "slug": "proteccion-colectiva-de-iconografia",
+    "format": "explicador",
+    "topic": "arte-creatividad",
+    "subtopic": "textil-e-iconografia-indigena",
+    "workingTitle": "La iconografía de un pueblo no tiene un autor. Las leyes de autor no contemplan eso",
+    "angle": "Explica por qué el derecho de autor individual y con plazo no calza con una creación colectiva y sin fecha, y qué instrumentos se usan en su lugar (marcas colectivas, denominaciones, leyes de patrimonio, protocolos comunitarios). Única pieza conceptual sobre esa incompatibilidad.",
+    "audience": [
+      "general",
+      "comunidades"
+    ],
+    "communityPriority": 1,
+    "reviewPriority": "normal",
+    "latamAnchor": "required",
+    "wordRange": [
+      600,
+      900
+    ],
+    "keywords": [
+      "iconografia",
+      "creacion colectiva",
+      "marca colectiva",
+      "patrimonio",
+      "protocolos comunitarios",
+      "pueblos indigenas"
+    ],
+    "openingType": "escena",
+    "closingType": "protocolo",
+    "differsFrom": [],
+    "sourceTargets": {
+      "min": 4,
+      "max": 7,
+      "latam": 1
+    },
+    "batch": 1
+  },
+  {
+    "slug": "detectores-de-texto-no-confiables",
+    "format": "pregunta",
+    "topic": "arte-creatividad",
+    "subtopic": "periodismo-y-medios",
+    "workingTitle": "¿Cómo sé si esta nota la escribió una IA? Los detectores fallan; revisar la fuente sirve más",
+    "angle": "Explica por qué los detectores de texto producen falsos positivos, sobre todo con quien escribe en su segunda lengua, y ofrece el reemplazo: revisar autoría, fecha, fuentes citadas y dominio. Única pieza sobre detección de texto.",
+    "audience": [
+      "general",
+      "docentes"
+    ],
+    "communityPriority": 1,
+    "reviewPriority": "alta",
+    "latamAnchor": "n/a",
+    "wordRange": [
+      300,
+      500
+    ],
+    "keywords": [
+      "detectores de texto",
+      "falsos positivos",
+      "segunda lengua",
+      "verificacion",
+      "fuentes",
+      "autoria"
+    ],
+    "openingType": "dato",
+    "closingType": "exigencia",
+    "differsFrom": [
+      {
+        "slug": "porcentaje-del-detector",
+        "how": "Centrar detectores-de-texto-no-confiables en verificar la autoría de una nota periodística: buscar la firma, el historial del sitio, la fuente original, escribir a la redacción y comparar con el cable — y remitir el asun"
+      }
+    ],
+    "sourceTargets": {
+      "min": 3,
+      "max": 5,
+      "latam": 0
+    },
+    "batch": 1
+  },
+  {
+    "slug": "glosario-clonacion-de-voz-artistica",
+    "format": "glosario",
+    "topic": "arte-creatividad",
+    "subtopic": "voz-e-imagen-de-artistas",
+    "workingTitle": "Clonación de voz artística: copiar el timbre de una persona para que cante lo que nunca grabó",
+    "angle": "Define el resultado y el insumo (pocos minutos de audio existente) en una frase, sin entrar en el procedimiento técnico que desarrolla el explicador.",
+    "term": "Clonación de voz artística",
+    "audience": [
+      "general",
+      "comunidades"
+    ],
+    "communityPriority": 1,
+    "reviewPriority": "normal",
+    "latamAnchor": "n/a",
+    "wordRange": [
+      150,
+      300
+    ],
+    "keywords": [
+      "clonacion de voz",
+      "timbre",
+      "canto",
+      "consentimiento",
+      "audio sintetico"
+    ],
+    "openingType": "pregunta",
+    "closingType": "pregunta-siguiente",
+    "differsFrom": [],
+    "sourceTargets": {
+      "min": 3,
+      "max": 4,
+      "latam": 0
+    },
+    "batch": 1
+  },
+  {
+    "slug": "ficha-tlahuitoltepec-blusa-mixe",
+    "format": "ficha",
+    "topic": "arte-creatividad",
+    "subtopic": "textil-e-iconografia-indigena",
+    "workingTitle": "Tlahuitoltepec: la comunidad mixe que le puso nombre y dueña a su blusa frente a una marca francesa",
+    "angle": "Ficha del reclamo comunitario mixe como método replicable: documentar el diseño, nombrar su origen, exigir en público y en oficinas. Muestra qué de ese método sirve ahora que las copias salen de un generador.",
+    "audience": [
+      "comunidades",
+      "general"
+    ],
+    "communityPriority": 1,
+    "reviewPriority": "alta",
+    "latamAnchor": "required",
+    "wordRange": [
+      400,
+      600
+    ],
+    "keywords": [
+      "tlahuitoltepec",
+      "mixe",
+      "blusa",
+      "apropiacion",
+      "moda",
+      "reclamo comunitario"
+    ],
+    "openingType": "contraste",
+    "closingType": "matiz",
+    "differsFrom": [],
+    "sourceTargets": {
+      "min": 4,
+      "max": 7,
+      "latam": 1
+    },
+    "batch": 1
+  },
+  {
+    "slug": "paper-estereotipos-de-pueblos-indigenas",
+    "format": "paper",
+    "topic": "arte-creatividad",
+    "subtopic": "textil-e-iconografia-indigena",
+    "workingTitle": "Quien pide una imagen indígena a un generador recibe plumas y desierto. El estereotipo vuelve como dato",
+    "angle": "Sintetiza los estudios que miden la representación estereotipada de pueblos indígenas y del Sur global en generadores de imagen, y explica cómo se construyen esas mediciones. Única pieza que aporta método y cifras a lo que las otras describen.",
+    "audience": [
+      "general",
+      "docentes",
+      "comunidades"
+    ],
+    "communityPriority": 2,
+    "reviewPriority": "normal",
+    "latamAnchor": "preferred",
+    "wordRange": [
+      500,
+      700
+    ],
+    "keywords": [
+      "estereotipos",
+      "representacion",
+      "generadores de imagen",
+      "pueblos indigenas",
+      "sesgo",
+      "sur global"
+    ],
+    "openingType": "caso-local",
+    "closingType": "protocolo",
+    "differsFrom": [
+      {
+        "slug": "el-cliche-indigena-en-imagenes",
+        "how": "El explicador debe explicar el mecanismo (de qué archivo salió ese cliché, qué pasa con endónimos y regiones) y remitir la medición al paper, sin repetir el hallazgo como titular."
+      },
+      {
+        "slug": "generadores-amplifican-estereotipos",
+        "how": "Que generadores-amplifican-estereotipos quede en la amplificación medida frente a la sociedad de base (piel, ocupación, país) y el otro estrictamente en iconografía de pueblos indígenas."
+      }
+    ],
+    "sourceTargets": {
+      "min": 4,
+      "max": 7,
+      "latam": 0
+    },
+    "batch": 1
+  }
+]

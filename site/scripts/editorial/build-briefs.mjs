@@ -18,6 +18,7 @@ const arg = (k, d) => {
 const BATCH = Number(arg('--batch', 1));
 const SIZE = Number(arg('--size', 50));
 const ONLY = arg('--only', null);
+const MIX_ARG = arg('--mix', null); // ej: "explicador:1,pregunta:1,glosario:1,ficha:1,paper:1"
 
 /** Composición de los lotes de lanzamiento (plan 002, C.0). */
 const MIX = { explicador: 15, pregunta: 15, glosario: 10, ficha: 5, paper: 5 };
@@ -30,7 +31,14 @@ const available = reg.seeds.filter((s) => s.state === 'planned');
 /** Selección estratificada: respeta la mezcla y reparte entre temas. */
 function pick() {
   const chosen = [];
-  const target = ONLY ? { [ONLY]: SIZE } : MIX;
+  const target = MIX_ARG
+    ? Object.fromEntries(MIX_ARG.split(',').map((p) => {
+        const [f, n] = p.split(':');
+        return [f.trim(), Number(n)];
+      }))
+    : ONLY
+      ? { [ONLY]: SIZE }
+      : MIX;
   for (const [format, count] of Object.entries(target)) {
     const pool = available.filter((s) => s.format === format && !chosen.includes(s));
     // ordenar por tema rotando, y priorizar piezas comunitarias y "puerta"

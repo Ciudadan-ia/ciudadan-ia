@@ -21465,7 +21465,8 @@
       "latamAnchor": "n/a",
       "reviewPriority": "normal",
       "topic": "arte-creatividad",
-      "state": "planned"
+      "state": "briefed",
+      "batch": 1
     },
     {
       "slug": "glosario-obra-derivada",
@@ -21935,7 +21936,8 @@
       "latamAnchor": "n/a",
       "reviewPriority": "alta",
       "topic": "arte-creatividad",
-      "state": "planned"
+      "state": "briefed",
+      "batch": 1
     },
     {
       "slug": "transparencia-de-medios-con-ia",
@@ -22077,7 +22079,8 @@
       "latamAnchor": "required",
       "reviewPriority": "normal",
       "topic": "arte-creatividad",
-      "state": "planned"
+      "state": "briefed",
+      "batch": 1
     },
     {
       "slug": "huipil-copiado-y-quien-cobra",
@@ -22198,7 +22201,8 @@
       "latamAnchor": "required",
       "reviewPriority": "alta",
       "topic": "arte-creatividad",
-      "state": "planned"
+      "state": "briefed",
+      "batch": 1
     },
     {
       "slug": "paper-estereotipos-de-pueblos-indigenas",
@@ -22223,7 +22227,8 @@
       "latamAnchor": "preferred",
       "reviewPriority": "normal",
       "topic": "arte-creatividad",
-      "state": "planned"
+      "state": "briefed",
+      "batch": 1
     },
     {
       "slug": "diseno-generado-en-venta-artesanal",
