@@ -15,3 +15,9 @@ dist/
 .env
 .env.*
 !.env.example
+
+# Trabajo intermedio del sistema editorial (los resultados viven en registro.json)
+editorial/_*
+editorial/lotes/*/fuentes/
+editorial/lotes/*/piezas/
+editorial/lotes/*/qa/
