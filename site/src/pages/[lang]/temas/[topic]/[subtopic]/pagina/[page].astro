@@ -1,0 +1,28 @@
+---
+import TopicIndexRoute from '../../../../../../components/TopicIndexRoute.astro';
+import type { Lang } from '../../../../../../i18n/languages';
+import type { Topic } from '../../../../../../i18n/taxonomy';
+import { getActiveLanguages, getIndexAvailability, listArticlesForLang } from '../../../../../../lib/content';
+import { PAGE_SIZES } from '../../../../../../lib/paginate';
+
+export async function getStaticPaths() {
+  const langs = (await getActiveLanguages()).filter((l) => l !== 'es');
+  const paths = [];
+  for (const lang of langs) {
+    const av = await getIndexAvailability(lang);
+    for (const [topic, subs] of av.subtopics) {
+      for (const subtopic of subs) {
+        const n = (await listArticlesForLang(lang, { topic, subtopic })).length;
+        const last = Math.ceil(n / PAGE_SIZES.topic);
+        for (let page = 2; page <= last; page++) {
+          paths.push({ params: { lang, topic, subtopic, page: String(page) } });
+        }
+      }
+    }
+  }
+  return paths;
+}
+const lang = Astro.params.lang as Lang;
+const topic = Astro.params.topic as Topic;
+---
+<TopicIndexRoute lang={lang} topic={topic} subtopic={Astro.params.subtopic!} pageNum={Number(Astro.params.page)} />

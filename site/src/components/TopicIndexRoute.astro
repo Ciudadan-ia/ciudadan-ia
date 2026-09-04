@@ -1,0 +1,30 @@
+---
+/** Lógica compartida por las rutas de tema y subtema. */
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { SUBTOPICS, type Topic } from '../i18n/taxonomy';
+import { listArticlesForLang } from '../lib/content';
+import { paginateStatic, PAGE_SIZES } from '../lib/paginate';
+import IndexPage from './IndexPage.astro';
+
+interface Props {
+  lang: Lang;
+  topic: Topic;
+  subtopic?: string;
+  pageNum: number;
+}
+const { lang, topic, subtopic, pageNum } = Astro.props as Props;
+const t = UI[lang];
+const p = langPath(lang);
+
+const items = await listArticlesForLang(lang, { topic, subtopic });
+const base = subtopic ? `${p}/temas/${topic}/${subtopic}/` : `${p}/temas/${topic}/`;
+const pages = paginateStatic(items, PAGE_SIZES.topic, base);
+const page = pages[pageNum - 1] ?? pages[0];
+
+const title = subtopic ? SUBTOPICS[topic][subtopic] : t.topics[topic];
+const breadcrumb: Array<[string, string]> = subtopic
+  ? [[t.explore.topics, `${p}/temas/`], [t.topics[topic], `${p}/temas/${topic}/`]]
+  : [[t.explore.topics, `${p}/temas/`]];
+---
+<IndexPage lang={lang} title={title} breadcrumb={breadcrumb} page={page} showTopic={!subtopic} />

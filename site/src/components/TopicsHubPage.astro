@@ -1,0 +1,109 @@
+---
+/** Hub de temas: solo los que tienen contenido en esta lengua. */
+import Base from '../layouts/Base.astro';
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { SUBTOPICS, type Topic } from '../i18n/taxonomy';
+import { getIndexAvailability, listArticlesForLang } from '../lib/content';
+import ExploreNav from './ExploreNav.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+const t = UI[lang];
+const p = langPath(lang);
+const av = await getIndexAvailability(lang);
+
+const topics = await Promise.all(
+  av.topics.map(async (topic) => ({
+    topic,
+    total: (await listArticlesForLang(lang, { topic })).length,
+    subtopics: av.subtopics.get(topic) ?? [],
+  })),
+);
+---
+
+<Base lang={lang} title={t.explore.topics} description={t.explore.topics}>
+  <div class="wrap topics-hub">
+    <h1>{t.explore.topics}</h1>
+    <ul class="topic-grid">
+      {topics.map((tp) => (
+        <li class="topic-card">
+          <h2>
+            <a href={`${p}/temas/${tp.topic}/`}>{t.topics[tp.topic]}</a>
+            <span class="topic-count num">{tp.total}</span>
+          </h2>
+          {tp.subtopics.length > 0 && (
+            <ul class="subtopic-list">
+              {tp.subtopics.map((st) => (
+                <li>
+                  <a href={`${p}/temas/${tp.topic}/${st}/`}>
+                    {SUBTOPICS[tp.topic as Topic][st]}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
+    <ExploreNav lang={lang} />
+  </div>
+</Base>
+
+<style>
+  .topics-hub {
+    padding-block: var(--space-5);
+  }
+  .topic-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+  .topic-card {
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--accent);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: var(--space-3) var(--space-4);
+  }
+  .topic-card h2 {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2);
+    font-size: 1.1rem;
+    margin-bottom: var(--space-2);
+  }
+  .topic-card h2 a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .topic-card h2 a:hover {
+    color: var(--accent);
+  }
+  .topic-count {
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+  .subtopic-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 2px;
+    font-family: var(--font-ui);
+    font-size: 0.88rem;
+  }
+  .subtopic-list a {
+    color: var(--ink-soft);
+  }
+  .subtopic-list a:hover {
+    color: var(--accent);
+  }
+</style>

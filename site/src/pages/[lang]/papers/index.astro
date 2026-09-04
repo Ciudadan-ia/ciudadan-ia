@@ -1,0 +1,17 @@
+---
+import FormatIndexRoute from '../../../components/FormatIndexRoute.astro';
+import type { Lang } from '../../../i18n/languages';
+import { getActiveLanguages, getIndexAvailability } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const langs = (await getActiveLanguages()).filter((l) => l !== 'es');
+  const paths = [];
+  for (const lang of langs) {
+    const av = await getIndexAvailability(lang);
+    if (av.formats.includes('paper')) paths.push({ params: { lang } });
+  }
+  return paths;
+}
+const lang = Astro.params.lang as Lang;
+---
+<FormatIndexRoute lang={lang} format="paper" pageNum={1} segment="papers" />

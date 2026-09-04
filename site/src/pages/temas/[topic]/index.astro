@@ -1,0 +1,12 @@
+---
+import TopicIndexRoute from '../../../components/TopicIndexRoute.astro';
+import { getIndexAvailability } from '../../../lib/content';
+import type { Topic } from '../../../i18n/taxonomy';
+
+export async function getStaticPaths() {
+  const av = await getIndexAvailability('es');
+  return av.topics.map((topic) => ({ params: { topic } }));
+}
+const topic = Astro.params.topic as Topic;
+---
+<TopicIndexRoute lang="es" topic={topic} pageNum={1} />

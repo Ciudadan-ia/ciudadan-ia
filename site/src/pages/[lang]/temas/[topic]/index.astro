@@ -1,0 +1,19 @@
+---
+import TopicIndexRoute from '../../../../components/TopicIndexRoute.astro';
+import type { Lang } from '../../../../i18n/languages';
+import type { Topic } from '../../../../i18n/taxonomy';
+import { getActiveLanguages, getIndexAvailability } from '../../../../lib/content';
+
+export async function getStaticPaths() {
+  const langs = (await getActiveLanguages()).filter((l) => l !== 'es');
+  const paths = [];
+  for (const lang of langs) {
+    const av = await getIndexAvailability(lang);
+    for (const topic of av.topics) paths.push({ params: { lang, topic } });
+  }
+  return paths;
+}
+const lang = Astro.params.lang as Lang;
+const topic = Astro.params.topic as Topic;
+---
+<TopicIndexRoute lang={lang} topic={topic} pageNum={1} />

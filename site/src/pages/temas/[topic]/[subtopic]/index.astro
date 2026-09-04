@@ -1,0 +1,17 @@
+---
+import TopicIndexRoute from '../../../../components/TopicIndexRoute.astro';
+import { getIndexAvailability } from '../../../../lib/content';
+import type { Topic } from '../../../../i18n/taxonomy';
+
+export async function getStaticPaths() {
+  const av = await getIndexAvailability('es');
+  const paths = [];
+  for (const [topic, subs] of av.subtopics) {
+    for (const subtopic of subs) paths.push({ params: { topic, subtopic } });
+  }
+  return paths;
+}
+const topic = Astro.params.topic as Topic;
+const subtopic = Astro.params.subtopic!;
+---
+<TopicIndexRoute lang="es" topic={topic} subtopic={subtopic} pageNum={1} />

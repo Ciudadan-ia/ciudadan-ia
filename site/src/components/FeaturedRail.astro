@@ -6,22 +6,20 @@ import type { Article } from '../lib/content';
 import { articleSlug, readingTimeMin } from '../lib/content';
 import TopicArt from './TopicArt.astro';
 
+interface Rail {
+  topic: string;
+  items: Article[];
+  moreHref: string;
+  total: number;
+}
 interface Props {
   featured: Article[];
-  rest: Article[];
+  rails: Rail[];
   lang: Lang;
 }
-const { featured, rest, lang } = Astro.props;
+const { featured, rails, lang } = Astro.props as Props;
 const t = UI[lang];
 const href = (a: Article) => `${langPath(lang)}/articulos/${articleSlug(a)}/`;
-
-// Carriles: agrupar el resto por tema, en orden de aparición.
-const byTopic = new Map<string, Article[]>();
-for (const a of rest) {
-  const list = byTopic.get(a.data.topic) ?? [];
-  list.push(a);
-  byTopic.set(a.data.topic, list);
-}
 ---
 
 {featured.length > 0 && (
@@ -37,11 +35,18 @@ for (const a of rest) {
   </div>
 )}
 
-{[...byTopic.entries()].map(([topic, articles]) => (
-  <section class="rail" aria-labelledby={`rail-${topic}`}>
-    <h3 class="rail-title eyebrow" id={`rail-${topic}`}>{t.topics[topic]}</h3>
+{rails.map((rail) => (
+  <section class="rail" aria-labelledby={`rail-${rail.topic}`}>
+    <div class="rail-head">
+      <h3 class="rail-title eyebrow" id={`rail-${rail.topic}`}>{t.topics[rail.topic]}</h3>
+      {rail.total > rail.items.length && (
+        <a class="rail-more" href={rail.moreHref}>
+          {t.seeAllIn(t.topics[rail.topic])} (<span class="num">{rail.total}</span>) →
+        </a>
+      )}
+    </div>
     <ul class="rail-list">
-      {articles.map((a) => (
+      {rail.items.map((a) => (
         <li>
           <a href={href(a)} class="rail-link">
             <span class="rail-headline">{a.data.title}</span>
@@ -83,8 +88,21 @@ for (const a of rest) {
     border-top: 1px solid var(--line);
     padding-block: var(--space-3);
   }
+  .rail-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+    flex-wrap: wrap;
+  }
   .rail-title {
-    margin: 0 0 var(--space-2);
+    margin: 0;
+  }
+  .rail-more {
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    white-space: nowrap;
   }
   .rail-list {
     list-style: none;

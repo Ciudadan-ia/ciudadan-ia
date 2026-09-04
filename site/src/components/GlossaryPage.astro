@@ -1,0 +1,115 @@
+---
+/**
+ * Glosario A-Z en una página (patrón de uso: buscar por letra). Usa `gloss`
+ * (≤160 caracteres) en lugar de `summary` para respetar el presupuesto de peso.
+ */
+import Base from '../layouts/Base.astro';
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { articleHref, getGlossary } from '../lib/content';
+import ExploreNav from './ExploreNav.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+const t = UI[lang];
+const groups = await getGlossary(lang);
+const total = groups.reduce((n, g) => n + g.items.length, 0);
+---
+
+<Base lang={lang} title={t.glossaryTitle} description={t.glossaryTitle}>
+  <div class="wrap glossary">
+    <h1>{t.glossaryTitle}</h1>
+    <p class="gl-count num">{total}</p>
+
+    {groups.length > 1 && (
+      <nav class="gl-jump" aria-label={t.glossaryJumpTo}>
+        {groups.map((g) => (
+          <a href={`#letra-${g.letter}`}>{g.letter}</a>
+        ))}
+      </nav>
+    )}
+
+    {groups.map((g) => (
+      <section class="gl-group" aria-labelledby={`letra-${g.letter}`}>
+        <h2 id={`letra-${g.letter}`}>{g.letter}</h2>
+        <dl>
+          {g.items.map((a) => (
+            <div class="gl-entry">
+              <dt><a href={articleHref(a, lang)}>{a.data.term ?? a.data.title}</a></dt>
+              <dd>{a.data.gloss ?? a.data.summary}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    ))}
+
+    <ExploreNav lang={lang} />
+  </div>
+</Base>
+
+<style>
+  .glossary {
+    padding-block: var(--space-5);
+  }
+  .gl-count {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+  }
+  .gl-jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    margin-block: var(--space-3) var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--line);
+  }
+  .gl-jump a {
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 0.9rem;
+    min-width: 2rem;
+    text-align: center;
+    padding: var(--space-1);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+  .gl-group h2 {
+    font-family: var(--font-ui);
+    font-size: 1.6rem;
+    color: var(--accent);
+    border-bottom: 2px solid var(--line);
+    padding-bottom: var(--space-1);
+    margin-top: var(--space-4);
+  }
+  dl {
+    margin: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+  .gl-entry {
+    display: grid;
+    gap: 2px;
+  }
+  dt {
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  dt a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  dt a:hover {
+    color: var(--accent);
+  }
+  dd {
+    margin: 0;
+    color: var(--ink-soft);
+    max-width: var(--measure);
+  }
+</style>

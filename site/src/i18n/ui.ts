@@ -58,6 +58,12 @@ type UIStrings = {
   seriesOf: (n: number, m: number) => string;
   correctionsTitle: string;
   pendingTranslationReview: string;
+  explore: { title: string; topics: string; all: string; search: string; recent: string };
+  search: { title: string; placeholder: string; button: string; needsJs: string; results: (n: number) => string; noResults: string };
+  glossaryTitle: string;
+  glossaryJumpTo: string;
+  inTopic: (topic: string) => string;
+  seeAllIn: (topic: string) => string;
   offline: { savedCopy: string; title: string; body: string };
   langSuggestion: (endonym: string) => string;
   topics: Record<string, string>;
@@ -107,6 +113,19 @@ export const UI: Record<Lang, UIStrings> = {
     seriesOf: (n, m) => `${n} de ${m}`,
     correctionsTitle: 'Correcciones',
     pendingTranslationReview: 'Esta traducción la hizo una IA y está pendiente de revisión humana.',
+    explore: { title: 'Explora', topics: 'Temas', all: 'Ver todo', search: 'Buscar', recent: 'Lo más reciente' },
+    search: {
+      title: 'Buscar',
+      placeholder: 'Busca un tema, un término, una pregunta',
+      button: 'Buscar',
+      needsJs: 'La búsqueda necesita JavaScript. Mientras tanto, explora por tema, por glosario o revisa todos los artículos.',
+      results: (n) => `${n} resultado${n === 1 ? '' : 's'}`,
+      noResults: 'No encontramos nada con esas palabras. Prueba con menos palabras o explora por tema.',
+    },
+    glossaryTitle: 'Glosario',
+    glossaryJumpTo: 'Ir a la letra',
+    inTopic: (topic) => `en ${topic}`,
+    seeAllIn: (topic) => `Ver todo en ${topic}`,
     offline: { savedCopy: 'Estás viendo una copia guardada.', title: 'Sin conexión', body: 'No hay conexión ahora mismo. Los artículos que ya visitaste siguen disponibles.' },
     langSuggestion: (endonym) => `¿Prefieres leer en ${endonym}?`,
     topics: {
@@ -166,6 +185,19 @@ export const UI: Record<Lang, UIStrings> = {
     seriesOf: (n, m) => `${n} of ${m}`,
     correctionsTitle: 'Corrections',
     pendingTranslationReview: 'This translation was produced by AI and is pending human review.',
+    explore: { title: 'Explore', topics: 'Topics', all: 'See all', search: 'Search', recent: 'Latest' },
+    search: {
+      title: 'Search',
+      placeholder: 'Search a topic, a term, a question',
+      button: 'Search',
+      needsJs: 'Search needs JavaScript. In the meantime, browse by topic, by glossary, or see all articles.',
+      results: (n) => `${n} result${n === 1 ? '' : 's'}`,
+      noResults: 'Nothing matched those words. Try fewer words or browse by topic.',
+    },
+    glossaryTitle: 'Glossary',
+    glossaryJumpTo: 'Jump to letter',
+    inTopic: (topic) => `in ${topic}`,
+    seeAllIn: (topic) => `See all in ${topic}`,
     offline: { savedCopy: 'You are viewing a saved copy.', title: 'Offline', body: 'There is no connection right now. Articles you already visited remain available.' },
     langSuggestion: (endonym) => `Would you rather read in ${endonym}?`,
     topics: {
@@ -225,6 +257,19 @@ export const UI: Record<Lang, UIStrings> = {
     seriesOf: (n, m) => `${n} itech ${m}`,
     correctionsTitle: 'Tlayectilizmeh',
     pendingTranslationReview: 'Inin tlahtolcuepaliztli oquichiuh ce IA huan ayamo oquittac ce tlacatl.',
+    explore: { title: 'Xictemo', topics: 'Tlahtolmeh', all: 'Xiquitta nochi', search: 'Xictemo', recent: 'Yancuic' },
+    search: {
+      title: 'Xictemo',
+      placeholder: 'Xictemo ce tlahtolli nozo ce tlahtlaniliztli',
+      button: 'Xictemo',
+      needsJs: 'In tetemoliztli monequi JavaScript. Axcan, xictemo ica tlahtolmeh nozo xiquitta nochi in amatlahcuilolli.',
+      results: (n) => `${n} tlen oncah`,
+      noResults: 'Ahtlein otiquittac. Xictequitilti tepitzin tlahtolmeh nozo xictemo ica tlahtolmeh.',
+    },
+    glossaryTitle: 'Tlahtolnechicoliztli',
+    glossaryJumpTo: 'Xiyauh itech letra',
+    inTopic: (topic) => `ipan ${topic}`,
+    seeAllIn: (topic) => `Xiquitta nochi ipan ${topic}`,
     offline: { savedCopy: 'Tiquitta ce amatl omopix.', title: 'Ahmo onca matiloni', body: 'Axcan ahmo onca matiloni. In amatlahcuilolli otiquittac oc onca.' },
     langSuggestion: (endonym) => `¿Ticnequi titlapohuaz ica ${endonym}?`,
     topics: {
@@ -284,6 +329,19 @@ export const UI: Record<Lang, UIStrings> = {
     seriesOf: (n, m) => `${n} ti' ${m}`,
     correctionsTitle: "Utskíinsajo'ob",
     pendingTranslationReview: "Le sut t'aana' beeta'ab tumen IA yéetel ma' xoka'ak tumen máak.",
+    explore: { title: 'Kaxant', topics: "Ba'alo'ob", all: 'Il tuláakal', search: 'Kaxant', recent: "Túumbeno'ob" },
+    search: {
+      title: 'Kaxant',
+      placeholder: "Kaxant jump'éel ba'al, jump'éel t'aan, jump'éel k'áat chi'",
+      button: 'Kaxant',
+      needsJs: "Le kaxanto' k'a'abéet JavaScript. Bejla'e', kaxant tumen ba'al, tumen t'aan xookil, wa il tuláakal le ts'íibo'ob.",
+      results: (n) => `${n} ba'ax kaxta'ab`,
+      noResults: "Mixba'al kaxta'ab yéetel le t'aano'obo'. Meyajnak jump'íit t'aano'ob wa kaxant tumen ba'al.",
+    },
+    glossaryTitle: "T'aan xookil",
+    glossaryJumpTo: "Xen ti' le letrao'",
+    inTopic: (topic) => `ti' ${topic}`,
+    seeAllIn: (topic) => `Il tuláakal ti' ${topic}`,
     offline: { savedCopy: "Táan a wilik jump'éel copia líik'sa'an.", title: "Mina'an internet", body: "Mina'an internet bejla'e'. Le ts'íibo'ob ts'o'ok a xokiko' láayli' yano'obe'." },
     langSuggestion: (endonym) => `¿A k'áat xook ich ${endonym}?`,
     topics: {

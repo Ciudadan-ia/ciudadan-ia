@@ -1,0 +1,71 @@
+---
+/** Lista de artículos reutilizable en todos los índices. */
+import type { Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { FORMAT_LABELS } from '../i18n/taxonomy';
+import { articleHref, readingTimeMin, type Article } from '../lib/content';
+
+interface Props {
+  items: Article[];
+  lang: Lang;
+  /** Mostrar la respuesta corta bajo el título. */
+  withSummary?: boolean;
+  showTopic?: boolean;
+}
+const { items, lang, withSummary = false, showTopic = false } = Astro.props as Props;
+const t = UI[lang];
+---
+
+<ul class="article-list">
+  {items.map((a) => (
+    <li>
+      <p class="al-meta">
+        <span class="al-format">{FORMAT_LABELS[a.data.format][lang]}</span>
+        {showTopic && <> · {t.topics[a.data.topic]}</>}
+        {' · '}
+        <span class="num">{t.readingTime(readingTimeMin(a))}</span>
+      </p>
+      <h3><a href={articleHref(a, lang)}>{a.data.title}</a></h3>
+      {withSummary && <p class="al-summary">{a.data.gloss ?? a.data.summary}</p>}
+    </li>
+  ))}
+</ul>
+
+<style>
+  .article-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+  .al-meta {
+    font-family: var(--font-ui);
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 var(--space-1);
+  }
+  .al-format {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 1.12rem;
+    margin: 0 0 var(--space-1);
+  }
+  h3 a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  h3 a:hover {
+    color: var(--accent);
+  }
+  .al-summary {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+    max-width: var(--measure);
+  }
+</style>

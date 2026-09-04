@@ -1,0 +1,20 @@
+---
+import TopicIndexRoute from '../../../../components/TopicIndexRoute.astro';
+import { getIndexAvailability, listArticlesForLang } from '../../../../lib/content';
+import { PAGE_SIZES } from '../../../../lib/paginate';
+import type { Topic } from '../../../../i18n/taxonomy';
+
+export async function getStaticPaths() {
+  const av = await getIndexAvailability('es');
+  const paths = [];
+  for (const topic of av.topics) {
+    const n = (await listArticlesForLang('es', { topic })).length;
+    const last = Math.ceil(n / PAGE_SIZES.topic);
+    for (let page = 2; page <= last; page++) paths.push({ params: { topic, page: String(page) } });
+  }
+  return paths;
+}
+const topic = Astro.params.topic as Topic;
+const pageNum = Number(Astro.params.page);
+---
+<TopicIndexRoute lang="es" topic={topic} pageNum={pageNum} />

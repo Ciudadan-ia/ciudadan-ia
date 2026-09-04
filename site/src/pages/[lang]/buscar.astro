@@ -1,0 +1,12 @@
+---
+import SearchPage from '../../components/SearchPage.astro';
+import type { Lang } from '../../i18n/languages';
+import { getActiveLanguages } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const langs = (await getActiveLanguages()).filter((l) => l !== 'es');
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Lang;
+---
+<SearchPage lang={lang} />

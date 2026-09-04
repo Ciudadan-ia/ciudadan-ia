@@ -1,0 +1,13 @@
+---
+import FormatIndexRoute from '../../../components/FormatIndexRoute.astro';
+import { listArticlesForLang } from '../../../lib/content';
+import { PAGE_SIZES } from '../../../lib/paginate';
+
+export async function getStaticPaths() {
+  const n = (await listArticlesForLang('es', { format: 'paper' })).length;
+  const last = Math.ceil(n / PAGE_SIZES.format);
+  return Array.from({ length: Math.max(0, last - 1) }, (_, i) => ({ params: { page: String(i + 2) } }));
+}
+const pageNum = Number(Astro.params.page);
+---
+<FormatIndexRoute lang="es" format="paper" pageNum={pageNum} segment="papers" />

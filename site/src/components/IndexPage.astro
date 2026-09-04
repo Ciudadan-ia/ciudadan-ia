@@ -1,0 +1,92 @@
+---
+/**
+ * Página índice genérica y paginada: tema, subtema, formato o catálogo completo.
+ * Cada índice existe solo si tiene contenido en la lengua (constitución II).
+ */
+import Base from '../layouts/Base.astro';
+import type { Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import type { Article } from '../lib/content';
+import type { StaticPage } from '../lib/paginate';
+import ArticleList from './ArticleList.astro';
+import Pagination from './Pagination.astro';
+import ExploreNav from './ExploreNav.astro';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description?: string;
+  /** Migas: pares [texto, href]. */
+  breadcrumb?: Array<[string, string]>;
+  page: StaticPage<Article>;
+  withSummary?: boolean;
+  showTopic?: boolean;
+  alternates?: Partial<Record<Lang, string>>;
+  intro?: string;
+}
+const {
+  lang,
+  title,
+  description,
+  breadcrumb = [],
+  page,
+  withSummary = true,
+  showTopic = false,
+  alternates,
+  intro,
+} = Astro.props as Props;
+const t = UI[lang];
+---
+
+<Base
+  lang={lang}
+  title={page.page > 1 ? `${title} (${page.page})` : title}
+  description={description ?? title}
+  alternates={alternates}
+  prevUrl={page.prevUrl}
+  nextUrl={page.nextUrl}
+>
+  <div class="wrap index-page">
+    {breadcrumb.length > 0 && (
+      <nav class="breadcrumb" aria-label="Ruta">
+        {breadcrumb.map(([label, href], i) => (
+          <>
+            {i > 0 && <span aria-hidden="true"> / </span>}
+            <a href={href}>{label}</a>
+          </>
+        ))}
+      </nav>
+    )}
+    <h1>{title}</h1>
+    <p class="index-count num">
+      {page.total} · {t.explore.recent}
+    </p>
+    {intro && <p class="index-intro measure">{intro}</p>}
+    <ArticleList items={page.items} lang={lang} withSummary={withSummary} showTopic={showTopic} />
+    <Pagination page={page} lang={lang} />
+    <ExploreNav lang={lang} />
+  </div>
+</Base>
+
+<style>
+  .index-page {
+    padding-block: var(--space-5);
+  }
+  .breadcrumb {
+    font-family: var(--font-ui);
+    font-size: 0.84rem;
+    color: var(--ink-soft);
+    margin-bottom: var(--space-2);
+  }
+  .index-count {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: var(--space-4);
+  }
+  .index-intro {
+    color: var(--ink-soft);
+  }
+</style>

@@ -1,0 +1,158 @@
+---
+/**
+ * Búsqueda con Pagefind, cargado de forma perezosa solo aquí y solo tras la
+ * primera interacción. Sin JavaScript: mensaje + índices (degradación completa).
+ */
+import Base from '../layouts/Base.astro';
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { getIndexAvailability } from '../lib/content';
+import SearchBox from './SearchBox.astro';
+import ExploreNav from './ExploreNav.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+const t = UI[lang];
+const p = langPath(lang);
+const av = await getIndexAvailability(lang);
+---
+
+<Base lang={lang} title={t.search.title} description={t.search.title}>
+  <div class="wrap search-page">
+    <h1>{t.search.title}</h1>
+    <SearchBox lang={lang} />
+
+    <noscript>
+      <p class="needs-js">{t.search.needsJs}</p>
+    </noscript>
+
+    <p id="search-status" class="search-status" role="status" aria-live="polite"></p>
+    <ol id="search-results" class="search-results"></ol>
+
+    <div id="search-fallback" class="search-fallback">
+      <p class="needs-js" data-js-hide>{t.search.needsJs}</p>
+      <ul>
+        {av.topics.length > 0 && <li><a href={`${p}/temas/`}>{t.explore.topics}</a></li>}
+        {av.formats.includes('glosario') && <li><a href={`${p}/glosario/`}>{t.glossaryTitle}</a></li>}
+        {av.total > 0 && <li><a href={`${p}/articulos/`}>{t.explore.all}</a></li>}
+      </ul>
+    </div>
+
+    <ExploreNav lang={lang} />
+  </div>
+</Base>
+
+<script>
+  // Mejora progresiva: Pagefind se importa solo al buscar (≈100-150 KB bajo demanda).
+  const form = document.querySelector<HTMLFormElement>('.search-box');
+  const input = document.querySelector<HTMLInputElement>('#q');
+  const status = document.getElementById('search-status');
+  const results = document.getElementById('search-results');
+  const fallbackNote = document.querySelector<HTMLElement>('[data-js-hide]');
+  if (fallbackNote) fallbackNote.hidden = true;
+
+  // Ruta en variable: el módulo lo genera `postbuild` (pagefind), no existe en type-check.
+  const PAGEFIND_URL = '/pagefind/pagefind.js';
+  let pagefind: any = null;
+  async function ensure() {
+    if (pagefind) return pagefind;
+    try {
+      pagefind = await import(/* @vite-ignore */ PAGEFIND_URL);
+      await pagefind.init();
+      return pagefind;
+    } catch {
+      return null;
+    }
+  }
+
+  async function run(query: string) {
+    if (!status || !results) return;
+    const pf = await ensure();
+    if (!pf) {
+      status.textContent = document.documentElement.dataset.searchError || '';
+      return;
+    }
+    const search = await pf.search(query);
+    const items = await Promise.all(search.results.slice(0, 20).map((r: any) => r.data()));
+    results.innerHTML = '';
+    status.textContent = String(items.length);
+    for (const item of items) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = item.url;
+      a.textContent = item.meta?.title || item.url;
+      const p = document.createElement('p');
+      p.innerHTML = item.excerpt;
+      li.append(a, p);
+      results.append(li);
+    }
+  }
+
+  if (form && input) {
+    input.addEventListener('focus', () => void ensure(), { once: true });
+    form.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      const q = input.value.trim();
+      if (q) {
+        history.replaceState(null, '', `?q=${encodeURIComponent(q)}`);
+        void run(q);
+      }
+    });
+    const initial = new URLSearchParams(location.search).get('q');
+    if (initial) {
+      input.value = initial;
+      void run(initial);
+    }
+  }
+</script>
+
+<style>
+  .search-page {
+    padding-block: var(--space-5);
+    max-width: var(--measure);
+  }
+  .needs-js {
+    background: var(--surface);
+    border-left: 3px solid var(--anil);
+    padding: var(--space-2) var(--space-3);
+    font-family: var(--font-ui);
+    font-size: 0.92rem;
+  }
+  .search-status {
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-block: var(--space-3) var(--space-2);
+  }
+  .search-results {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+  .search-results a {
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+  .search-results p {
+    margin: 2px 0 0;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+  .search-fallback {
+    margin-top: var(--space-4);
+    font-family: var(--font-ui);
+  }
+  .search-fallback ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+</style>

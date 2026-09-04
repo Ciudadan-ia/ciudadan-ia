@@ -1,0 +1,19 @@
+---
+import FormatIndexRoute from '../../../../components/FormatIndexRoute.astro';
+import type { Lang } from '../../../../i18n/languages';
+import { getActiveLanguages, listArticlesForLang } from '../../../../lib/content';
+import { PAGE_SIZES } from '../../../../lib/paginate';
+
+export async function getStaticPaths() {
+  const langs = (await getActiveLanguages()).filter((l) => l !== 'es');
+  const paths = [];
+  for (const lang of langs) {
+    const n = (await listArticlesForLang(lang, { format: 'pregunta' })).length;
+    const last = Math.ceil(n / PAGE_SIZES.format);
+    for (let page = 2; page <= last; page++) paths.push({ params: { lang, page: String(page) } });
+  }
+  return paths;
+}
+const lang = Astro.params.lang as Lang;
+---
+<FormatIndexRoute lang={lang} format="pregunta" pageNum={Number(Astro.params.page)} segment="preguntas" />

@@ -1,0 +1,43 @@
+---
+/** Formulario de búsqueda: GET puro, cero JS (~300 B). */
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+const t = UI[lang];
+---
+
+<form class="search-box" method="get" action={`${langPath(lang)}/buscar/`} role="search">
+  <label class="visually-hidden" for="q">{t.search.title}</label>
+  <input id="q" type="search" name="q" placeholder={t.search.placeholder} />
+  <button type="submit">{t.search.button}</button>
+</form>
+
+<style>
+  .search-box {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+  input {
+    flex: 1 1 200px;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--paper);
+    font-family: var(--font-ui);
+  }
+  button {
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--anil);
+    border-radius: var(--radius);
+    background: var(--anil);
+    color: var(--paper);
+    font-family: var(--font-ui);
+    font-weight: 700;
+    cursor: pointer;
+  }
+</style>

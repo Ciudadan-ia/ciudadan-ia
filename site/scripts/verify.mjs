@@ -49,9 +49,19 @@ const PAGES = [
   '/lite/articulos/que-es-un-llm/',
   '/gobernanza-de-datos/',
   '/manifiesto/',
+  '/politica-de-ia/',
+  '/transparencia/',
   '/contribuye/',
   '/ediciones/',
   '/docentes/',
+  // Índices a escala (feature 002)
+  '/temas/',
+  '/temas/tecnologia/',
+  '/articulos/',
+  '/glosario/',
+  '/buscar/',
+  '/nah/temas/',
+  '/en/articulos/',
 ];
 
 await new Promise((r) => server.listen(PORT, r));
@@ -81,6 +91,54 @@ for (const page of PAGES) {
 }
 
 server.close();
+
+// --- Enlaces internos: toda ruta enlazada debe existir (constitución II a escala) ---
+console.log('\n— enlaces internos —');
+{
+  const { readdirSync, statSync } = await import('node:fs');
+  const { readFileSync } = await import('node:fs');
+  const htmlFiles = [];
+  const walk = (dir) => {
+    for (const name of readdirSync(dir)) {
+      const full = join(dir, name);
+      if (statSync(full).isDirectory()) walk(full);
+      else if (name.endsWith('.html')) htmlFiles.push(full);
+    }
+  };
+  walk(DIST);
+  const exists = (p) => {
+    const candidates = p.endsWith('/') ? [join(DIST, p, 'index.html')] : [join(DIST, p), join(DIST, p, 'index.html')];
+    return candidates.some((c) => {
+      try {
+        return statSync(c).isFile();
+      } catch {
+        return false;
+      }
+    });
+  };
+  const broken = new Map();
+  for (const file of htmlFiles) {
+    const html = readFileSync(file, 'utf8');
+    for (const m of html.matchAll(/href="(\/[^"#?]*)/g)) {
+      const href = m[1];
+      if (href.startsWith('/pagefind/') || href.startsWith('/api/')) continue;
+      if (/\.(woff2|css|js|svg|png|ogg|webmanifest|xml|json|txt)$/.test(href)) continue;
+      if (!exists(href)) {
+        if (!broken.has(href)) broken.set(href, []);
+        broken.get(href).push(file.replace(DIST, ''));
+      }
+    }
+  }
+  if (broken.size === 0) {
+    console.log(`✓ ${htmlFiles.length} páginas revisadas, 0 enlaces internos rotos`);
+  } else {
+    failed = true;
+    console.log(`✗ ${broken.size} enlace(s) roto(s):`);
+    for (const [href, from] of [...broken].slice(0, 15)) {
+      console.log(`   ${href}  ←  ${from.slice(0, 3).join(', ')}${from.length > 3 ? ` (+${from.length - 3})` : ''}`);
+    }
+  }
+}
 
 console.log('\n— presupuesto de peso —');
 const budget = spawnSync('node', [new URL('./check-budget.mjs', import.meta.url).pathname], {

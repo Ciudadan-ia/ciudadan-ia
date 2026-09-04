@@ -1,0 +1,68 @@
+---
+/** Navegación por índices — solo enlaza lo que existe en esta lengua (constitución II). */
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { FORMAT_LABELS } from '../i18n/taxonomy';
+import { getIndexAvailability } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+const t = UI[lang];
+const p = langPath(lang);
+const av = await getIndexAvailability(lang);
+
+const links: Array<{ href: string; label: string }> = [];
+if (av.topics.length) links.push({ href: `${p}/temas/`, label: t.explore.topics });
+if (av.formats.includes('pregunta')) links.push({ href: `${p}/preguntas/`, label: FORMAT_LABELS.pregunta[lang] });
+if (av.formats.includes('glosario')) links.push({ href: `${p}/glosario/`, label: FORMAT_LABELS.glosario[lang] });
+if (av.formats.includes('ficha')) links.push({ href: `${p}/fichas/`, label: FORMAT_LABELS.ficha[lang] });
+if (av.formats.includes('paper')) links.push({ href: `${p}/papers/`, label: FORMAT_LABELS.paper[lang] });
+if (av.total > 0) links.push({ href: `${p}/articulos/`, label: t.explore.all });
+links.push({ href: `${p}/buscar/`, label: t.explore.search });
+---
+
+{links.length > 1 && (
+  <nav class="explore" aria-labelledby="explore-title">
+    <p class="eyebrow" id="explore-title">{t.explore.title}</p>
+    <ul>
+      {links.map((l) => (
+        <li><a href={l.href}>{l.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+<style>
+  .explore {
+    border-top: 1px solid var(--line);
+    padding-block: var(--space-4);
+  }
+  .explore .eyebrow {
+    margin: 0 0 var(--space-2);
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+  a {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: 0.92rem;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+</style>

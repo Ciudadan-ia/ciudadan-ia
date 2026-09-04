@@ -1,0 +1,33 @@
+---
+/** Últimas piezas publicadas, cualquier formato. */
+import type { Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { listArticlesForLang } from '../lib/content';
+import ArticleList from './ArticleList.astro';
+
+interface Props {
+  lang: Lang;
+  limit?: number;
+  excludeSlugs?: Set<string>;
+}
+const { lang, limit = 8, excludeSlugs } = Astro.props as Props;
+const t = UI[lang];
+const items = await listArticlesForLang(lang, { limit, excludeSlugs });
+---
+
+{items.length > 0 && (
+  <section class="recent" aria-labelledby="recent-title">
+    <p class="eyebrow" id="recent-title">{t.explore.recent}</p>
+    <ArticleList items={items} lang={lang} showTopic />
+  </section>
+)}
+
+<style>
+  .recent {
+    border-top: 1px solid var(--line);
+    padding-block: var(--space-4);
+  }
+  .recent .eyebrow {
+    margin: 0 0 var(--space-3);
+  }
+</style>

@@ -1,0 +1,38 @@
+---
+/** Paginación accesible; sin JS. */
+import type { Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import type { StaticPage } from '../lib/paginate';
+
+interface Props {
+  page: StaticPage<unknown>;
+  lang: Lang;
+}
+const { page, lang } = Astro.props as Props;
+const t = UI[lang];
+---
+
+{page.lastPage > 1 && (
+  <nav class="pagination" aria-label={`${t.allEditions} — ${page.page}/${page.lastPage}`}>
+    {page.prevUrl ? <a href={page.prevUrl} rel="prev">← {t.seriesPrev}</a> : <span />}
+    <span class="pg-pos num">{page.page} / {page.lastPage}</span>
+    {page.nextUrl ? <a href={page.nextUrl} rel="next">{t.seriesNext} →</a> : <span />}
+  </nav>
+)}
+
+<style>
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--line);
+    font-family: var(--font-ui);
+    font-size: 0.92rem;
+  }
+  .pg-pos {
+    color: var(--ink-soft);
+  }
+</style>

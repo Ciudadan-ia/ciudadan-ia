@@ -1,0 +1,85 @@
+---
+/**
+ * Muestra de términos del glosario. La rotación es determinista por semana ISO
+ * (reproducible en cada build, sin aleatoriedad).
+ */
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { articleHref, listArticlesForLang, BUILD_AS_OF } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+  limit?: number;
+}
+const { lang, limit = 6 } = Astro.props as Props;
+const t = UI[lang];
+const all = await listArticlesForLang(lang, { format: 'glosario' });
+
+function isoWeek(d: Date): number {
+  const date = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+  const dayNum = date.getUTCDay() || 7;
+  date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+  return Math.ceil(((date.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+}
+
+const start = all.length ? (isoWeek(BUILD_AS_OF) * limit) % all.length : 0;
+const items = all.length ? Array.from({ length: Math.min(limit, all.length) }, (_, i) => all[(start + i) % all.length]) : [];
+---
+
+{items.length > 0 && (
+  <section class="gl-teaser" aria-labelledby="gl-teaser-title">
+    <p class="eyebrow" id="gl-teaser-title">{t.glossaryTitle}</p>
+    <dl>
+      {items.map((a) => (
+        <div class="gl-item">
+          <dt><a href={articleHref(a, lang)}>{a.data.term ?? a.data.title}</a></dt>
+          <dd>{a.data.gloss ?? a.data.summary}</dd>
+        </div>
+      ))}
+    </dl>
+    <p class="gl-more"><a href={`${langPath(lang)}/glosario/`}>{t.explore.all} →</a></p>
+  </section>
+)}
+
+<style>
+  .gl-teaser {
+    border-top: 1px solid var(--line);
+    padding-block: var(--space-4);
+  }
+  .gl-teaser .eyebrow {
+    margin: 0 0 var(--space-3);
+  }
+  dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-3);
+  }
+  .gl-item {
+    border-left: 3px solid var(--maiz);
+    padding-left: var(--space-3);
+  }
+  dt {
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 0.98rem;
+  }
+  dt a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  dt a:hover {
+    color: var(--accent);
+  }
+  dd {
+    margin: 2px 0 0;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+  .gl-more {
+    margin: var(--space-3) 0 0;
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+  }
+</style>

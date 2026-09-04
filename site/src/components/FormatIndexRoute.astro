@@ -1,0 +1,33 @@
+---
+/** Índice por formato o catálogo completo, paginado. */
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { FORMAT_LABELS, type Format } from '../i18n/taxonomy';
+import { listArticlesForLang } from '../lib/content';
+import { paginateStatic, PAGE_SIZES } from '../lib/paginate';
+import IndexPage from './IndexPage.astro';
+
+interface Props {
+  lang: Lang;
+  /** Sin formato = catálogo completo. */
+  format?: Format;
+  pageNum: number;
+  /** Segmento de ruta: 'preguntas' | 'fichas' | 'papers' | 'articulos'. */
+  segment: string;
+}
+const { lang, format, pageNum, segment } = Astro.props as Props;
+const t = UI[lang];
+const p = langPath(lang);
+
+const items = await listArticlesForLang(lang, { format });
+const pages = paginateStatic(items, format ? PAGE_SIZES.format : PAGE_SIZES.all, `${p}/${segment}/`);
+const page = pages[pageNum - 1] ?? pages[0];
+const title = format ? FORMAT_LABELS[format][lang] : t.explore.all;
+---
+<IndexPage
+  lang={lang}
+  title={title}
+  page={page}
+  withSummary={format !== undefined}
+  showTopic
+/>

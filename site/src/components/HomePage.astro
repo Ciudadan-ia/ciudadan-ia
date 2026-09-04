@@ -3,7 +3,7 @@
 import Base from '../layouts/Base.astro';
 import { langPath, type Lang } from '../i18n/languages';
 import { UI } from '../i18n/ui';
-import { listArticlesForLang, getActiveLanguages, articleSlug } from '../lib/content';
+import { listArticlesForLang, getActiveLanguages, articleSlug, getIndexAvailability } from '../lib/content';
 import Hero from './Hero.astro';
 import FeaturedRail from './FeaturedRail.astro';
 import AudienceDoors from './AudienceDoors.astro';
@@ -12,6 +12,9 @@ import ContributeCTA from './ContributeCTA.astro';
 import NewsletterBlock from './NewsletterBlock.astro';
 import VoiceOfTheWeek from './VoiceOfTheWeek.astro';
 import TranslationNotice from './TranslationNotice.astro';
+import RecentList from './RecentList.astro';
+import GlossaryTeaser from './GlossaryTeaser.astro';
+import ExploreNav from './ExploreNav.astro';
 import { LANGUAGES } from '../i18n/languages';
 
 interface Props {
@@ -20,10 +23,32 @@ interface Props {
 const { lang } = Astro.props;
 const t = UI[lang];
 
+/** Topes de portada: el catálogo puede tener miles de piezas (constitución III). */
+const PER_RAIL = 4;
+const RECENT = 8;
+
 const articles = await listArticlesForLang(lang);
 const dominante = articles.find((a) => a.data.featured === 'dominante') ?? articles[0];
 const destacadas = articles.filter((a) => a.data.featured === 'destacada' && a !== dominante).slice(0, 2);
-const rest = articles.filter((a) => a !== dominante && !destacadas.includes(a));
+const shown = new Set<string>(
+  [dominante, ...destacadas].filter(Boolean).map((a) => articleSlug(a!)),
+);
+
+const av = await getIndexAvailability(lang);
+const rails = await Promise.all(
+  av.topics.map(async (topic) => {
+    const all = await listArticlesForLang(lang, { topic, excludeSlugs: shown });
+    return {
+      topic,
+      items: all.slice(0, PER_RAIL),
+      moreHref: `${langPath(lang)}/temas/${topic}/`,
+      total: all.length,
+    };
+  }),
+);
+const railed = new Set(rails.flatMap((r) => r.items.map((a) => articleSlug(a))));
+const excludeFromRecent = new Set([...shown, ...railed]);
+
 const hasUnvalidated = LANGUAGES[lang].indigenous && articles.some((a) => a.data.status === 'traducido-ia');
 
 const active = await getActiveLanguages();
@@ -42,7 +67,13 @@ const alternates = Object.fromEntries(active.map((l) => [l, `${langPath(l)}/` ||
 
     <AudienceDoors lang={lang} />
 
-    <FeaturedRail featured={destacadas} rest={rest} lang={lang} />
+    <FeaturedRail featured={destacadas} rails={rails} lang={lang} />
+
+    <RecentList lang={lang} limit={RECENT} excludeSlugs={excludeFromRecent} />
+
+    <GlossaryTeaser lang={lang} />
+
+    <ExploreNav lang={lang} />
 
     <LanguageCounters lang={lang} />
 

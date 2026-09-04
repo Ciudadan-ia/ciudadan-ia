@@ -12,9 +12,12 @@ interface Props {
   description: string;
   /** URLs equivalentes de esta página en otras lenguas (para hreflang y el selector). */
   alternates?: Partial<Record<Lang, string>>;
+  /** Paginación: enlaces rel=prev/next para buscadores. */
+  prevUrl?: string;
+  nextUrl?: string;
 }
 
-const { lang, title, description, alternates = {} } = Astro.props;
+const { lang, title, description, alternates = {}, prevUrl, nextUrl } = Astro.props;
 const t = UI[lang];
 const currentPath = Astro.url.pathname;
 ---
@@ -33,6 +36,8 @@ const currentPath = Astro.url.pathname;
       <link rel="alternate" hreflang={l} href={new URL(url as string, Astro.site)} />
     ))}
     <link rel="canonical" href={new URL(currentPath, Astro.site)} />
+    {prevUrl && <link rel="prev" href={new URL(prevUrl, Astro.site)} />}
+    {nextUrl && <link rel="next" href={new URL(nextUrl, Astro.site)} />}
   </head>
   <body>
     <a class="skip-link" href="#contenido">{t.skipToContent}</a>
