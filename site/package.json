@@ -10,9 +10,11 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "verify": "node scripts/verify.mjs",
+    "verify": "npm run lint:content && node scripts/verify.mjs",
     "check": "astro check",
-    "postbuild": "pagefind --site dist --output-subdir pagefind"
+    "postbuild": "pagefind --site dist --output-subdir pagefind",
+    "dedup": "node scripts/editorial/dedup.mjs",
+    "lint:content": "node scripts/lint-content.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
