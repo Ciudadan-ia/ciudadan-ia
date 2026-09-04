@@ -11,11 +11,20 @@ import { UI } from '../i18n/ui';
 import {
   articleSlug,
   getArticleVersions,
+  getRelated,
+  getSeriesNav,
+  getSources,
   readingTimeMin,
   type Article,
   type ResolvedArticle,
 } from '../lib/content';
+import { FORMAT_LABELS } from '../i18n/taxonomy';
 import Credits from './Credits.astro';
+import AiAssistedBadge from './AiAssistedBadge.astro';
+import Sources from './Sources.astro';
+import RelatedQuestions from './RelatedQuestions.astro';
+import SeriesNav from './SeriesNav.astro';
+import Corrections from './Corrections.astro';
 import TranslationNotice from './TranslationNotice.astro';
 import AudioPlayer from './AudioPlayer.astro';
 import PrestanosTuVoz from './PrestanosTuVoz.astro';
@@ -39,17 +48,27 @@ const alternates = Object.fromEntries(
 const isBilingual = resolved.mode === 'bilingual';
 const Content = !isBilingual ? (await render(entry)).Content : null;
 const liteHref = `/lite${langPath(lang)}/articulos/${slug}/`;
+
+const sources = await getSources(slug);
+const related = await getRelated(entry, lang);
+const seriesNav = await getSeriesNav(entry, lang);
+const pendingReview = resolved.mode === 'mono' && resolved.pendingValidation;
+const formatLabel = FORMAT_LABELS[entry.data.format][lang];
 ---
 
 <Base lang={lang} title={entry.data.title} description={entry.data.summary} alternates={alternates}>
-  <article class="wrap article">
+  <article class="wrap article" data-pagefind-body>
     <header class="article-header measure">
-      <p class="eyebrow">{t.topics[entry.data.topic]}</p>
+      <p class="eyebrow">{formatLabel} · {t.topics[entry.data.topic]}</p>
       <h1>{entry.data.title}</h1>
       <Credits article={entry} lang={lang} />
+      <AiAssistedBadge article={entry} lang={lang} />
     </header>
 
     {isBilingual && <div class="measure notice-slot"><TranslationNotice lang={lang} /></div>}
+    {pendingReview && (
+      <p class="measure pending-review" role="note">{t.pendingTranslationReview}</p>
+    )}
 
     <section class="short-answer measure" aria-labelledby="short-answer-label">
       <p class="eyebrow" id="short-answer-label">{t.readShort}</p>
@@ -82,6 +101,13 @@ const liteHref = `/lite${langPath(lang)}/articulos/${slug}/`;
       </div>
     )}
 
+    <div class="measure">
+      <RelatedQuestions sameLang={related.sameLang} fallbackEs={related.fallbackEs} lang={lang} />
+      {seriesNav && <SeriesNav nav={seriesNav} lang={lang} />}
+      <Corrections article={entry} lang={lang} />
+      <Sources sources={sources} lang={lang} />
+    </div>
+
     <footer class="article-footer measure">
       <p><a href={liteHref}>{t.footer.liteVersion}</a></p>
     </footer>
@@ -97,6 +123,15 @@ const liteHref = `/lite${langPath(lang)}/articulos/${slug}/`;
   }
   .notice-slot {
     margin-top: var(--space-3);
+  }
+  .pending-review {
+    margin-top: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    background: var(--maiz-soft);
+    border-left: 3px solid var(--maiz);
+    border-radius: var(--radius);
+    font-family: var(--font-ui);
+    font-size: 0.88rem;
   }
   .short-answer {
     margin-top: var(--space-4);

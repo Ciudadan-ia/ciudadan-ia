@@ -1,0 +1,59 @@
+---
+/** Correcciones visibles (política de IA, compromiso 5): nunca se borra en silencio. */
+import type { Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import type { Article } from '../lib/content';
+
+interface Props {
+  article: Article;
+  lang: Lang;
+}
+const { article, lang } = Astro.props as Props;
+const t = UI[lang];
+const list = article.data.corrections;
+---
+
+{list.length > 0 && (
+  <section class="corrections" aria-labelledby="corrections-title">
+    <h2 id="corrections-title">{t.correctionsTitle}</h2>
+    <ul>
+      {list.map((c) => (
+        <li>
+          <time datetime={c.date.toISOString().slice(0, 10)} class="num">
+            {c.date.toISOString().slice(0, 10)}
+          </time>{' '}
+          — {c.note}
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
+
+<style>
+  .corrections {
+    margin-top: var(--space-4);
+    padding: var(--space-3);
+    background: var(--maiz-soft);
+    border-left: 4px solid var(--maiz);
+    border-radius: var(--radius);
+    font-family: var(--font-ui);
+    font-size: 0.88rem;
+  }
+  .corrections h2 {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: var(--space-2);
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-1);
+  }
+  time {
+    color: var(--ink-soft);
+  }
+</style>

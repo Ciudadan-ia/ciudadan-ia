@@ -1,0 +1,57 @@
+---
+/**
+ * Etiqueta de redacción asistida por IA (constitución V.c). PERMANENTE: la
+ * revisión humana añade crédito, nunca retira la etiqueta.
+ */
+import { langPath, type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import type { Article } from '../lib/content';
+
+interface Props {
+  article: Article;
+  lang: Lang;
+}
+const { article, lang } = Astro.props as Props;
+const t = UI[lang];
+const review = article.data.review;
+const reviewText = review
+  ? t.aiAssisted.reviewedBy(review.by, review.date.toISOString().slice(0, 10))
+  : t.aiAssisted.sampled;
+---
+
+{article.data.aiAssisted && (
+  <p class="ai-badge" role="note">
+    <svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true" focusable="false">
+      <rect x="3" y="5" width="14" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.6" />
+      <path d="M7 9.5h.01M13 9.5h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      <path d="M7.5 12.5h5M10 2v3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+    </svg>
+    <span>
+      <strong>{t.aiAssisted.label}</strong> · {reviewText}
+      {article.data.editor && <> · {t.aiAssisted.editor}: {article.data.editor}</>}
+      {' · '}
+      <a href={`${langPath(lang)}/politica-de-ia/#redaccion-asistida`}>{t.aiAssisted.how}</a>
+    </span>
+  </p>
+)}
+
+<style>
+  .ai-badge {
+    display: flex;
+    gap: var(--space-2);
+    align-items: flex-start;
+    background: var(--anil-soft);
+    border: 1px solid var(--anil);
+    border-radius: var(--radius);
+    padding: var(--space-2) var(--space-3);
+    margin-block: var(--space-3);
+    font-family: var(--font-ui);
+    font-size: 0.86rem;
+    color: var(--ink);
+  }
+  svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--anil);
+  }
+</style>

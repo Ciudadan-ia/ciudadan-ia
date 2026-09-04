@@ -43,6 +43,21 @@ type UIStrings = {
   counters: { articles: string; audios: string; people: string };
   doors: { general: string; docentes: string; comunidades: string };
   footer: { governance: string; liteVersion: string; licenses: string };
+  aiAssisted: {
+    label: string;
+    sampled: string;
+    reviewedBy: (name: string, date: string) => string;
+    how: string;
+    editor: string;
+  };
+  sourcesTitle: string;
+  relatedTitle: string;
+  relatedInSpanish: string;
+  seriesPrev: string;
+  seriesNext: string;
+  seriesOf: (n: number, m: number) => string;
+  correctionsTitle: string;
+  pendingTranslationReview: string;
   offline: { savedCopy: string; title: string; body: string };
   langSuggestion: (endonym: string) => string;
   topics: Record<string, string>;
@@ -77,9 +92,36 @@ export const UI: Record<Lang, UIStrings> = {
     counters: { articles: 'artículos', audios: 'audios', people: 'personas colaborando' },
     doors: { general: 'Quiero entender la IA', docentes: 'Enseño en un aula', comunidades: 'Hablo una lengua originaria' },
     footer: { governance: 'Nuestra gobernanza', liteVersion: 'Versión ligera', licenses: 'Contenido CC BY 4.0 · Los datos de voz pertenecen a sus comunidades' },
+    aiAssisted: {
+      label: 'Redacción asistida por IA',
+      sampled: 'revisión humana por muestreo',
+      reviewedBy: (name, date) => `revisado por ${name} el ${date}`,
+      how: '¿cómo trabajamos?',
+      editor: 'Responsable editorial',
+    },
+    sourcesTitle: 'Fuentes',
+    relatedTitle: 'Siguiente pregunta',
+    relatedInSpanish: 'En español',
+    seriesPrev: 'Anterior',
+    seriesNext: 'Siguiente',
+    seriesOf: (n, m) => `${n} de ${m}`,
+    correctionsTitle: 'Correcciones',
+    pendingTranslationReview: 'Esta traducción la hizo una IA y está pendiente de revisión humana.',
     offline: { savedCopy: 'Estás viendo una copia guardada.', title: 'Sin conexión', body: 'No hay conexión ahora mismo. Los artículos que ya visitaste siguen disponibles.' },
     langSuggestion: (endonym) => `¿Prefieres leer en ${endonym}?`,
-    topics: { derechos: 'Derechos', trabajo: 'Trabajo', educacion: 'Educación', 'lengua-cultura': 'Lengua y cultura', tecnologia: 'Tecnología', seguridad: 'Seguridad' },
+    topics: {
+      derechos: 'Derechos',
+      trabajo: 'Trabajo',
+      educacion: 'Educación',
+      'lengua-cultura': 'Lengua y cultura',
+      tecnologia: 'Tecnología',
+      seguridad: 'Seguridad',
+      salud: 'Salud',
+      'gobierno-democracia': 'Gobierno y democracia',
+      'medio-ambiente': 'Medio ambiente',
+      'arte-creatividad': 'Arte y creatividad',
+      ciencia: 'Ciencia',
+    },
   },
   en: {
     siteTagline: 'Artificial intelligence, explained in your language',
@@ -109,9 +151,36 @@ export const UI: Record<Lang, UIStrings> = {
     counters: { articles: 'articles', audios: 'audio pieces', people: 'people collaborating' },
     doors: { general: 'I want to understand AI', docentes: 'I teach a classroom', comunidades: 'I speak an Indigenous language' },
     footer: { governance: 'Our governance', liteVersion: 'Lite version', licenses: 'Content CC BY 4.0 · Voice data belongs to its communities' },
+    aiAssisted: {
+      label: 'AI-assisted writing',
+      sampled: 'human review by sampling',
+      reviewedBy: (name, date) => `reviewed by ${name} on ${date}`,
+      how: 'how we work',
+      editor: 'Editor in charge',
+    },
+    sourcesTitle: 'Sources',
+    relatedTitle: 'Next question',
+    relatedInSpanish: 'In Spanish',
+    seriesPrev: 'Previous',
+    seriesNext: 'Next',
+    seriesOf: (n, m) => `${n} of ${m}`,
+    correctionsTitle: 'Corrections',
+    pendingTranslationReview: 'This translation was produced by AI and is pending human review.',
     offline: { savedCopy: 'You are viewing a saved copy.', title: 'Offline', body: 'There is no connection right now. Articles you already visited remain available.' },
     langSuggestion: (endonym) => `Would you rather read in ${endonym}?`,
-    topics: { derechos: 'Rights', trabajo: 'Work', educacion: 'Education', 'lengua-cultura': 'Language & culture', tecnologia: 'Technology', seguridad: 'Safety' },
+    topics: {
+      derechos: 'Rights',
+      trabajo: 'Work',
+      educacion: 'Education',
+      'lengua-cultura': 'Language & culture',
+      tecnologia: 'Technology',
+      seguridad: 'Safety',
+      salud: 'Health',
+      'gobierno-democracia': 'Government & democracy',
+      'medio-ambiente': 'Environment',
+      'arte-creatividad': 'Art & creativity',
+      ciencia: 'Science',
+    },
   },
   nah: {
     siteTagline: 'In tepoztlahtolmatiliztli moixpantia ica motlahtol',
@@ -141,9 +210,36 @@ export const UI: Record<Lang, UIStrings> = {
     counters: { articles: 'amatlahcuilolli', audios: 'caquiztli', people: 'tlacah tequitih' },
     doors: { general: 'Nicnequi nicmatiz tlen IA', docentes: 'Nitemachtia', comunidades: 'Nitlahtoa ce macehualtlahtolli' },
     footer: { governance: 'Totlanahuatil', liteVersion: 'Tlahtolli zan iyoh', licenses: 'Tlahtolli CC BY 4.0 · In tozquitl imaxca in altepemeh' },
+    aiAssisted: {
+      label: 'Tlahcuiloliztli ica IA tepalehuiliztli',
+      sampled: 'tlacatl quitta cequi tlahcuilolmeh',
+      reviewedBy: (name, date) => `oquittac ${name} ipan ${date}`,
+      how: '¿quenin titequitih?',
+      editor: 'Tlahcuilolpixqui',
+    },
+    sourcesTitle: 'Canin hualehua',
+    relatedTitle: 'Occe tlahtlaniliztli',
+    relatedInSpanish: 'Ica caxtillantlahtolli',
+    seriesPrev: 'Yancuic',
+    seriesNext: 'Zatepan',
+    seriesOf: (n, m) => `${n} itech ${m}`,
+    correctionsTitle: 'Tlayectilizmeh',
+    pendingTranslationReview: 'Inin tlahtolcuepaliztli oquichiuh ce IA huan ayamo oquittac ce tlacatl.',
     offline: { savedCopy: 'Tiquitta ce amatl omopix.', title: 'Ahmo onca matiloni', body: 'Axcan ahmo onca matiloni. In amatlahcuilolli otiquittac oc onca.' },
     langSuggestion: (endonym) => `¿Ticnequi titlapohuaz ica ${endonym}?`,
-    topics: { derechos: 'Melahuacayotl', trabajo: 'Tequitl', educacion: 'Temachtiliztli', 'lengua-cultura': 'Tlahtolli huan tlamatiliztli', tecnologia: 'Tepoztlamatiliztli', seguridad: 'Tlapializtli' },
+    topics: {
+      derechos: 'Melahuacayotl',
+      trabajo: 'Tequitl',
+      educacion: 'Temachtiliztli',
+      'lengua-cultura': 'Tlahtolli huan tlamatiliztli',
+      tecnologia: 'Tepoztlamatiliztli',
+      seguridad: 'Tlapializtli',
+      salud: 'Pactiliztli',
+      'gobierno-democracia': 'Tlanahuatiliztli',
+      'medio-ambiente': 'Tlalticpactli',
+      'arte-creatividad': 'Toltecayotl',
+      ciencia: 'Tlamatiliztli',
+    },
   },
   yua: {
     siteTagline: "Le inteligencia artificial ku tsolik ich a t'aan",
@@ -173,8 +269,35 @@ export const UI: Record<Lang, UIStrings> = {
     counters: { articles: "ts'íibo'ob", audios: "juumo'ob", people: 'máako\'ob táakpajal' },
     doors: { general: "In k'áat in na'at le IA", docentes: 'Kin ka\'ansaj', comunidades: "Kin t'anik jump'éel máasewal t'aan" },
     footer: { governance: 'K-nu\'ukbesajil', liteVersion: 'Sáasil xook', licenses: "Ts'íib CC BY 4.0 · Le juumo'obo' u ti'al le kaajo'obo'" },
+    aiAssisted: {
+      label: "Ts'íibil yéetel u yáantaj IA",
+      sampled: 'ku xoka\'al tumen máak jump\'íit ti\' jump\'íit',
+      reviewedBy: (name, date) => `xoka'ab tumen ${name} ti' ${date}`,
+      how: "¿bix k-meyaj?",
+      editor: "Nu'ukbesaj ts'íib",
+    },
+    sourcesTitle: "Tu'ux ku taal",
+    relatedTitle: "U láak' k'áat chi'",
+    relatedInSpanish: 'Ich castellano',
+    seriesPrev: "Táanil",
+    seriesNext: "Ku taal",
+    seriesOf: (n, m) => `${n} ti' ${m}`,
+    correctionsTitle: "Utskíinsajo'ob",
+    pendingTranslationReview: "Le sut t'aana' beeta'ab tumen IA yéetel ma' xoka'ak tumen máak.",
     offline: { savedCopy: "Táan a wilik jump'éel copia líik'sa'an.", title: "Mina'an internet", body: "Mina'an internet bejla'e'. Le ts'íibo'ob ts'o'ok a xokiko' láayli' yano'obe'." },
     langSuggestion: (endonym) => `¿A k'áat xook ich ${endonym}?`,
-    topics: { derechos: 'Páajtalilo\'ob', trabajo: 'Meyaj', educacion: 'Ka\'ansaj', 'lengua-cultura': "T'aan yéetel miatsil", tecnologia: 'Tecnología', seguridad: 'Kanan' },
+    topics: {
+      derechos: "Páajtalilo'ob",
+      trabajo: 'Meyaj',
+      educacion: "Ka'ansaj",
+      'lengua-cultura': "T'aan yéetel miatsil",
+      tecnologia: 'Tecnología',
+      seguridad: 'Kanan',
+      salud: "Toj óolal",
+      'gobierno-democracia': "Jala'achil",
+      'medio-ambiente': "Yóok'ol kaab",
+      'arte-creatividad': 'Utsul meyaj',
+      ciencia: "Na'atil",
+    },
   },
 };

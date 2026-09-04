@@ -1,0 +1,86 @@
+---
+/**
+ * Preguntas encadenadas (patrón aisafety.info del benchmark). En lenguas
+ * indígenas con poco contenido, completa con piezas en español declarando
+ * `lang="es"` por bloque (WCAG 3.1.2 + honestidad sobre la constitución II).
+ */
+import { type Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { articleHref, type Article } from '../lib/content';
+
+interface Props {
+  sameLang: Article[];
+  fallbackEs: Article[];
+  lang: Lang;
+}
+const { sameLang, fallbackEs, lang } = Astro.props as Props;
+const t = UI[lang];
+---
+
+{(sameLang.length > 0 || fallbackEs.length > 0) && (
+  <nav class="related" aria-labelledby="related-title">
+    <h2 id="related-title">{t.relatedTitle}</h2>
+    <ul>
+      {sameLang.map((a) => (
+        <li>
+          <a href={articleHref(a, lang)}>{a.data.title}</a>
+          <span class="related-gloss">{a.data.gloss ?? a.data.summary.slice(0, 110)}</span>
+        </li>
+      ))}
+      {fallbackEs.map((a) => (
+        <li lang="es">
+          <a href={articleHref(a, 'es')}>{a.data.title}</a>
+          <span class="related-gloss">
+            <span class="related-lang-tag" lang={lang}>{t.relatedInSpanish}</span>{' '}
+            {a.data.gloss ?? a.data.summary.slice(0, 110)}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+<style>
+  .related {
+    margin-top: var(--space-5);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--line);
+  }
+  .related h2 {
+    font-size: 1.1rem;
+    margin-bottom: var(--space-2);
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+  li a {
+    font-family: var(--font-body);
+    font-size: 1.02rem;
+    color: var(--ink);
+  }
+  li a:hover {
+    color: var(--accent);
+  }
+  .related-gloss {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+  .related-lang-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--anil);
+    border: 1px solid var(--anil);
+    border-radius: 999px;
+    padding: 0 6px;
+  }
+</style>

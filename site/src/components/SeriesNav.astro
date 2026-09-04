@@ -1,0 +1,42 @@
+---
+/** Navegación dentro de una serie de preguntas encadenadas. */
+import type { Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import { articleHref, type Article } from '../lib/content';
+
+interface Props {
+  nav: { prev?: Article; next?: Article; index: number; total: number };
+  lang: Lang;
+}
+const { nav, lang } = Astro.props as Props;
+const t = UI[lang];
+---
+
+<nav class="series-nav" aria-label={t.seriesOf(nav.index, nav.total)}>
+  <span class="series-pos num">{t.seriesOf(nav.index, nav.total)}</span>
+  <span class="series-links">
+    {nav.prev && <a href={articleHref(nav.prev, lang)} rel="prev">← {t.seriesPrev}</a>}
+    {nav.next && <a href={articleHref(nav.next, lang)} rel="next">{t.seriesNext} →</a>}
+  </span>
+</nav>
+
+<style>
+  .series-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-top: var(--space-4);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--line);
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+  }
+  .series-pos {
+    color: var(--ink-soft);
+  }
+  .series-links {
+    display: flex;
+    gap: var(--space-4);
+  }
+</style>

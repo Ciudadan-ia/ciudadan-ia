@@ -1,0 +1,57 @@
+---
+/**
+ * Cuentas editoriales públicas (política de IA, compromiso 6). Se calculan en
+ * build desde el catálogo: nunca se escriben a mano (evita deriva).
+ */
+import type { Lang } from '../i18n/languages';
+import { getEditorialStats } from '../lib/content';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props as Props;
+const s = await getEditorialStats();
+const pct = s.total ? Math.round((s.aiAssisted / s.total) * 100) : 0;
+const pctReviewed = s.aiAssisted ? Math.round((s.reviewed / s.aiAssisted) * 100) : 0;
+const asOf = s.asOf.toISOString().slice(0, 10);
+---
+
+<aside class="ed-stats" aria-label="Cuentas editoriales">
+  <p class="ed-label">Cuentas al {asOf}</p>
+  <ul>
+    <li><strong class="num">{s.total}</strong> piezas publicadas en español</li>
+    <li><strong class="num">{s.aiAssisted}</strong> con redacción asistida por IA (<span class="num">{pct}</span> %)</li>
+    <li><strong class="num">{s.reviewed}</strong> revisadas individualmente por una persona (<span class="num">{pctReviewed}</span> % de las asistidas)</li>
+    <li><strong class="num">{s.corrections}</strong> correcciones publicadas</li>
+  </ul>
+</aside>
+
+<style>
+  .ed-stats {
+    margin-block: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    font-family: var(--font-ui);
+    font-size: 0.92rem;
+  }
+  .ed-label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: var(--space-2);
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-1);
+  }
+  strong {
+    color: var(--accent);
+  }
+</style>

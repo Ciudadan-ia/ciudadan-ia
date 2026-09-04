@@ -1,18 +1,24 @@
 <!--
 Sync Impact Report
-- Version change: (template) → 1.0.0
-- Modified principles: n/a (adopción inicial — 7 principios definidos desde el template vacío)
-- Added sections:
-  - Core Principles (I–VII)
-  - Restricciones técnicas
-  - Flujo editorial y de publicación
-  - Governance
-- Removed sections: ninguna (los slots genéricos del template fueron reemplazados)
+- Version change: 1.0.0 → 1.1.0 (MINOR)
+- Motivo: incorporación de la redacción asistida por IA a escala (feature 002), con
+  etiqueta permanente, fuentes verificadas obligatorias, responsable editorial con
+  nombre, revisión humana por muestreo publicada y publicación programada.
+- Modified principles: V «Ni pánico ni humo» (expansión: reglas a-d de redacción asistida)
+- Expanded sections: Restricciones técnicas (campos format/aiAssisted/sources/publishDate/
+  editor y sus gates), Flujo editorial y de publicación (plan temático humano, muestreo,
+  publicación programada)
+- Added sections: ninguna
+- Removed sections: ninguna
 - Templates requiring updates:
-  - ✅ .specify/templates/plan-template.md (Constitution Check genérico — compatible, evalúa contra estos principios)
-  - ✅ .specify/templates/spec-template.md (sin referencias a principios específicos — compatible)
-  - ✅ .specify/templates/tasks-template.md (sin referencias a principios específicos — compatible)
-- Follow-up TODOs: ninguno
+  - ✅ .specify/templates/plan-template.md (Constitution Check genérico — sigue compatible)
+  - ✅ .specify/templates/spec-template.md (sin referencias a principios específicos)
+  - ✅ .specify/templates/tasks-template.md (sin referencias a principios específicos)
+- Follow-up TODOs: traducir la política de IA a nah/yua; publicar la tasa de muestreo
+  mensual en Transparencia.
+
+Historial
+- 1.0.0 (2026-08-25): adopción inicial — 7 principios.
 -->
 
 # Constitución de CIUDADAN-IA
@@ -82,8 +88,28 @@ indicado). Todo contenido generado o traducido por IA DEBE estar marcado como ta
 validado por una persona hablante, con el estado visible (`borrador → traducido-IA →
 validado`).
 
+En **redacción asistida por IA** la marca es permanente y la pieza DEBE:
+
+- **(a) ser síntesis original** a partir de al menos **tres fuentes citadas y enlazadas** en
+  la propia pieza, cada una abierta y verificada al redactar — nunca paráfrasis de una sola
+  fuente ni resumen de un artículo ajeno;
+- **(b) llevar la firma de la persona o equipo responsable** (`author`) y el nombre de la
+  **persona editora responsable** del lote (`editor`), mostrado como «Responsable editorial»;
+- **(c) mostrar la etiqueta «redacción asistida por IA»** con su estado de revisión
+  (individual, con nombre y fecha, o por muestreo) en todas las lenguas y también en la ruta
+  ligera;
+- **(d) quedar cubierta por una tasa de revisión humana publicada** en la política de IA:
+  como mínimo el 10 % de cada lote elegido al azar y el 100 % de las piezas sobre salud,
+  dinero, acusaciones a personas o instituciones y consejos de seguridad.
+
+El build DEBE fallar si falta la etiqueta, las fuentes mínimas o la firma. La IA NUNCA decide
+qué publicar ni qué destacar: el plan temático, la selección de portada y las correcciones son
+humanas.
+
 **Racional**: la credibilidad es el activo central de un medio de divulgación; las unidades
-cortas son lo que hace viable la traducción a lenguas con pocos validadores.
+cortas son lo que hace viable la traducción a lenguas con pocos validadores. Publicar a escala
+solo es legítimo si cada pieza es verificable, atribuible a una persona responsable y honesta
+sobre cómo fue hecha.
 
 ### VI. Audio como formato primario
 
@@ -115,19 +141,34 @@ publicada es el principal argumento de confianza y captación de aliados y finan
 - **Tipografía**: Gentium Plus o Charis SIL (cuerpo) + Noto Sans (UI), autoalojadas y
   subseteadas. QA obligatorio de saltillo (U+A78B/U+A78C), oclusiva glotal (ʔ) y diacríticos
   apilados en dispositivos Android de gama baja.
-- **Contenido**: frontmatter con `lang`, `translationOf`, `status`, `author`, `translator`,
-  `narrator`, `validator`, `audio`. El build DEBE fallar si falta crédito nominal en contenido
-  con estado `validado`.
+- **Contenido**: frontmatter con `lang`, `status`, `format`, `topic`, `publishDate`,
+  `author`, `editor`, `translator`, `narrator`, `validator`, `audio`, `aiAssisted`,
+  `sources`. El build DEBE fallar si: falta crédito nominal en contenido `validado`; una
+  pieza `aiAssisted` carece de ≥3 fuentes con URL verificable o de `editor`; una imagen
+  carece de texto alternativo.
+- **Publicación programada**: el build DEBE publicar únicamente piezas cuya `publishDate`
+  sea anterior o igual a la fecha de construcción. Las piezas en cola no generan página,
+  no entran al mapa del sitio ni al índice de búsqueda.
+- **Navegación a escala**: ninguna página DEBE listar el catálogo completo; los índices por
+  tema, formato y glosario se paginan y todo enlace interno DEBE apuntar a una página que
+  existe en esa lengua (Principio II verificado mecánicamente).
 
 ## Flujo editorial y de publicación
 
-1. El equipo editorial escribe en español (unidad corta + capa profunda).
-2. La IA traduce a las lenguas del piloto; el estado queda `traducido-IA` y se muestra el
+1. El equipo editorial define el **plan temático y el manual de estilo públicos**; las piezas
+   las redacta el equipo o agentes de IA bajo esa dirección, como síntesis de fuentes
+   verificadas (`aiAssisted: true`, Principio V).
+2. **Revisión humana por muestreo**: ≥10 % de cada lote al azar y 100 % de las piezas
+   sensibles (salud, dinero, acusaciones, seguridad). La tasa se publica en la política de IA
+   y las cuentas mensuales en Transparencia.
+3. La IA traduce a las lenguas del piloto; el estado queda `traducido-IA` y se muestra el
    aviso «traducción pendiente de validación».
-3. Personas validadoras nativas (vía alianzas institucionales) aprueban; el estado pasa a
+4. Personas validadoras nativas (vía alianzas institucionales) aprueban; el estado pasa a
    `validado` y su crédito nominal aparece en la pieza.
-4. Audio: narración por hablante cuando exista; mientras tanto aplica el Principio VI.
-5. Antes de publicar: checklist WCAG 2.2 AA + presupuesto de rendimiento + `lang` por bloque.
+5. Audio: narración por hablante cuando exista; mientras tanto aplica el Principio VI.
+6. Antes de publicar: checklist WCAG 2.2 AA + presupuesto de rendimiento + `lang` por bloque.
+7. **Publicación programada**: un despliegue automático diario materializa la cola editorial.
+   Los errores reportados se corrigen con nota visible o se retira la pieza en ≤48 horas.
 
 ## Governance
 
@@ -139,4 +180,4 @@ redefiniciones incompatibles de principios, MINOR para principios o secciones nu
 para clarificaciones. La revisión de cumplimiento ocurre en cada `/speckit-plan` (Constitution
 Check) y antes de cada deploy.
 
-**Version**: 1.0.0 | **Ratified**: 2026-08-25 | **Last Amended**: 2026-08-25
+**Version**: 1.1.0 | **Ratified**: 2026-08-25 | **Last Amended**: 2026-09-04

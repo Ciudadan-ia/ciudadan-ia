@@ -5,6 +5,7 @@ import Base from '../layouts/Base.astro';
 import { ALL_LANGS, langPath, type Lang } from '../i18n/languages';
 import { getFoundationalPage, type FoundationalSlug } from '../lib/content';
 import TranslationNotice from './TranslationNotice.astro';
+import AiAssistedStats from './AiAssistedStats.astro';
 
 interface Props {
   slug: FoundationalSlug;
@@ -25,6 +26,7 @@ const updated = page.data.updated.toISOString().slice(0, 10);
     <div class="prose">
       <Content />
     </div>
+    {(slug === 'politica-de-ia' || slug === 'transparencia') && <AiAssistedStats lang={lang} />}
   </article>
 </Base>
 

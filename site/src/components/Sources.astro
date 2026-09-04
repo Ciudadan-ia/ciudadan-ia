@@ -1,0 +1,78 @@
+---
+/**
+ * Sección «Fuentes» (constitución V.a): lista numerada con el título como texto
+ * del enlace, editor, fecha y tipo. Se hereda del original en español en todas
+ * las lenguas. `data-pagefind-ignore` para no contaminar el índice de búsqueda.
+ */
+import type { Lang } from '../i18n/languages';
+import { UI } from '../i18n/ui';
+import type { Source } from '../lib/content';
+
+interface Props {
+  sources: Source[];
+  lang: Lang;
+}
+const { sources, lang } = Astro.props as Props;
+const t = UI[lang];
+
+const TYPE_LABEL: Record<string, string> = {
+  paper: 'Revisado por pares',
+  preprint: 'Preprint',
+  informe: 'Informe',
+  ley: 'Ley',
+  reportaje: 'Reportaje',
+  comunicado: 'Comunicado',
+  documentacion: 'Documentación oficial',
+  dataset: 'Conjunto de datos',
+};
+---
+
+{sources.length > 0 && (
+  <section class="sources" aria-labelledby="fuentes" data-pagefind-ignore>
+    <h2 id="fuentes">{t.sourcesTitle}</h2>
+    <ol>
+      {sources.map((s) => (
+        <li>
+          <span class="src-publisher">{s.publisher}</span>,{' '}
+          <a href={s.url} rel="external nofollow" hreflang={undefined}>{s.title}</a>
+          {s.date && <>, <time datetime={s.date}>{s.date}</time></>}.
+          {s.type && <span class="src-type"> {TYPE_LABEL[s.type] ?? s.type}.</span>}
+          {s.license && <span class="src-license"> {s.license}.</span>}
+        </li>
+      ))}
+    </ol>
+  </section>
+)}
+
+<style>
+  .sources {
+    margin-top: var(--space-5);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--line);
+    font-family: var(--font-ui);
+    font-size: 0.88rem;
+  }
+  .sources h2 {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: var(--space-2);
+  }
+  ol {
+    margin: 0;
+    padding-left: 1.4em;
+    display: grid;
+    gap: var(--space-2);
+  }
+  li {
+    line-height: 1.5;
+  }
+  .src-publisher {
+    font-weight: 500;
+  }
+  .src-type,
+  .src-license {
+    color: var(--ink-soft);
+  }
+</style>
