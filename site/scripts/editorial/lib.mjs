@@ -151,15 +151,35 @@ function yamlScalar(v) {
   return JSON.stringify(s);
 }
 
+/**
+ * Serializa un valor a YAML en bloque. `indent` es la columna donde empiezan
+ * las claves de este nivel. Devuelve las líneas ya indentadas, precedidas de
+ * salto cuando son un bloque (para pegarlas tras `clave:`).
+ */
 function yamlValue(v, indent) {
   const pad = ' '.repeat(indent);
   if (Array.isArray(v)) {
     if (!v.length) return '[]';
-    if (v.every((x) => typeof x !== 'object')) return `[${v.map(yamlScalar).join(', ')}]`;
-    return '\n' + v.map((x) => `${pad}- ` + yamlValue(x, indent + 4).replace(/^\n/, '').split('\n').map((l, i) => (i === 0 ? l.trimStart() : l)).join('\n')).join('\n');
+    if (v.every((x) => x === null || typeof x !== 'object')) {
+      return `[${v.map(yamlScalar).join(', ')}]`;
+    }
+    // Lista de objetos: «- » y las claves del objeto alineadas dos columnas más.
+    return (
+      '\n' +
+      v
+        .map((item) => {
+          const entries = Object.entries(item).filter(([, x]) => x !== undefined && x !== null);
+          return entries
+            .map(([k, x], i) => `${pad}${i === 0 ? '- ' : '  '}${k}: ${yamlValue(x, indent + 4)}`)
+            .join('\n');
+        })
+        .join('\n')
+    );
   }
   if (v && typeof v === 'object') {
-    return '\n' + Object.entries(v).filter(([, x]) => x !== undefined && x !== null).map(([k, x]) => `${pad}${k}: ${yamlValue(x, indent + 2)}`).join('\n');
+    const entries = Object.entries(v).filter(([, x]) => x !== undefined && x !== null);
+    if (!entries.length) return '{}';
+    return '\n' + entries.map(([k, x]) => `${pad}${k}: ${yamlValue(x, indent + 2)}`).join('\n');
   }
   return yamlScalar(v);
 }
@@ -181,7 +201,8 @@ export function serializeFrontmatter(fm) {
       if (line.trim()) lines.push('  ' + line.trim());
       continue;
     }
-    lines.push(`${k}: ${yamlValue(v, 2)}`);
+    const rendered = yamlValue(v, 2);
+    lines.push(rendered.startsWith('\n') ? `${k}:${rendered}` : `${k}: ${rendered}`);
   }
   lines.push('---');
   return lines.join('\n');

@@ -105,8 +105,10 @@ for (const slug of readdirSync(ROOT)) {
       errors.push(`${slug}/${file}: pieza aiAssisted sin 'editor' (Principio V.b)`);
     }
 
-    // URLs https y sin repetir
-    const urls = [...raw.matchAll(/url:\s*"?(https?:\/\/[^"\s]+)"?/g)].map((m) => m[1]);
+    // URLs de las fuentes: https y sin repetir. Solo dentro del bloque `sources:`
+    // (la url de `ficha:`/`paper:` puede coincidir con una fuente legítimamente).
+    const sourcesBlock = raw.match(/^sources:\n((?:[ ]{2,}.*\n)+)/m)?.[1] ?? '';
+    const urls = [...sourcesBlock.matchAll(/url:\s*"?(https?:\/\/[^"\s]+)"?/g)].map((m) => m[1]);
     for (const u of urls) if (!u.startsWith('https://')) errors.push(`${slug}/${file}: fuente no https (${u})`);
     if (new Set(urls).size !== urls.length) errors.push(`${slug}/${file}: fuentes con URL repetida`);
 

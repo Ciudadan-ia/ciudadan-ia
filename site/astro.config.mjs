@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import { satteri } from '@astrojs/markdown-satteri';
+import { pendingLinks } from './src/lib/satteri-pending-links.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,6 +18,9 @@ export default defineConfig({
     routing: {
       prefixDefaultLocale: false,
     },
+  },
+  markdown: {
+    processor: satteri({ hastPlugins: [pendingLinks] }),
   },
   build: {
     inlineStylesheets: 'always',

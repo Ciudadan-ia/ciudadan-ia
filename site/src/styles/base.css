@@ -122,3 +122,10 @@ textarea {
     scroll-behavior: auto !important;
   }
 }
+
+/* Término del glosario cuya entrada aún no se publica: se conserva el texto,
+   se quita el enlace (ver src/lib/rehype-pending-links.mjs). */
+.pending-term {
+  border-bottom: 1px dotted var(--line);
+  cursor: help;
+}

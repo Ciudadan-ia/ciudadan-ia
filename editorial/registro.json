@@ -21936,8 +21936,17 @@
       "latamAnchor": "n/a",
       "reviewPriority": "alta",
       "topic": "arte-creatividad",
-      "state": "briefed",
-      "batch": 1
+      "state": "written",
+      "batch": 1,
+      "qaScore": 85.8,
+      "metrics": {
+        "words": 471,
+        "sentences": 44,
+        "avgSentence": 10.7,
+        "maxSentence": 16,
+        "maxParagraph": 80,
+        "inflesz": 72.9
+      }
     },
     {
       "slug": "transparencia-de-medios-con-ia",
@@ -22079,8 +22088,17 @@
       "latamAnchor": "required",
       "reviewPriority": "normal",
       "topic": "arte-creatividad",
-      "state": "briefed",
-      "batch": 1
+      "state": "written",
+      "batch": 1,
+      "qaScore": 85.8,
+      "metrics": {
+        "words": 828,
+        "sentences": 74,
+        "avgSentence": 11.2,
+        "maxSentence": 16,
+        "maxParagraph": 133,
+        "inflesz": 69.2
+      }
     },
     {
       "slug": "huipil-copiado-y-quien-cobra",
@@ -22201,8 +22219,17 @@
       "latamAnchor": "required",
       "reviewPriority": "alta",
       "topic": "arte-creatividad",
-      "state": "briefed",
-      "batch": 1
+      "state": "written",
+      "batch": 1,
+      "qaScore": 85.8,
+      "metrics": {
+        "words": 555,
+        "sentences": 51,
+        "avgSentence": 10.9,
+        "maxSentence": 21,
+        "maxParagraph": 85,
+        "inflesz": 69.4
+      }
     },
     {
       "slug": "paper-estereotipos-de-pueblos-indigenas",
@@ -22227,8 +22254,17 @@
       "latamAnchor": "preferred",
       "reviewPriority": "normal",
       "topic": "arte-creatividad",
-      "state": "briefed",
-      "batch": 1
+      "state": "written",
+      "batch": 1,
+      "qaScore": 85.8,
+      "metrics": {
+        "words": 685,
+        "sentences": 39,
+        "avgSentence": 17.6,
+        "maxSentence": 31,
+        "maxParagraph": 80,
+        "inflesz": 66
+      }
     },
     {
       "slug": "diseno-generado-en-venta-artesanal",
