@@ -5,6 +5,7 @@ export const meta = {
     { title: 'Investigar', detail: 'fuentes verificadas con WebFetch' },
     { title: 'Redactar', detail: 'síntesis según el manual de estilo' },
     { title: 'Auditar', detail: 'checklist de 15 ítems' },
+    { title: 'Traducir', detail: 'inglés y, si es comunitaria, náhuatl y maya' },
   ],
 }
 
@@ -43,6 +44,19 @@ const QA_SCHEMA = {
     verdict: { type: 'string', enum: ['publish', 'revise', 'reject'] },
     score: { type: 'number' },
     hardFails: { type: 'array', items: { type: 'string' } },
+    note: { type: 'string' },
+  },
+}
+
+const TRANSLATE_SCHEMA = {
+  type: 'object',
+  required: ['slug', 'lang', 'status'],
+  properties: {
+    slug: { type: 'string' },
+    lang: { type: 'string', enum: ['en', 'nah', 'yua'] },
+    status: { type: 'string', enum: ['ok', 'skipped', 'failed'] },
+    blocks: { type: 'number', description: 'número de H2, debe coincidir con el original' },
+    newTerms: { type: 'array', items: { type: 'string' }, description: 'términos añadidos al glosario de la lengua' },
     note: { type: 'string' },
   },
 }
@@ -155,8 +169,10 @@ REGLAS INNEGOCIABLES:
 - Abre con el openingType del brief y cierra con el closingType; el penúltimo H2 es accionable
   con al menos dos verbos dirigidos al lector.
 - Si el brief trae differsFrom, tu ángulo debe distinguirse claramente de esas piezas.
-- Si communityPriority es 1: oraciones de 16 palabras o menos y máximo 2 tecnicismos (esta
-  pieza se traducirá a náhuatl y maya).
+- **Legibilidad**: si el brief trae communityPriority 1, oraciones de 16 palabras de promedio
+  como máximo, ninguna de más de 28, y máximo 2 tecnicismos (esta pieza se traducirá a náhuatl
+  y maya). En cualquier otro caso, oraciones de **14 a 20 palabras de promedio** y ninguna de
+  más de 35: no escribas en frases telegráficas, la prosa debe fluir.
 - Termina el cuerpo con la sección \`## Fuentes\`: lista numerada, título como texto del
   enlace, institución, publicación, mes y año, y tipo.
 - NO escribas featured, publishDate, author, editor ni aiAssisted: eso lo pone el sistema.
@@ -198,7 +214,8 @@ es glosario). Devuelve solo el resumen estructurado.`,
 1. Lee la pieza \`${DIR}/piezas/${slug}.json\`, su ficha de fuentes \`${DIR}/fuentes/${slug}.json\`,
    su brief \`${DIR}/briefs.json\` y la sección 12 del manual \`${MANUAL}\`.
 2. Corre las verificaciones mecánicas disponibles:
-   \`node -e "import('./scripts/editorial/lib.mjs').then(async m=>{const fs=await import('node:fs');const p=JSON.parse(fs.readFileSync('${DIR}/piezas/${slug}.json','utf8'));console.log(JSON.stringify(m.readability(p.body)));console.log(JSON.stringify(m.scanForbidden(p.frontmatter.title+' '+p.frontmatter.summary+' '+p.body)))})"\`
+   \`node -e "import('./scripts/editorial/lib.mjs').then(async m=>{const fs=await import('node:fs');const p=JSON.parse(fs.readFileSync('${DIR}/piezas/${slug}.json','utf8'));const b=JSON.parse(fs.readFileSync('${DIR}/briefs.json','utf8')).find(x=>x.slug==='${slug}');const tier=b&&b.communityPriority===1?'comunitaria':'general';const met=m.readability(p.body);console.log(JSON.stringify(met));console.log(JSON.stringify(m.checkReadability(met,tier)));console.log(JSON.stringify(m.scanForbidden(p.frontmatter.title+' '+p.frontmatter.summary+' '+p.body)))})"\`
+   El ítem 12 se juzga con el resultado de checkReadability: si \`pass\` es false, falla.
 3. **Verifica una fuente al azar y todos los DOI**: ábrela con WebFetch y comprueba que el
    título coincide y que el keyFact citado está realmente ahí. Si una fuente no abre o el dato
    no está, es fallo del ítem 5.
@@ -233,10 +250,64 @@ Sé estricto: es preferible rechazar una pieza que publicar una con una fuente i
 Devuelve solo el resumen estructurado.`,
       { label: `qa:${slug}`, phase: 'Auditar', schema: QA_SCHEMA }
     )
+  },
+
+  // --- ETAPA 4: traducción al inglés y, si es comunitaria, a náhuatl y maya ---
+  async (qa, slug) => {
+    if (!qa) return null
+    if (qa.verdict !== 'publish') return { qa, translation: null }
+    const translation = await agent(
+      `Eres traductor de CIUDADAN-IA. Traduce la pieza **${slug}**, ya aprobada en español.
+
+1. Lee la pieza \`${DIR}/piezas/${slug}.json\` y su brief en \`${DIR}/briefs.json\`
+   (objeto con "slug" = "${slug}").
+
+2. **Siempre: inglés.** Escribe \`${DIR}/traducciones/${slug}.en.json\` con la misma forma
+   que la pieza original (frontmatter + body).
+   - **Mismo número de H2 y de párrafos que el original**: las versiones quedan alineadas
+     párrafo a párrafo, lo que sirve para la vista bilingüe y para el corpus.
+   - **No traduzcas los títulos de las fuentes ni las URLs**: en el cuerpo, la sección final
+     pasa a llamarse \`## Sources\` pero cada entrada conserva el título original de la
+     publicación; solo se traduce la coletilla de tipo (peer-reviewed, report, law, feature,
+     press release, official documentation, dataset) y el mes.
+   - El titular se **reescribe** con la regla de dos tiempos en inglés (situación. consecuencia
+     humana), 60-110 caracteres — no es una traducción literal.
+   - Cifras en formato inglés (punto decimal, coma de miles). Fechas absolutas.
+   - En el frontmatter pon solo: title, lang "en", status "traducido-ia", summary, translator
+     "IA (Claude) — pending human review". **No incluyas sources** (las hereda del original).
+
+3. **Solo si el brief trae communityPriority 1**: traduce también a náhuatl (\`nah\`) y maya
+   yucateco (\`yua\`), en \`${DIR}/traducciones/${slug}.nah.json\` y \`${slug}.yua.json\`.
+   - Antes de traducir, lee \`/Users/felipesolarluksic/CIUDADAN-IA/editorial/terminologia-nah.json\`
+     y \`terminologia-yua.json\` (si no existen, créalos con \`{}\`). Son un diccionario
+     \`{ "término en español": { "forma": "...", "nota": "...", "primeraPieza": "slug" } }\`.
+     **Usa la forma ya acordada** cuando el término esté ahí; cuando introduzcas un término
+     nuevo, añádelo al archivo con Edit o Write para que las siguientes piezas lo reutilicen.
+     La consistencia terminológica entre piezas es lo que hace revisable el corpus.
+   - Ortografía: náhuatl según normas del INALI; maya yucateco según la Academia de la Lengua
+     Maya. Respeta saltillo (ꞌ), glotal y vocales largas.
+   - status "traducido-ia"; translator "IA (Claude) — ayamo oquittaqueh tlahtohqueh" para nah
+     y "IA (Claude) — ma' xoka'ak tumen máaxo'ob t'anik le t'aano'" para yua.
+   - Si un concepto no tiene forma establecida en la lengua, **no lo inventes en silencio**:
+     usa el préstamo del español y anótalo en el archivo de terminología con la nota
+     «préstamo, pendiente de acuerdo con hablantes».
+
+4. Reglas comunes: no traduzcas nombres propios ni de instituciones; mantén los enlaces
+   internos tal cual (\`/articulos/...\`); conserva el orden y el número de elementos de las
+   listas.
+
+Devuelve el resumen estructurado de la traducción al inglés (las demás van en \`note\`).`,
+      { label: `traducir:${slug}`, phase: 'Traducir', schema: TRANSLATE_SCHEMA }
+    )
+    return { qa, translation }
   }
 )
 
-const qa = results.filter(Boolean)
+const done = results.filter(Boolean)
+const translated = done.map((r) => r.translation).filter(Boolean)
+log(`Traducidas: ${translated.filter((t) => t.status === 'ok').length} al inglés`)
+
+const qa = done.map((r) => r.qa).filter(Boolean)
 const publish = qa.filter((r) => r.verdict === 'publish')
 const revise = qa.filter((r) => r.verdict === 'revise')
 const reject = qa.filter((r) => r.verdict === 'reject')
@@ -249,5 +320,6 @@ return {
   publish: publish.map((r) => r.slug),
   revise: revise.map((r) => ({ slug: r.slug, score: r.score, note: r.note })),
   reject: reject.map((r) => ({ slug: r.slug, hardFails: r.hardFails, note: r.note })),
+  translated: translated.filter((t) => t.status === 'ok').map((t) => t.slug),
   avgScore: qa.length ? Number((qa.reduce((n, r) => n + (r.score ?? 0), 0) / qa.length).toFixed(1)) : 0,
 }

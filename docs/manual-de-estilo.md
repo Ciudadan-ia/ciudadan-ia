@@ -23,15 +23,23 @@ sarcasmo o ironía sobre personas o pueblos, no.
 **Postura nombrada**: «ni pánico ni humo». Cada pieza dice qué hace la tecnología, qué no, a
 quién beneficia, a quién puede dañar y qué no se sabe.
 
-**Nivel de lectura (equivalente a 3.º de secundaria), medible:**
+**Nivel de lectura (equivalente a 3.º de secundaria), medible.** Hay dos objetivos: el
+general y el de las piezas que se traducen a lenguas originarias, que necesitan oraciones más
+cortas para que la traducción no se deforme.
 
-| Métrica | Objetivo |
-| --- | --- |
-| Palabras por oración | promedio 14-20; ninguna > 35 |
-| Palabras por párrafo | 40-90; máximo 100 |
-| INFLESZ (Szigriszt-Pazos) | ≥ 60 en explicador/ficha/paper; ≥ 65 en pregunta/glosario |
-| Ideas por párrafo | una; dos «además» = dos párrafos |
-| Subordinadas encadenadas | máximo dos niveles («que… que…» prohibido) |
+| Métrica | Piezas generales | Piezas de prioridad comunitaria |
+| --- | --- | --- |
+| Palabras por oración | promedio 14-20 | promedio ≤ 16 |
+| Oración más larga | ninguna > 35 | ninguna > 28 |
+| Palabras por párrafo | 40-90; máximo 100 | 40-80; máximo 90 |
+| Tecnicismos | según el tope del formato (§7) | máximo 2 |
+| INFLESZ (Szigriszt-Pazos) | ≥ 60 en explicador/ficha/paper; ≥ 65 en pregunta/glosario | ≥ 65 |
+| Ideas por párrafo | una; dos «además» = dos párrafos | una |
+| Subordinadas encadenadas | máximo dos niveles («que… que…» prohibido) | un nivel |
+
+Una pieza es «de prioridad comunitaria» cuando su brief trae `communityPriority: 1`: son las
+que se traducirán a náhuatl y maya yucateco. El resto no debe sonar telegráfico — frases de
+once palabras encadenadas cansan tanto como las subordinadas de cuarenta.
 
 Fórmula INFLESZ: `206.835 − 62.3 × (sílabas/palabras) − (palabras/oraciones)`.
 
@@ -319,7 +327,7 @@ primaria).
 | 9 | Equilibrio: nombra quién gana, quién puede dañarse y qué no se sabe (las tres) | el editor cita las tres frases |
 | 10 `[H]` | Cero coincidencias con §11 (frases prohibidas, antropomorfismo fuera de comillas, autoridad vacía sin fuente) | expresiones regulares |
 | 11 | Cierre accionable: penúltimo H2 con ≥2 acciones con verbo dirigidas al lector (o «qué exigir») | conteo de imperativos y «puedes» |
-| 12 | Legibilidad de §1: promedio ≤20 palabras por oración, ninguna >35, párrafo ≤100, INFLESZ en objetivo | `legibilidad.mjs` |
+| 12 | Legibilidad de §1 con el umbral que corresponda: piezas generales promedio ≤20 palabras por oración, ninguna >35, párrafo ≤100; piezas de prioridad comunitaria ≤16, ninguna >28, párrafo ≤90 y máximo 2 tecnicismos | `legibilidad.mjs` |
 | 13 `[H]` | Respeto de §9: cero «dialecto/tribu/rescatar lenguas/ancestral-milenario» decorativos; endónimo al nombrar una lengua originaria; ≥1 fuente del pueblo si la pieza trata de él | expresiones regulares + juicio |
 | 14 `[H]` | Fechas absolutas: cero términos relativos de §8 | expresiones regulares |
 | 15 `[H]` | Frontmatter válido, slug único en el registro, `aiAssisted` y `editor` completos, sin `featured`, `related` apunta a slugs existentes o planificados, keywords registradas | validación de esquema + registro |
@@ -379,9 +387,11 @@ Este bloque se inyecta literalmente a cada agente redactor (≈500 tokens).
 > nāhuatlahtōlli; maya yucateco — maaya t'aan); pueblo o comunidad, no tribu; las comunidades
 > hacen, no reciben; sin «rescatar», «ancestral», «milenario». Sin @/x/-e; usa colectivos.
 >
-> **Legibilidad**: oraciones de 20 palabras de promedio como máximo, ninguna de más de 35;
-> párrafos de hasta 90 palabras; una idea por párrafo. Si el brief marca prioridad
-> comunitaria, oraciones de ≤16 palabras y ≤2 tecnicismos.
+> **Legibilidad**: oraciones de 14 a 20 palabras de promedio, ninguna de más de 35; párrafos
+> de hasta 90 palabras; una idea por párrafo. No escribas en frases telegráficas: la prosa
+> debe fluir. Si el brief marca `communityPriority: 1`, entonces sí acorta — promedio de 16
+> palabras como máximo, ninguna de más de 28 y ≤2 tecnicismos, porque esa pieza se traducirá
+> a náhuatl y maya.
 >
 > No abras con «Imagina que», «En los últimos años», «La IA está en todas partes». No escribas
 > «no es ciencia ficción», «era digital», «sin precedentes», «democratizar».

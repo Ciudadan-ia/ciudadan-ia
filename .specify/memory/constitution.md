@@ -1,13 +1,14 @@
 <!--
 Sync Impact Report
-- Version change: 1.0.0 → 1.1.0 (MINOR)
-- Motivo: incorporación de la redacción asistida por IA a escala (feature 002), con
-  etiqueta permanente, fuentes verificadas obligatorias, responsable editorial con
-  nombre, revisión humana por muestreo publicada y publicación programada.
-- Modified principles: V «Ni pánico ni humo» (expansión: reglas a-d de redacción asistida)
-- Expanded sections: Restricciones técnicas (campos format/aiAssisted/sources/publishDate/
-  editor y sus gates), Flujo editorial y de publicación (plan temático humano, muestreo,
-  publicación programada)
+- Version change: 1.1.0 → 1.2.0 (MINOR)
+- Motivo: la responsabilidad editorial de un lote puede recaer en un equipo identificable
+  y no solo en una persona individual, siempre que sus integrantes se publiquen en la
+  página de transparencia. Sin esa condición, firmar como colectivo sería una firma
+  anónima — justo lo que la política de IA critica.
+- Modified principles: V «Ni pánico ni humo», regla (b): «persona editora responsable» →
+  «persona o equipo editorial identificable, cuyos integrantes se publican en la página
+  de transparencia».
+- Expanded sections: Flujo editorial y de publicación (paso 2: quién puede revisar)
 - Added sections: ninguna
 - Removed sections: ninguna
 - Templates requiring updates:
@@ -18,6 +19,9 @@ Sync Impact Report
   mensual en Transparencia.
 
 Historial
+- 1.1.0 (2026-09-04): redacción asistida por IA a escala (feature 002) — etiqueta
+  permanente, fuentes verificadas obligatorias, revisión por muestreo publicada y
+  publicación programada.
 - 1.0.0 (2026-08-25): adopción inicial — 7 principios.
 -->
 
@@ -93,8 +97,11 @@ En **redacción asistida por IA** la marca es permanente y la pieza DEBE:
 - **(a) ser síntesis original** a partir de al menos **tres fuentes citadas y enlazadas** en
   la propia pieza, cada una abierta y verificada al redactar — nunca paráfrasis de una sola
   fuente ni resumen de un artículo ajeno;
-- **(b) llevar la firma de la persona o equipo responsable** (`author`) y el nombre de la
-  **persona editora responsable** del lote (`editor`), mostrado como «Responsable editorial»;
+- **(b) llevar la firma de la redacción** (`author`) y el nombre de la **persona o equipo
+  editorial identificable** responsable del lote (`editor`), mostrado como «Responsable
+  editorial». Cuando la responsabilidad recae en un equipo, sus integrantes DEBEN estar
+  publicados en la página de transparencia: una firma colectiva sin integrantes públicos es
+  una firma anónima y no cumple este principio;
 - **(c) mostrar la etiqueta «redacción asistida por IA»** con su estado de revisión
   (individual, con nombre y fecha, o por muestreo) en todas las lenguas y también en la ruta
   ligera;
@@ -180,4 +187,4 @@ redefiniciones incompatibles de principios, MINOR para principios o secciones nu
 para clarificaciones. La revisión de cumplimiento ocurre en cada `/speckit-plan` (Constitution
 Check) y antes de cada deploy.
 
-**Version**: 1.1.0 | **Ratified**: 2026-08-25 | **Last Amended**: 2026-09-04
+**Version**: 1.2.0 | **Ratified**: 2026-08-25 | **Last Amended**: 2026-09-04

@@ -81,6 +81,32 @@ export function countSyllables(word) {
   return Math.max(1, n);
 }
 
+/**
+ * Umbrales de legibilidad del manual §1. Dos objetivos: el general y el de las
+ * piezas que se traducen a lenguas originarias, que necesitan oraciones más
+ * cortas para que la traducción no se deforme.
+ */
+export const READABILITY_TARGETS = {
+  general: { avgMin: 14, avgMax: 20, maxSentence: 35, maxParagraph: 100, inflesz: 60 },
+  comunitaria: { avgMin: 0, avgMax: 16, maxSentence: 28, maxParagraph: 90, inflesz: 65 },
+};
+
+/**
+ * Evalúa las métricas contra el umbral que corresponda.
+ * @param {ReturnType<typeof readability>} m
+ * @param {'general'|'comunitaria'} tier
+ */
+export function checkReadability(m, tier = 'general') {
+  const t = READABILITY_TARGETS[tier] ?? READABILITY_TARGETS.general;
+  const fails = [];
+  if (m.avgSentence > t.avgMax) fails.push(`promedio ${m.avgSentence} > ${t.avgMax} palabras/oración`);
+  if (t.avgMin && m.avgSentence < t.avgMin) fails.push(`promedio ${m.avgSentence} < ${t.avgMin} palabras/oración (prosa telegráfica)`);
+  if (m.maxSentence > t.maxSentence) fails.push(`oración de ${m.maxSentence} palabras (máximo ${t.maxSentence})`);
+  if (m.maxParagraph > t.maxParagraph) fails.push(`párrafo de ${m.maxParagraph} palabras (máximo ${t.maxParagraph})`);
+  if (m.inflesz < t.inflesz) fails.push(`INFLESZ ${m.inflesz} < ${t.inflesz}`);
+  return { tier, pass: fails.length === 0, fails, target: t };
+}
+
 /** Métricas de legibilidad (manual §1 y §12 ítem 12). */
 export function readability(body) {
   const text = body.replace(/^##\s+Fuentes[\s\S]*$/m, '').replace(/^#+\s.*$/gm, ' ').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1');

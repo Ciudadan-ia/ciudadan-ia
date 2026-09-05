@@ -20,7 +20,8 @@ Esa doble condición nos obliga a reglas explícitas. Estas son.
 ## Dónde NO usamos IA
 
 - **No publicamos textos generados por IA sin responsabilidad humana.** Cada pieza lleva
-  etiqueta visible, fuentes verificadas y una persona editora responsable con nombre
+  etiqueta visible, fuentes verificadas y un equipo editorial responsable cuyos integrantes
+  están publicados con nombre
   (ver «Redacción asistida por IA» más abajo).
 - **No usamos imágenes generadas por IA que simulen fotografías de personas o hechos
   reales.** Las piezas visuales del sitio son ilustraciones y se distinguen como tales.
@@ -41,9 +42,10 @@ una, con una etiqueta visible. Estas son las reglas que nos obligan:
    varias fuentes y las explica con nuestro manual de estilo, publicado en el repositorio
    del proyecto: fija el tono, la estructura, cómo se citan las fuentes y lo que nunca se
    escribe.
-3. **Una persona responde.** Cada lote de piezas tiene una persona editora responsable, con
-   nombre, que firma como «Responsable editorial». Esa persona revisa al azar **al menos el
-   10 % de las piezas de cada lote** y **el 100 % de las que tocan salud, dinero,
+3. **Alguien responde, y sabes quién.** Cada lote tiene un equipo editorial responsable que
+   firma como «Responsable editorial», y sus integrantes están publicados con nombre en
+   [Transparencia](/transparencia/#quienes-responden). Ese equipo revisa al azar **al menos
+   el 10 % de las piezas de cada lote** y **el 100 % de las que tocan salud, dinero,
    acusaciones a personas o instituciones, o consejos de seguridad**. La etiqueta de cada
    pieza dice si ya fue revisada individualmente y por quién.
 4. **Canal de corrección.** Puedes reportar un error desde el formulario de

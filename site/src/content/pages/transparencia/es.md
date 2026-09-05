@@ -44,3 +44,24 @@ condiciona la línea editorial, no es nuestro financiador.**
 El equipo fundador y las personas colaboradoras aparecen con nombre en cada pieza que
 firman. El directorio de validadores institucionales se publicará aquí conforme se
 formalicen las alianzas (ver [Colabora](/colabora/)).
+
+<h2 id="quienes-responden">Quiénes responden</h2>
+
+Las piezas con redacción asistida por IA llevan la firma «Responsable editorial: Equipo
+CIUDADAN-IA». Ese equipo no es un nombre vago: son las personas que revisan, corrigen y
+responden por lo publicado. Nuestra [constitución](/politica-de-ia/#redaccion-asistida) exige
+que estén listadas aquí — una firma colectiva sin integrantes públicos sería una firma
+anónima.
+
+### Equipo editorial (septiembre de 2026)
+
+- **Felipe Solar Luksic** — dirección editorial, revisión de lotes y responsable último de lo
+  publicado. Contacto: a través del formulario de [participación](/contribuye/).
+
+Somos un equipo de una persona. Lo decimos porque importa para leernos: la revisión por
+muestreo que prometemos la hace alguien concreto y con tiempo limitado, no una redacción
+grande. Conforme se sumen personas —y esperamos que se sumen— esta lista crecerá y la fecha
+de arriba cambiará.
+
+Si detectas un error en una pieza, escríbenos desde [participación](/contribuye/): lo
+corregimos con nota visible o retiramos la pieza en un máximo de 48 horas.

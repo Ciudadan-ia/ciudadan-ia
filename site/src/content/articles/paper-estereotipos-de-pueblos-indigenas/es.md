@@ -14,9 +14,9 @@ topic: arte-creatividad
 subtopic: textil-e-iconografia-indigena
 format: paper
 audience: [general, docentes, comunidades]
-publishDate: "2026-09-04"
+publishDate: "2026-09-05"
 author: "Redacción CIUDADAN-IA"
-editor: "Felipe Solar Luksic"
+editor: "Equipo CIUDADAN-IA"
 aiAssisted: true
 production:
   model: claude-fable-5-1

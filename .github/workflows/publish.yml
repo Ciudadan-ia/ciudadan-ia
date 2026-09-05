@@ -1,0 +1,107 @@
+name: Verificar y publicar
+
+# Tres disparadores:
+#  - push a main: cada cambio pasa por los gates constitucionales antes de publicarse
+#  - cron diario: materializa la cola editorial (las piezas cuya publishDate ya llegó)
+#  - manual: para desplegar a demanda
+on:
+  push:
+    branches: [main]
+  schedule:
+    # 15:05 UTC = 09:05 en Ciudad de México (UTC-6). Las piezas programadas para las
+    # 09:00 de ese día ya tienen su fecha alcanzada cuando corre el build.
+    - cron: '5 15 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  verificar:
+    name: Gates de contenido y accesibilidad
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      # pa11y necesita un Chrome real; el runner trae uno pero conviene fijarlo.
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+        with:
+          chrome-version: stable
+
+      - name: Cache del content layer de Astro
+        uses: actions/cache@v4
+        with:
+          path: |
+            site/node_modules/.astro
+            site/.astro
+          key: astro-${{ runner.os }}-${{ hashFiles('site/src/content/**/*.md') }}
+          restore-keys: astro-${{ runner.os }}-
+
+      - run: npm ci
+
+      # 1. Lint de contenido: slugs, fuentes mínimas, calendario, rangos por formato.
+      - name: Lint de contenido
+        run: npm run lint:content
+
+      # 2. Build: astro check + los gates Zod de la constitución (crédito nominal,
+      #    ≥3 fuentes en piezas asistidas por IA, alt obligatorio, lengua = archivo).
+      - name: Build
+        run: npm run build
+
+      # 3. Verificación: pa11y WCAG 2.2 AA, enlaces internos y presupuestos de peso.
+      - name: Verificar (accesibilidad, enlaces, peso)
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+          PUPPETEER_EXECUTABLE_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: node scripts/verify.mjs
+
+      - name: Guardar el sitio construido
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: site/dist
+          retention-days: 7
+
+  desplegar:
+    name: Desplegar en Cloudflare Pages
+    needs: verificar
+    # Solo desde main, y solo si los secretos están configurados.
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Recuperar el sitio construido
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: site/dist
+
+      - name: Comprobar credenciales
+        id: cred
+        run: |
+          if [ -n "${{ secrets.CLOUDFLARE_API_TOKEN }}" ] && [ -n "${{ secrets.CLOUDFLARE_ACCOUNT_ID }}" ]; then
+            echo "listo=si" >> "$GITHUB_OUTPUT"
+          else
+            echo "listo=no" >> "$GITHUB_OUTPUT"
+            echo "::notice::Faltan CLOUDFLARE_API_TOKEN y CLOUDFLARE_ACCOUNT_ID. El sitio se construyó y verificó, pero no se desplegó."
+          fi
+
+      - name: Desplegar
+        if: steps.cred.outputs.listo == 'si'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy site/dist --project-name=ciudadan-ia --branch=main

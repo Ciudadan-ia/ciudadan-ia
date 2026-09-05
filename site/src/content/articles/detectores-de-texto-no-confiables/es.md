@@ -10,9 +10,9 @@ topic: arte-creatividad
 subtopic: periodismo-y-medios
 format: pregunta
 audience: [general, docentes]
-publishDate: "2026-09-04"
+publishDate: "2026-09-05"
 author: "Redacción CIUDADAN-IA"
-editor: "Felipe Solar Luksic"
+editor: "Equipo CIUDADAN-IA"
 aiAssisted: true
 production:
   model: claude-fable-5-1
