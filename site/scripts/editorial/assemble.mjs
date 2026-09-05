@@ -29,6 +29,7 @@ const dir = new URL(`../../../editorial/lotes/lote-${String(BATCH).padStart(2, '
 const piezasDir = join(dir, 'piezas');
 const qaDir = join(dir, 'qa');
 const fuentesDir = join(dir, 'fuentes');
+const traduccionesDir = join(dir, 'traducciones');
 
 if (!existsSync(piezasDir)) {
   console.error(`No existe ${piezasDir}`);
@@ -39,6 +40,7 @@ const reg = loadRegistro();
 const bySlug = new Map(reg.seeds.map((s) => [s.slug, s]));
 
 let written = 0;
+let translations = 0;
 let skipped = 0;
 const problems = [];
 
@@ -120,14 +122,67 @@ for (const file of readdirSync(piezasDir).filter((f) => f.endsWith('.json'))) {
       seed.state = 'written';
       seed.qaScore = qa.score;
       seed.metrics = metrics;
+      seed.langs = ['es'];
     }
   }
   written++;
+
+  // Traducciones: heredan tema, formato y fecha del original; NUNCA las fuentes
+  // (viven solo en es.md y el render las hereda — gate del schema).
+  for (const lang of ['en', 'nah', 'yua']) {
+    const tFile = join(traduccionesDir, `${slug}.${lang}.json`);
+    if (!existsSync(tFile)) continue;
+    let t;
+    try {
+      t = JSON.parse(readFileSync(tFile, 'utf8'));
+    } catch (err) {
+      problems.push(`${slug} (${lang}): JSON inválido — ${err.message}`);
+      continue;
+    }
+    if (!t.frontmatter?.title || !t.frontmatter?.summary || !t.body) {
+      problems.push(`${slug} (${lang}): traducción incompleta (falta title, summary o body)`);
+      continue;
+    }
+    const tForbidden = scanForbidden(`${t.frontmatter.title}\n${t.frontmatter.summary}`).filter((h) => !h.soft);
+    if (lang === 'en' ? false : tForbidden.length > 0) {
+      problems.push(`${slug} (${lang}): frases prohibidas → ${tForbidden.map((h) => h.match).join('; ')}`);
+      continue;
+    }
+    const tfm = {
+      title: t.frontmatter.title,
+      lang,
+      status: 'traducido-ia',
+      summary: t.frontmatter.summary,
+      topic: fm.topic,
+      subtopic: fm.subtopic,
+      format: fm.format,
+      audience: fm.audience,
+      publishDate: fm.publishDate,
+      author: fm.author,
+      editor: fm.editor,
+      translator: t.frontmatter.translator ?? 'IA (Claude) — pendiente de revisión humana',
+      aiAssisted: true,
+      production: fm.production,
+      keywords: fm.keywords,
+      related: fm.related,
+    };
+    if (fm.format === 'glosario') {
+      tfm.term = t.frontmatter.term ?? fm.term;
+      tfm.gloss = t.frontmatter.gloss ?? fm.gloss;
+    }
+    if (fm.paper) tfm.paper = fm.paper;
+    if (fm.ficha) tfm.ficha = fm.ficha;
+    writePiece(slug, lang, tfm, t.body);
+    if (seed) seed.langs = [...new Set([...(seed.langs ?? ['es']), lang])];
+    translations++;
+  }
 }
 
 if (!DRY) saveRegistro(reg);
 
-console.log(`Lote ${BATCH}: ${written} piezas escritas · ${skipped} omitidas${DRY ? ' (--dry-run)' : ''}`);
+console.log(
+  `Lote ${BATCH}: ${written} piezas escritas · ${translations} traducciones · ${skipped} omitidas${DRY ? ' (--dry-run)' : ''}`,
+);
 if (problems.length) {
   console.log('\nProblemas:');
   for (const p of problems) console.log(`  ✗ ${p}`);
