@@ -1,16 +1,31 @@
 # Despliegue — estado comprobado y siguiente acción
 
-Corte: 27/10/2026. #7 y #9 se integraron en main. Última base verificada:
-`3b03411cd07a64b822f3b703d006f1e99591a2b7`.
-La ejecución de main [40534606882](https://github.com/Ciudadan-ia/ciudadan-ia/actions/runs/40534606882)
-construyó y verificó el sitio. El paso real «Desplegar» fue omitido: faltan
-`CLOUDFLARE_API_TOKEN` y `CLOUDFLARE_ACCOUNT_ID`. Que el trabajo de evaluación termine
+Corte: 27/10/2026. #7, #9, #10 y #11 se integraron en main. Base de código comprobada:
+`7e66cf23d3c4a9e525bb80c2526c616b255f9f55`.
+La ejecución de main [40556280584](https://github.com/Ciudadan-ia/ciudadan-ia/actions/runs/40556280584)
+construyó y verificó el sitio. El paso real «Desplegar» fue omitido por falta de
+credenciales. Después se configuró y comprobó `CLOUDFLARE_ACCOUNT_ID`; ahora falta
+únicamente `CLOUDFLARE_API_TOKEN`. Que el trabajo de evaluación termine
 con éxito no significa que haya ocurrido un despliegue.
 
 Responsable por designar: tecnológico; custodia de la cuenta y decisión de proveedor: fundador.
-El fundador eligió Cloudflare y comenzar con opciones gratuitas. La sesión del panel
-está pendiente de iniciar. No se creó una cuenta, proyecto, token o suscripción ni se
-cambió el alojamiento. Los contenidos pendientes conservan ese estado.
+El fundador inició sesión en Cloudflare. Se verificó Free ($0) como plan activo.
+Se creó y comprobó el proyecto Pages `ciudadan-ia`, de Direct Upload, con rama de
+producción `main` y dirección prevista `ciudadan-ia.pages.dev`. La pantalla del
+proyecto confirma que no tiene despliegues. No se subieron archivos ni se publicó
+contenido. Los contenidos pendientes conservan ese estado.
+
+El Account ID se guardó directamente como secreto de GitHub y se comprobó su
+presencia. Está preparado, sin crear, el token de cuenta `ciudadania-pages-github`:
+una sola política Pages Write para esta cuenta, vencimiento 25/01/2027 (90 días),
+sin restricción de IP para admitir ejecutores de GitHub. Permite administrar todos
+los proyectos Pages de la cuenta; no se limita a un proyecto y no incluye DNS ni
+facturación. El fundador debe confirmar su creación y guardarlo directamente en
+GitHub Secrets como `CLOUDFLARE_API_TOKEN`, sin enviarlo al chat.
+
+Siguiente paso humano: iniciar sesión en GitHub con acceso administrativo al
+repositorio; la pestaña de secretos requiere autenticación en el navegador. La
+clave aún no se creó. La guía de abajo se conserva como procedimiento completo.
 
 ## Primera etapa gratuita
 
