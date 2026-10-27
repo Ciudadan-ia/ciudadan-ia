@@ -1,13 +1,77 @@
 # Despliegue — estado comprobado y siguiente acción
 
-Corte: 27/10/2026. #7 se integró en main (`f0ad594872ea61d0ac21cad9767ec6467497f392`).
-La ejecución de main [40518194866](https://github.com/Ciudadan-ia/ciudadan-ia/actions/runs/40518194866)
+Corte: 27/10/2026. #7 y #9 se integraron en main. Última base verificada:
+`3b03411cd07a64b822f3b703d006f1e99591a2b7`.
+La ejecución de main [40534606882](https://github.com/Ciudadan-ia/ciudadan-ia/actions/runs/40534606882)
 construyó y verificó el sitio. El paso real «Desplegar» fue omitido: faltan
 `CLOUDFLARE_API_TOKEN` y `CLOUDFLARE_ACCOUNT_ID`. Que el trabajo de evaluación termine
 con éxito no significa que haya ocurrido un despliegue.
 
 Responsable por designar: tecnológico; custodia de la cuenta y decisión de proveedor: fundador.
-No se creó una cuenta, proyecto, token o suscripción ni se cambió el alojamiento.
+El fundador eligió Cloudflare y comenzar con opciones gratuitas. La sesión del panel
+está pendiente de iniciar. No se creó una cuenta, proyecto, token o suscripción ni se
+cambió el alojamiento. Los contenidos pendientes conservan ese estado.
+
+## Primera etapa gratuita
+
+- Alojamiento: Cloudflare Pages Free; dirección `pages.dev` asignada por Cloudflare.
+  Presupuesto de alojamiento inicial: 0 MXN/mes mientras se mantenga el plan gratuito
+  y sus límites. Esto no cambia los costos de otros servicios institucionales.
+- Sin compra de dominio, plan Workers Paid, almacenamiento contratado, membresías,
+  pagos ni servicios de correo de pago en esta etapa.
+- Páginas estáticas: solicitudes gratuitas e ilimitadas cuando no invocan funciones.
+  Pages Free admite hasta 20,000 archivos, 25 MiB por archivo y 500 compilaciones
+  mensuales en su plataforma. Aquí se compila en GitHub Actions.
+- Functions: hasta 100,000 solicitudes diarias compartidas con el resto de Workers
+  de la cuenta Free; revisar su uso real en la cuenta antes de abrir nuevos servicios.
+  Las funciones actuales solo reciben rutas API y permanecen cerradas a captación.
+- Crecimiento posterior: evaluar acceso de miembros, autenticación, protección del
+  contenido, pagos y datos personales como una propuesta independiente con costos,
+  responsables y validación jurídica. No se instala ni activa un sistema de membresías.
+
+Fuentes oficiales consultadas el 27/10/2026:
+[precios y solicitudes](https://developers.cloudflare.com/pages/functions/pricing/),
+[límites de Pages](https://developers.cloudflare.com/pages/platform/limits/).
+
+## Conexión guiada de la cuenta
+
+1. El fundador inicia sesión en [Cloudflare](https://dash.cloudflare.com/) o completa
+   personalmente el registro, la contraseña y la aceptación de condiciones. Conservar
+   la titularidad de la cuenta; no enviar contraseñas ni claves por el chat.
+2. Abrir Workers & Pages y revisar los proyectos existentes y el plan. Si existe
+   `ciudadan-ia`, confirmar su propietario y tipo antes de modificarlo. Si no existe,
+   crear un proyecto Pages de **Direct Upload**, producción `main`. No subir todavía
+   una carpeta por arrastre: ese método no compila las Functions de este repositorio.
+   La creación vacía puede hacerse con `wrangler pages project create ciudadan-ia
+   --production-branch=main` una vez autenticado. No se ha ejecutado este comando.
+3. Direct Upload permite publicar con nuestro flujo de GitHub Actions. El mismo
+   proyecto no puede convertirse después a integración Git nativa; para ello haría
+   falta otro proyecto. No activar un segundo publicador. Confirmar la dirección
+   `pages.dev` asignada: puede llevar sufijo si el nombre ya está ocupado; en tal caso
+   actualizar `site/astro.config.mjs` antes de compilar para producción.
+4. Copiar el Account ID desde Workers & Pages → Account Details o mediante el buscador
+   del panel: `Copy account ID`. No hace falta comprar o conectar un dominio.
+5. En API Tokens, preparar un token dedicado `ciudadania-pages-github`, permiso
+   **Account → Cloudflare Pages → Edit**, limitado a la cuenta elegida; ese permiso
+   puede abarcar los proyectos Pages de esa cuenta. No usar Global API Key ni permisos
+   DNS, facturación o administración de miembros. Revisar el alcance antes de que el
+   fundador confirme su creación. No asumir que existe restricción por proyecto si
+   el panel solo ofrece restricción por cuenta.
+6. El fundador pega directamente los valores en
+   [Settings → Secrets and variables → Actions](https://github.com/Ciudadan-ia/ciudadan-ia/settings/secrets/actions):
+   `CLOUDFLARE_ACCOUNT_ID` y `CLOUDFLARE_API_TOKEN`. El token queda en GitHub Secrets;
+   no en archivos, documentos públicos, incidencias, capturas ni mensajes.
+7. Mantener `CIUDADANIA_DRAFT_PREVIEW` ausente o `0`, `PUBLIC_FORMS_ENABLED=false` y
+   `FORMS_ENABLED` ausente o `false`. No añadir proveedores de formularios, pagos o
+   bindings de participantes. Con Direct Upload las banderas de compilación las fija
+   GitHub Actions, no el panel de Cloudflare.
+8. Avisar únicamente «sesión iniciada» o «secretos guardados», sin valores. Después
+   ejecutar el procedimiento de publicación y comprobar su resultado real.
+
+Referencias:
+[Direct Upload](https://developers.cloudflare.com/pages/get-started/direct-upload/),
+[CI y permisos](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/),
+[Account ID sin dominio](https://developers.cloudflare.com/fundamentals/account/find-account-and-zone-ids/).
 
 ## Procedimiento preparado
 
