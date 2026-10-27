@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-27",
+  "directionApprovedByFounder": true,
+  "publicationApproved": false,
+  "humanScientificReviewsCompleted": 0,
+  "checks": [
+    {
+      "id": "PV01",
+      "priority": "P0",
+      "subject": "Separación de publicación",
+      "status": "locally-verified",
+      "evidence": [
+        "14 rutas de módulos y portada excluidas por defecto",
+        "40 registros y 3 historias conservan estado pendiente",
+        "4 traducciones IA antiguas filtradas del catálogo público",
+        "Formularios deshabilitados"
+      ],
+      "responsibleRole": "Responsable tecnológico",
+      "assignee": null
+    },
+    {
+      "id": "PV02",
+      "priority": "P1",
+      "subject": "Contraste documental de las tres historias",
+      "status": "documented-not-human-approved",
+      "evidence": [
+        "Voz: FTC, FBI y NIST; alertas y descripción técnica, sin tasas mexicanas",
+        "Tiempo: ECMWF contrastado con Bureau of Meteorology y OMM; límites regionales explícitos",
+        "Trabajo: OIT, OCDE y JRC; exposición potencial separada de resultados de empleo"
+      ],
+      "responsibleRole": "Revisor científico independiente previamente evaluado",
+      "assignee": null
+    },
+    {
+      "id": "PV03",
+      "priority": "P1",
+      "subject": "Revisión humana completa de seguridad y dinero",
+      "status": "pending",
+      "evidenceRequired": "Nombre del revisor, fecha, observaciones y aprobación de cada afirmación del caso de voces clonadas; comprobar recomendaciones y contexto mexicano",
+      "responsibleRole": "Responsable editorial y revisor de seguridad",
+      "assignee": null
+    },
+    {
+      "id": "PV04",
+      "priority": "P1",
+      "subject": "Prueba pedagógica",
+      "status": "pending",
+      "evidenceRequired": "Revisión del puente historia-lección por responsable educativo y prueba moderada propuesta con seis docentes/divulgadores; consentimiento y registro mínimo aprobados antes de convocar",
+      "responsibleRole": "Responsable educativo",
+      "assignee": null
+    },
+    {
+      "id": "PV05",
+      "priority": "P1",
+      "subject": "Traducción y validación comunitaria",
+      "status": "pending",
+      "evidenceRequired": "Variedad lingüística acordada, hablantes validadores y créditos verificables; todas las muestras nuevas y anteriores pendientes permanecen en revisión",
+      "responsibleRole": "Coordinación lingüística y hablantes validadores",
+      "assignee": null
+    },
+    {
+      "id": "PV06",
+      "priority": "P1",
+      "subject": "Firma y aprobación editorial de publicación",
+      "status": "pending",
+      "evidenceRequired": "Responsable identificable, selección de destacado y revisión de cada historia. La aprobación del diseño por el fundador no equivale a aprobación científica ni de publicación",
+      "responsibleRole": "Fundador y responsable editorial",
+      "assignee": null
+    },
+    {
+      "id": "PV07",
+      "priority": "P2",
+      "subject": "Producción audiovisual",
+      "status": "pending",
+      "evidenceRequired": "Guion revisado, narración autorizada, subtítulos, transcripción, derechos y prueba de reproducción a solicitud; no hay audio ni video producido",
+      "responsibleRole": "Responsable educativo y producción audiovisual",
+      "assignee": null
+    }
+  ],
+  "sourcesRequiringFollowup": [
+    {
+      "topic": "Contexto mexicano de clonación de voz",
+      "url": "https://www.gob.mx/sspc/prensa/la-sspc-emite-recomendaciones-ante-posibles-fraudes-por-clonacion-de-voz-con-inteligencia-artificial",
+      "access": "403; search excerpt only",
+      "eligibleAsOpenedSource": false
+    },
+    {
+      "topic": "Contexto mexicano de clonación de voz",
+      "url": "https://www.gob.mx/gncertmx/articulos/164200",
+      "access": "403; search excerpt only",
+      "eligibleAsOpenedSource": false
+    },
+    {
+      "topic": "Contexto mexicano financiero",
+      "url": "https://www.condusef.gob.mx/index.php?idc=2718&idcat=3&p=contenido",
+      "access": "timeout; search excerpt only",
+      "eligibleAsOpenedSource": false
+    },
+    {
+      "topic": "Versión publicada del estudio meteorológico",
+      "url": "https://doi.org/10.1175/AIES-D-25-0037.1",
+      "access": "403; versión arXiv v2 abierta, aceptada según aviso del manuscrito; versión editorial sin comprobar",
+      "eligibleAsOpenedSource": false
+    }
+  ]
+}

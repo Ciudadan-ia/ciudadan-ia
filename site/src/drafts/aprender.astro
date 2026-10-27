@@ -3,5 +3,5 @@ import ExecutionDraft from '../layouts/ExecutionDraft.astro';
 import data from '../data/ejecucion-v1.json';
 ---
 <ExecutionDraft title="Aprender a preguntar">
-  <div class="cards">{data.lessons.map((item,index) => <article class="card"><span class="meta">LECCIÓN {String(index+1).padStart(2,'0')} · {item.minutes} MIN · BORRADOR</span><h2>{item.title}</h2><p>{item.body}</p><p class="activity">{item.activity}</p><details><summary>{item.question}</summary><p>{item.answers[item.correct]}</p><p>Explica por qué esta respuesta es adecuada y contrástala con la lección.</p></details><p>{item.sources.map(id=>{const source=data.sources.find(s=>s.id===id);return source ? <a href={source.url}>{source.name} ↗</a> : null})}</p></article>)}</div>
+  <div class="cards">{data.lessons.map((item,index) => <article class="card" id={item.id}><span class="meta">LECCIÓN {String(index+1).padStart(2,'0')} · {item.minutes} MIN · BORRADOR</span><h2>{item.title}</h2><p>{item.body}</p><p class="activity">{item.activity}</p><details><summary>{item.question}</summary><p>{item.answers[item.correct]}</p><p>Explica por qué esta respuesta es adecuada y contrástala con la lección.</p></details><p>{item.sources.map(id=>{const source=data.sources.find(s=>s.id===id);return source ? <a href={source.url}>{source.name} ↗</a> : null})}</p></article>)}</div>
 </ExecutionDraft>

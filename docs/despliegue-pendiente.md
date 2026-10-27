@@ -105,3 +105,22 @@ ni habilita corpus, entrenamiento o grabación de voz.
 Sin la bandera o sin proveedor configurado, las funciones redirigen a
 `/participacion-pendiente/` antes de leer los datos. Un error del proveedor o de
 almacenamiento no genera una confirmación de éxito. No se hicieron envíos reales.
+
+
+## Protección editorial reforzada · 27/10/2026
+
+El fundador confirmó la dirección de la nueva portada y solicitó avanzar sus
+validaciones, manteniendo pendientes fuera de producción. El cambio añade 14 rutas
+de revisión excluidas y comprueba textos de las 40 unidades y las tres historias.
+Las cuatro traducciones antiguas en maya/náhuatl con estado `traducido-ia` se admiten
+únicamente en la compilación de revisión. La edición pública se genera solo con
+entradas `validado` y fecha alcanzada. No se anuncia una edición sin contenido
+validado. El estado heredado `validado` no acredita una nueva revisión humana de esta
+ejecución; antes del estreno corresponde comprobar la responsabilidad editorial
+del catálogo existente.
+
+El expediente está en `editorial/portada-validaciones.json`. La revisión humana,
+la prueba pedagógica, las traducciones nuevas, la producción audiovisual y la firma
+editorial siguen pendientes. Conectar la cuenta no ejecuta por sí solo un despliegue
+ni aprueba esos contenidos. El secreto del token solo se introduce directamente en
+GitHub; no se solicita por chat.

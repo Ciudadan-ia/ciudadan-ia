@@ -1,6 +1,6 @@
 // Solo se incorporan al sitio con una compilación explícita de revisión.
 export const BASE_DRAFT_ROUTES = Object.freeze([
-  'v1', 'aprender', 'faq', 'noticias', 'biblioteca', 'editorial-demo',
+  'v1', 'aprender', 'faq', 'noticias', 'biblioteca', 'editorial-demo', 'portada',
 ]);
 export const DRAFT_ROUTES = Object.freeze(BASE_DRAFT_ROUTES.flatMap((slug) => [slug, `lite/${slug}`]));
 
