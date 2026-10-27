@@ -5,8 +5,9 @@
  *  - /lite/ < 50 KB
  * Falla con exit 1 si se excede.
  */
-import { readFileSync, statSync } from 'node:fs';
+import { readFileSync, statSync, existsSync } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { draftPreviewEnabled } from '../draft-routes.mjs';
 
 const DIST = resolve(new URL('../', import.meta.url).pathname,
   process.env.CIUDADANIA_BUILD_DIRECTORY || 'dist');
@@ -21,11 +22,24 @@ function pageWeight(htmlPath) {
   for (const m of html.matchAll(/url\((\/[^)'"]+\.woff2)\)/g)) assets.add(m[1]);
   for (const m of html.matchAll(/<script[^>]+src="(\/[^"]+)"/g)) assets.add(m[1]);
   for (const m of html.matchAll(/<link[^>]+rel="icon"[^>]+href="(\/[^"]+)"/g)) assets.add(m[1]);
+  // Cuenta todas las variantes locales de imagen, incluso las diferidas. Es una
+  // cota conservadora de transferencia, no una medición de carga de un dispositivo.
+  for (const tag of html.matchAll(/<(?:img|source)\b[^>]+>/g)) {
+    const candidates = [...tag[0].matchAll(/\b(?:src|srcset)="([^"]+)"/g)]
+      .flatMap((match) => match[1].split(',').map((part) => part.trim().split(/\s+/)[0]));
+    for (const candidate of candidates) {
+      const url = new URL(candidate, `https://budget.invalid/${htmlPath}`);
+      if (url.origin !== 'https://budget.invalid') {
+        throw new Error(`Imagen externa sin presupuesto local: ${candidate}`);
+      }
+      assets.add(decodeURIComponent(url.pathname));
+    }
+  }
   for (const asset of assets) {
     try {
       total += statSync(join(DIST, asset)).size;
     } catch {
-      console.warn(`  (aviso) asset no encontrado: ${asset}`);
+      throw new Error(`Recurso presupuestado inexistente: ${asset}`);
     }
   }
   return { total, assets: [...assets] };
@@ -40,9 +54,11 @@ function check(label, htmlPath, budgetKB) {
 }
 
 check('Portada /', 'index.html', 300);
-check('Portada /nah/', 'nah/index.html', 300);
+if (existsSync(join(DIST, 'nah/index.html'))) check('Portada /nah/', 'nah/index.html', 300);
 check('Artículo es', 'articulos/que-es-un-llm/index.html', 300);
-check('Artículo bilingüe nah', 'nah/articulos/que-es-un-llm/index.html', 300);
+if (existsSync(join(DIST, 'nah/articulos/que-es-un-llm/index.html'))) {
+  check('Artículo bilingüe nah', 'nah/articulos/que-es-un-llm/index.html', 300);
+}
 check('Lite portada', 'lite/index.html', 50);
 check('Lite artículo', 'lite/articulos/que-es-un-llm/index.html', 50);
 check('Temas (hub)', 'temas/index.html', 300);
@@ -50,6 +66,10 @@ check('Tema tecnologia', 'temas/tecnologia/index.html', 300);
 check('Todos los artículos', 'articulos/index.html', 300);
 check('Glosario', 'glosario/index.html', 300);
 check('Buscar', 'buscar/index.html', 300);
+if (draftPreviewEnabled()) {
+  check('Portada propuesta, con todas las variantes de foto', 'portada/index.html', 300);
+  check('Lite portada propuesta', 'lite/portada/index.html', 50);
+}
 
 // --- Gate global: ninguna página puede crecer sin control (constitución III) ---
 console.log('\n— gate global de HTML —');

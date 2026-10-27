@@ -1,4 +1,5 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { draftPreviewEnabled } from '../../draft-routes.mjs';
 import { ALL_LANGS, DEFAULT_LANG, LANGUAGES, type Lang } from '../i18n/languages';
 import {
   FORMATS,
@@ -34,9 +35,11 @@ function fileLang(entry: Article | FoundationalPage): string {
   return entry.id.split('/')[1];
 }
 
-/** Publicado = no borrador Y con fecha alcanzada. */
+/** Producción exige validación; las traducciones IA solo se revisan en privado. */
 export function isPublished(e: Article): boolean {
-  return e.data.status !== 'borrador' && e.data.publishDate.getTime() <= BUILD_AS_OF.getTime();
+  const allowed = e.data.status === 'validado'
+    || (draftPreviewEnabled() && e.data.status === 'traducido-ia');
+  return allowed && e.data.publishDate.getTime() <= BUILD_AS_OF.getTime();
 }
 
 let _raw: Article[] | null = null;

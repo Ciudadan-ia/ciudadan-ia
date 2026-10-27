@@ -9,6 +9,7 @@ import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { join, extname, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { existsSync } from 'node:fs';
 import pa11y from 'pa11y';
 import { DRAFT_ROUTES, draftPreviewEnabled } from '../draft-routes.mjs';
 
@@ -42,11 +43,8 @@ const server = createServer(async (req, res) => {
 
 const PAGES = [
   '/',
-  '/nah/',
-  '/yua/',
   '/en/',
   '/articulos/que-es-un-llm/',
-  '/nah/articulos/que-es-un-llm/',
   '/lite/',
   '/lite/articulos/que-es-un-llm/',
   '/gobernanza-de-datos/',
@@ -65,9 +63,13 @@ const PAGES = [
   '/articulos/',
   '/glosario/',
   '/buscar/',
-  '/nah/temas/',
   '/en/articulos/',
 ];
+// Una edición sin contenido validado queda fuera de producción. En revisión se
+// comprueban también sus muestras, que siguen marcadas como traducciones IA.
+for (const page of ['/nah/', '/yua/', '/nah/articulos/que-es-un-llm/', '/nah/temas/']) {
+  if (existsSync(join(DIST, page, 'index.html'))) PAGES.push(page);
+}
 
 await new Promise((r) => server.listen(PORT, r));
 let failed = false;

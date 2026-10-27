@@ -1,6 +1,7 @@
 # Portada: historias que abren conversaciones
 
-Propuesta del 27/10/2026. No aprueba publicaciones. Continúan pendientes las revisiones
+Dirección editorial confirmada por el fundador el 27/10/2026. La confirmación permite
+avanzar en el diseño y sus validaciones; no aprueba la publicación de los contenidos. Continúan pendientes las revisiones
 científica, pedagógica, editorial y lingüística. La constitución vigente conserva sus
 requisitos de rigor, accesibilidad y decisión humana sobre lo que se destaca.
 
@@ -27,10 +28,11 @@ antes de crear una sección de noticias recientes o de usar «hoy» y «última 
 | Historia propuesta | Interés humano | Puente educativo | Pendiente especial |
 | --- | --- | --- | --- |
 | Suena como tu familia. Puede ser una voz clonada. | Confianza, cuidado, sorpresa | L08: información que merece compartirse | Revisión humana del 100% por seguridad y dinero; contexto mexicano |
-| La IA ya pronostica el tiempo. ¿Cómo aprende a mirar el cielo? | Asombro y relación con el entorno | L02: datos y decisiones | Contraste científico independiente; tres referencias actuales pertenecen a ECMWF |
+| La IA ya pronostica el tiempo. ¿Cómo aprende a mirar el cielo? | Asombro y relación con el entorno | L02: datos y decisiones | Contraste documental con Trotta y colaboradores y OMM añadido; evaluación científica humana pendiente |
 | Tu trabajo tiene muchas tareas. La IA puede cambiar algunas. | Oportunidades y agencia | L01: qué hace una IA | Explicar diferencias entre exposición, automatización y empleo; evitar extrapolación a México |
 
-La selección es una propuesta para revisión del fundador y del equipo editorial. No hay
+El fundador confirmó la dirección de la propuesta. La aprobación de cada pieza y del
+destacado público sigue pendiente del responsable editorial. No hay
 selección automática de portada ni puntuaciones de popularidad inventadas.
 
 ## Cómo construir el gancho
@@ -132,10 +134,31 @@ La revisión se sirve únicamente mediante `CIUDADANIA_DRAFT_PREVIEW=1` en `/por
 y `/lite/portada/`. La compilación normal excluye ambas rutas, sus textos, la foto
 y los datos de esta propuesta; el comprobador de artefactos aplica también antes
 de desplegar en Cloudflare. Las otras 12 rutas y los 40 contenidos pendientes siguen
-en su estado anterior. Formularios y membresías continúan deshabilitados.
+en su estado anterior. Las cuatro traducciones antiguas con estado `traducido-ia`
+también quedan fuera del catálogo público; se mantienen en la compilación privada.
+Maya y náhuatl no se anuncian como ediciones activas hasta contar con contenido validado. Formularios y membresías continúan deshabilitados.
 
 Para hacer de esta propuesta la portada pública se requieren: selección editorial final,
 firma del responsable, cierre de revisiones, contraste independiente pendiente, QA de
 medios y accesibilidad, revisión de traducciones donde corresponda y cambio explícito
 de la portada. Mantener protegido el prototipo de revisión no equivale a publicarla
 para todo internet. La conexión de Cloudflare sigue su ruta documentada por separado.
+
+
+## Expediente de validación
+
+El registro `editorial/portada-validaciones.json` ordena la separación técnica de
+publicación, el contraste documental y las revisiones humanas por prioridad, con
+rol requerido, evidencia de cierre y asignación aún pendiente. Cero revisiones
+científicas humanas se han acreditado. El contraste meteorológico ahora incluye
+una evaluación del Bureau of Meteorology australiano y el marco de la OMM, además
+de las fuentes del desarrollador. Se consultó la versión arXiv v2 del estudio; no
+se verificó el texto editorial de la revista.
+
+Las candidatas mexicanas de SSPC y Guardia Nacional respondieron 403 y CONDUSEF
+no respondió a tiempo. Sus extractos de búsqueda no se incorporaron como fuentes
+abiertas ni se usaron para calcular prevalencia. Se conservan como pendientes.
+
+La comprobación de peso incluye todas las variantes locales de imágenes como una
+cota conservadora, incluso las de carga diferida. Esto no sustituye una medición
+de rendimiento en teléfonos reales y una red 3G.

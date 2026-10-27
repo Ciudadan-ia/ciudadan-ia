@@ -20,9 +20,27 @@
       "lesson": "L08",
       "lessonTitle": "Información que merece compartirse",
       "sources": [
-        {"name": "FTC · advertencia sobre emergencias familiares y clonación de voz", "url": "https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes", "date": "2023-03", "type": "Alerta institucional", "opened": true},
-        {"name": "FBI / IC3 · usos de IA generativa en fraudes", "url": "https://www.ic3.gov/PSA/2024/PSA241203", "date": "2024-12-03", "type": "Alerta institucional", "opened": true},
-        {"name": "NIST · transparencia y riesgos del contenido sintético", "url": "https://www.nist.gov/publications/reducing-risks-posed-synthetic-content-overview-technical-approaches-digital-content", "date": "2024", "type": "Informe técnico", "opened": true}
+        {
+          "name": "FTC · advertencia sobre emergencias familiares y clonación de voz",
+          "url": "https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes",
+          "date": "2023-03",
+          "type": "Alerta institucional",
+          "opened": true
+        },
+        {
+          "name": "FBI / IC3 · usos de IA generativa en fraudes",
+          "url": "https://www.ic3.gov/PSA/2024/PSA241203",
+          "date": "2024-12-03",
+          "type": "Alerta institucional",
+          "opened": true
+        },
+        {
+          "name": "NIST · transparencia y riesgos del contenido sintético",
+          "url": "https://www.nist.gov/publications/reducing-risks-posed-synthetic-content-overview-technical-approaches-digital-content",
+          "date": "2024",
+          "type": "Informe técnico",
+          "opened": true
+        }
       ]
     },
     {
@@ -31,17 +49,50 @@
       "title": "La IA ya pronostica el tiempo. ¿Cómo aprende a mirar el cielo?",
       "summary": "ECMWF puso en operación un sistema de pronóstico con IA en 2025. Combina observaciones meteorológicas con patrones aprendidos y trabaja junto a los modelos basados en física.",
       "dateLabel": "Hito: 25 feb 2025 · contexto actualizado a 2026",
-      "evidence": "ECMWF documenta el inicio de AIFS Single el 25 de febrero de 2025 y de su versión por conjuntos el 1 de julio de 2025. La ficha de datos consultada informa de la actualización de ambos a la versión 2 el 12 de mayo de 2026. Las tres fuentes son del desarrollador: queda pendiente contraste científico independiente.",
-      "limit": "Un pronóstico expresa incertidumbre. Esta página no ofrece alertas meteorológicas ni demuestra que un sistema predijo el huracán de la fotografía. La imagen es archivo de Milton, del 9 de octubre de 2024, anterior a la operación de AIFS.",
+      "evidence": "ECMWF documenta el inicio operativo de AIFS en 2025 y su actualización a la versión 2 en mayo de 2026. Como contraste externo al desarrollador, un estudio de Trotta y colaboradores evalúa el posprocesamiento de AIFS en Australia. La OMM confirma el uso operativo de sistemas de IA y mantiene la necesidad de modelos físicos y especialistas.",
+      "limit": "El estudio australiano analiza condiciones y variables concretas; no demuestra resultados para México ni huracanes futuros. Se consultó su versión arXiv v2; enlaza una publicación en revista cuyo texto no pudo abrirse. Esta página no ofrece alertas meteorológicas. La foto de Milton es archivo del 9 de octubre de 2024, no una predicción de IA.",
       "question": "¿En qué se parecen un pronóstico del tiempo y una respuesta de IA?",
       "activity": "Comparen una observación con una predicción. Escriban qué datos necesitarían para evaluar si el pronóstico acertó y qué decisión requiere información oficial local.",
       "lesson": "L02",
       "lessonTitle": "De los datos a las decisiones",
       "sources": [
-        {"name": "ECMWF · inicio de operaciones de AIFS Single", "url": "https://www.ecmwf.int/en/about/media-centre/news/2025/ecmwfs-ai-forecasts-become-operational", "date": "2025-02-25", "type": "Comunicado del desarrollador", "opened": true},
-        {"name": "ECMWF · inicio de operaciones de AIFS Ensemble", "url": "https://www.ecmwf.int/en/about/media-centre/news/2025/ecmwfs-ensemble-ai-forecasts-become-operational", "date": "2025-07-01", "type": "Comunicado del desarrollador", "opened": true},
-        {"name": "ECMWF · datos y versiones operativas de AIFS", "url": "https://www.ecmwf.int/en/forecasts/dataset/aifs-machine-learning-data", "date": "Consultado: 2026-10-27", "type": "Documentación del desarrollador", "opened": true}
-      ]
+        {
+          "name": "ECMWF · inicio de operaciones de AIFS Single",
+          "url": "https://www.ecmwf.int/en/about/media-centre/news/2025/ecmwfs-ai-forecasts-become-operational",
+          "date": "2025-02-25",
+          "type": "Comunicado del desarrollador",
+          "opened": true
+        },
+        {
+          "name": "ECMWF · inicio de operaciones de AIFS Ensemble",
+          "url": "https://www.ecmwf.int/en/about/media-centre/news/2025/ecmwfs-ensemble-ai-forecasts-become-operational",
+          "date": "2025-07-01",
+          "type": "Comunicado del desarrollador",
+          "opened": true
+        },
+        {
+          "name": "ECMWF · datos y versiones operativas de AIFS",
+          "url": "https://www.ecmwf.int/en/forecasts/dataset/aifs-machine-learning-data",
+          "date": "Consultado: 2026-10-27",
+          "type": "Documentación del desarrollador",
+          "opened": true
+        },
+        {
+          "name": "Trotta y colaboradores · evaluación de posprocesamiento de AIFS en Australia",
+          "url": "https://arxiv.org/html/2504.12672v2",
+          "date": "2025-10-15 · versión arXiv v2",
+          "type": "Investigación primaria · versión de repositorio consultada",
+          "opened": true
+        },
+        {
+          "name": "OMM · aplicaciones, límites y verificación de IA meteorológica",
+          "url": "https://public.wmo.int/themes/artificial-intelligence",
+          "date": "Consultado: 2026-10-27",
+          "type": "Marco institucional · organismo meteorológico internacional",
+          "opened": true
+        }
+      ],
+      "documentaryContrast": "Fuentes externas incorporadas; revisión científica humana pendiente"
     },
     {
       "id": "trabajo",
@@ -56,10 +107,34 @@
       "lesson": "L01",
       "lessonTitle": "¿Qué hace realmente una IA?",
       "sources": [
-        {"name": "OIT · Generative AI and jobs: A 2025 update", "url": "https://www.ilo.org/publications/generative-ai-and-jobs-2025-update", "date": "2025-05-20", "type": "Resumen de investigación", "opened": true},
-        {"name": "OCDE · Skills in the AI age: trabajo y habilidades", "url": "https://www.oecd.org/en/publications/skills-in-the-ai-age_972bd15e-en/full-report/component-6.html", "date": "2026", "type": "Informe institucional", "opened": true},
-        {"name": "JRC · Revisiting the occupational impact of AI", "url": "https://publications.jrc.ec.europa.eu/repository/handle/JRC145832", "date": "2026", "type": "Documento de trabajo", "opened": true}
+        {
+          "name": "OIT · Generative AI and jobs: A 2025 update",
+          "url": "https://www.ilo.org/publications/generative-ai-and-jobs-2025-update",
+          "date": "2025-05-20",
+          "type": "Resumen de investigación",
+          "opened": true
+        },
+        {
+          "name": "OCDE · Skills in the AI age: trabajo y habilidades",
+          "url": "https://www.oecd.org/en/publications/skills-in-the-ai-age_972bd15e-en/full-report/component-6.html",
+          "date": "2026",
+          "type": "Informe institucional",
+          "opened": true
+        },
+        {
+          "name": "JRC · Revisiting the occupational impact of AI",
+          "url": "https://publications.jrc.ec.europa.eu/repository/handle/JRC145832",
+          "date": "2026",
+          "type": "Documento de trabajo",
+          "opened": true
+        }
       ]
     }
-  ]
+  ],
+  "directionApproval": {
+    "status": "confirmed",
+    "by": "Fundador, mediante instrucción directa en esta conversación",
+    "date": "2026-10-27",
+    "scope": "Dirección editorial y avance de la portada privada; no aprobación científica ni publicación de borradores"
+  }
 }
