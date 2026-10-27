@@ -14,11 +14,12 @@ interface Props {
 const { lang, segment = 'general' } = Astro.props;
 const t = UI[lang];
 const ts = Date.now();
+const formsEnabled = import.meta.env.PUBLIC_FORMS_ENABLED === 'true';
 ---
 
 <aside class="newsletter" aria-label="Newsletter">
   <p class="newsletter-promise">{t.newsletterPromise}</p>
-  <form method="post" action="/api/suscribir">
+  {formsEnabled ? <form method="post" action="/api/suscribir">
     <label class="visually-hidden" for="nl-email">{t.newsletterEmail}</label>
     <input id="nl-email" type="email" name="email" required placeholder={t.newsletterEmail} autocomplete="email" />
     <input type="hidden" name="segmento" value={segment} />
@@ -28,7 +29,7 @@ const ts = Date.now();
       <label>No llenar / do not fill<input type="text" name="_hp" tabindex="-1" autocomplete="off" /></label>
     </p>
     <button type="submit">{t.newsletterButton}</button>
-  </form>
+  </form> : <p lang="es">Las suscripciones aún no están habilitadas. <a href="/participacion-pendiente/">Consultar el estado de participación</a>.</p>}
 </aside>
 
 <style>

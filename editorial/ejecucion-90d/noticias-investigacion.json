@@ -1,0 +1,222 @@
+[
+  {
+    "id": "N01",
+    "title_proposed": "Un marco para enseñar a evaluar la IA, además de usarla",
+    "status": "research-draft",
+    "publicationApproved": false,
+    "checkedAt": "2026-10-27",
+    "language": "es",
+    "date": "2026-06-18",
+    "dateMeaning": "publicación",
+    "source": {
+      "publisher": "OECD y Comisión Europea",
+      "url": "https://www.oecd.org/en/publications/empowering-learners-for-the-age-of-ai_65cd27d4-en.html",
+      "opened": true
+    },
+    "verifiedAnchor": "La OCDE y la Comisión Europea publicaron un marco de alfabetización en IA para primaria y secundaria. La ficha oficial lo fecha el 18 de junio de 2026 y señala que reúne conocimientos, habilidades y actitudes.",
+    "proposedAngle": "Contrastar sus objetivos con las diez lecciones y señalar qué adaptación requiere un programa comunitario de personas adultas. No presentar el marco como aval de CiudadanIA.",
+    "additionalWork": "Comprobar el documento completo y añadir dos fuentes primarias distintas antes de redactar una síntesis publicable.",
+    "scientificReview": "pending",
+    "editorialOwner": null,
+    "additionalPrimarySourcesRequired": 2,
+    "translationValidation": "pending"
+  },
+  {
+    "id": "N02",
+    "title_proposed": "Terminar una tarea con IA no demuestra que se haya aprendido",
+    "status": "research-draft",
+    "publicationApproved": false,
+    "checkedAt": "2026-10-27",
+    "language": "es",
+    "date": "2026-01-19",
+    "dateMeaning": "publicación",
+    "source": {
+      "publisher": "OECD",
+      "url": "https://www.oecd.org/en/publications/oecd-digital-education-outlook-2026_062a7394-en.html",
+      "opened": true
+    },
+    "verifiedAnchor": "La OCDE publicó su Digital Education Outlook 2026 el 19 de enero. Su presentación distingue el desempeño de tareas asistidas de las ganancias de aprendizaje y destaca la intención pedagógica.",
+    "proposedAngle": "Explicar por qué el piloto medirá desempeño antes y después, en lugar de contar únicamente asistentes. Evitar aplicar promedios internacionales a comunidades mexicanas.",
+    "additionalWork": "Abrir los estudios originales que fundamentan la afirmación y revisar sus poblaciones, diseños y límites.",
+    "scientificReview": "pending",
+    "editorialOwner": null,
+    "additionalPrimarySourcesRequired": 2,
+    "translationValidation": "pending"
+  },
+  {
+    "id": "N03",
+    "title_proposed": "La formación docente en IA necesita criterios observables",
+    "status": "research-draft",
+    "publicationApproved": false,
+    "checkedAt": "2026-10-27",
+    "language": "es",
+    "date": "2026-09-28",
+    "dateMeaning": "publicación",
+    "source": {
+      "publisher": "UNESCO IITE",
+      "url": "https://iite.unesco.org/news/unesco-iite-has-released-the-analytical-report-teacher-ai-competency-frameworks/",
+      "opened": true
+    },
+    "verifiedAnchor": "UNESCO IITE anunció un informe sobre marcos de competencia docente en IA. La nota, fechada el 28 de septiembre de 2026, describe un análisis de 36 marcos nacionales, institucionales y académicos.",
+    "proposedAngle": "Examinar qué criterios permiten evaluar a divulgadores sin exigirles un título. Diferenciar competencia científica, pedagógica y lingüística.",
+    "additionalWork": "Verificar metodología y selección de los 36 marcos en el informe completo; la página también muestra una fecha posterior al compartir y no debe confundirse con la de publicación.",
+    "scientificReview": "pending",
+    "editorialOwner": null,
+    "additionalPrimarySourcesRequired": 2,
+    "translationValidation": "pending"
+  },
+  {
+    "id": "N04",
+    "title_proposed": "Cursos breves de IA: un referente que requiere adaptación lingüística",
+    "status": "research-draft",
+    "publicationApproved": false,
+    "checkedAt": "2026-10-27",
+    "language": "es",
+    "date": "2026-10-12",
+    "dateMeaning": "publicación",
+    "source": {
+      "publisher": "UNESCO IITE",
+      "url": "https://iite.unesco.org/highlights/unesco-iite-online-courses-on-generative-ai-for-educators/",
+      "opened": true
+    },
+    "verifiedAnchor": "UNESCO IITE y UNESCO-ICHEI anunciaron cursos autoguiados de microaprendizaje sobre IA generativa para docentes de educación superior. La nota del 12 de octubre de 2026 especifica que los cursos están en ruso.",
+    "proposedAngle": "Analizar la organización en módulos breves. No recomendar estos cursos como materiales en maya o náhuatl ni atribuir sus certificados al piloto de CiudadanIA.",
+    "additionalWork": "Revisar acceso, licencias y objetivos de los cursos; no crear cuentas ni copiar materiales sin comprobar permisos.",
+    "scientificReview": "pending",
+    "editorialOwner": null,
+    "additionalPrimarySourcesRequired": 2,
+    "translationValidation": "pending"
+  },
+  {
+    "id": "N05",
+    "title_proposed": "Verificar fuentes también forma parte de aprender IA",
+    "status": "research-draft",
+    "publicationApproved": false,
+    "checkedAt": "2026-10-27",
+    "language": "es",
+    "date": "2026-09-24",
+    "dateMeaning": "fecha del evento según nota posterior",
+    "source": {
+      "publisher": "UNESCO IITE",
+      "url": "https://iite.unesco.org/news/unesco-iite-explores-approaches-to-integrating-mil-and-ai-in-teacher-professional-development-at-ifap-information-literacy-working-group-webinar/",
+      "opened": true
+    },
+    "verifiedAnchor": "UNESCO IITE informa de un seminario celebrado el 24 de septiembre de 2026 sobre integración de alfabetización mediática e informacional y competencias de IA. La página de noticias está fechada el 25 de septiembre.",
+    "proposedAngle": "Diseñar una actividad que separe formulación de preguntas, búsqueda de fuentes y verificación. Atribuir las opiniones de ponentes como opiniones, sin convertirlas en efectos demostrados.",
+    "additionalWork": "Obtener materiales originales del seminario y fuentes que permitan contrastar las propuestas pedagógicas.",
+    "scientificReview": "pending",
+    "editorialOwner": null,
+    "additionalPrimarySourcesRequired": 2,
+    "translationValidation": "pending"
+  },
+  {
+    "id": "N06",
+    "title_proposed": "Liderazgo y apoyo institucional en la formación sobre IA",
+    "status": "research-draft",
+    "publicationApproved": false,
+    "checkedAt": "2026-10-27",
+    "language": "es",
+    "date": "2026-09-16",
+    "dateMeaning": "publicación sobre evento del 8–10 septiembre",
+    "source": {
+      "publisher": "UNESCO IITE",
+      "url": "https://iite.unesco.org/news/unesco-iite-and-unesco-ichei-spotlight-women-s-leadership-in-ai-and-higher-education-at-digital-learning-week-2026/",
+      "opened": true
+    },
+    "verifiedAnchor": "Una nota del 16 de septiembre de 2026 describe una sesión de UNESCO IITE y UNESCO-ICHEI sobre liderazgo de mujeres e IA durante Digital Learning Week, celebrado en París del 8 al 10 de septiembre.",
+    "proposedAngle": "Preguntar cómo distribuir la voz y las decisiones en el piloto. La participación de una persona no representa automáticamente a una comunidad o a todas las mujeres.",
+    "additionalWork": "Corroborar cualquier cifra con su estudio de origen; esta ficha no reproduce las estadísticas de la nota ni demuestra resultados del programa.",
+    "scientificReview": "pending",
+    "editorialOwner": null,
+    "additionalPrimarySourcesRequired": 2,
+    "translationValidation": "pending"
+  },
+  {
+    "id": "N07",
+    "title_proposed": "Una agenda de alfabetización crítica para la era de la IA",
+    "status": "research-draft",
+    "publicationApproved": false,
+    "checkedAt": "2026-10-27",
+    "language": "es",
+    "date": "2026-10-26",
+    "dateMeaning": "fecha programada, realización no corroborada",
+    "source": {
+      "publisher": "Indico de Naciones Unidas",
+      "url": "https://indico.un.org/event/1026446/",
+      "opened": true
+    },
+    "verifiedAnchor": "La agenda institucional de Indico registra para el 26 de octubre de 2026 un encuentro titulado Critical literacy in the age of AI: understanding, evaluating and taking action. La ficha indica Chile y modalidad híbrida.",
+    "proposedAngle": "Usar el tema como punto de investigación sobre comprensión, evaluación y acción ciudadana. No afirmar conclusiones o asistencia a partir de una agenda.",
+    "additionalWork": "Confirmar que se realizó y localizar programa, relatoría o grabación. Los horarios aparecen en Europe/Paris; no convertirlos a hora local sin comprobar.",
+    "scientificReview": "pending",
+    "editorialOwner": null,
+    "additionalPrimarySourcesRequired": 2,
+    "translationValidation": "pending"
+  },
+  {
+    "id": "N08",
+    "title_proposed": "Formación inicial docente y decisiones institucionales sobre IA",
+    "status": "research-draft",
+    "publicationApproved": false,
+    "checkedAt": "2026-10-27",
+    "language": "es",
+    "date": "2026-10-14",
+    "dateMeaning": "fecha programada, realización no corroborada",
+    "source": {
+      "publisher": "Indico de Naciones Unidas",
+      "url": "https://indico.un.org/event/1026210/",
+      "opened": true
+    },
+    "verifiedAnchor": "Indico registra el 14 de octubre de 2026 un webinar sobre docencia, IA y desafíos institucionales para la formación inicial docente. La ficha consultada identifica el evento y su fecha programada.",
+    "proposedAngle": "Investigar qué apoyo necesitan facilitadores para enseñar con responsabilidad. Mantener separado el anuncio del evento de evidencia sobre su impacto.",
+    "additionalWork": "Verificar realización, organizadores, programa y resultados antes de redactar una noticia sobre lo sucedido.",
+    "scientificReview": "pending",
+    "editorialOwner": null,
+    "additionalPrimarySourcesRequired": 2,
+    "translationValidation": "pending"
+  },
+  {
+    "id": "N09",
+    "title_proposed": "NIST propone analizar la seguridad de la infraestructura de IA",
+    "status": "research-draft",
+    "publicationApproved": false,
+    "checkedAt": "2026-10-27",
+    "language": "es",
+    "date": "2026-07-27",
+    "dateMeaning": "publicación de borrador",
+    "source": {
+      "publisher": "NIST CSRC",
+      "url": "https://csrc.nist.gov/pubs/sp/800/239/ipd",
+      "opened": true
+    },
+    "verifiedAnchor": "NIST publicó el borrador inicial SP 800-239 el 27 de julio de 2026 sobre análisis de seguridad de centros de datos de IA. La página oficial marca el periodo de comentarios como cerrado.",
+    "proposedAngle": "Explicar la diferencia entre un borrador técnico y una norma definitiva. Conectar el tema con la necesidad de verificar y mantener dependencias, sin afirmar equivalencia entre un sitio estático y un centro de datos.",
+    "additionalWork": "Comprobar si existe una revisión posterior y contrastar dos documentos primarios adicionales; no presentar el borrador como obligación jurídica mexicana.",
+    "scientificReview": "pending",
+    "editorialOwner": null,
+    "additionalPrimarySourcesRequired": 2,
+    "translationValidation": "pending"
+  },
+  {
+    "id": "N10",
+    "title_proposed": "Antes de adoptar IA educativa, revisar las condiciones de uso",
+    "status": "research-draft",
+    "publicationApproved": false,
+    "checkedAt": "2026-10-27",
+    "language": "es",
+    "date": "2026-06-04",
+    "dateMeaning": "publicación",
+    "source": {
+      "publisher": "World Economic Forum",
+      "url": "https://www.weforum.org/publications/shaping-the-future-of-learning-education-readiness-for-the-age-of-ai/",
+      "opened": true
+    },
+    "verifiedAnchor": "World Economic Forum publicó el 4 de junio de 2026 un documento sobre preparación educativa ante la IA. Su presentación aborda gobernanza, infraestructura, pedagogía, evaluación y experiencias de aprendizaje.",
+    "proposedAngle": "Construir preguntas para comprobar si el piloto dispone de responsables, apoyos de acceso y evaluación. Presentarlo como una propuesta institucional, no como prueba causal de eficacia.",
+    "additionalWork": "Revisar autores, metodología y posibles intereses; contrastar con estudios primarios. No copiar ni traducir íntegramente el documento, cuya página señala condiciones de reutilización.",
+    "scientificReview": "pending",
+    "editorialOwner": null,
+    "additionalPrimarySourcesRequired": 2,
+    "translationValidation": "pending"
+  }
+]

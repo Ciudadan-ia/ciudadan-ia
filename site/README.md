@@ -13,12 +13,12 @@ con nvm, ejecutar `nvm use` desde esta carpeta antes de `npm ci`.
 | --- | --- |
 | `npm run dev` | Servidor de desarrollo (localhost:4321) |
 | `npm run build` | `astro check` + build a `dist/` — los schemas Zod hacen cumplir la constitución |
-| `npm run verify` | pa11y (WCAG2AA, 22 páginas de producción) + enlaces + presupuesto de peso |
+| `npm run verify` | pa11y (WCAG2AA, 23 páginas de producción) + enlaces + presupuesto de peso |
 | `npm run verify:drafts` | Comprueba presencia/ausencia de borradores y exclusión del sitemap/búsqueda |
-| `CIUDADANIA_DRAFT_PREVIEW=1 npm run build:review` | Genera 121 páginas en `dist-review/`, incluidas seis rutas pendientes; no es el artefacto de producción |
+| `CIUDADANIA_DRAFT_PREVIEW=1 npm run build:review` | Genera 128 páginas en `dist-review/`, incluidas doce rutas pendientes (completas y ligeras); no es el artefacto de producción |
 | `npm run preview` | Sirve `dist/` local |
 
-El build normal genera 115 páginas y excluye los módulos educativos pendientes.
+El build normal genera 116 páginas y excluye los módulos educativos pendientes.
 Para verificar el artefacto de revisión, usar
 `CIUDADANIA_DRAFT_PREVIEW=1 CIUDADANIA_BUILD_DIRECTORY=dist-review npm run verify:drafts`
 y las mismas variables con `npm run verify`. CI conserva ese artefacto por separado y
@@ -39,3 +39,7 @@ autoriza la publicación.
 - Root: `site/` · Build: `npm run build` · Output: `dist`
 - Variables: `BUTTONDOWN_API_KEY` · KV binding: `CONTRIB`
 - Los formularios (`functions/api/`) funcionan como Pages Functions en el mismo deploy.
+
+## Formularios cerrados por defecto
+
+La interfaz solo muestra formularios con `PUBLIC_FORMS_ENABLED=true` al construir. Pages Functions exige `FORMS_ENABLED=true` y el proveedor/binding real antes de leer datos. La habilitación queda pendiente de responsables y privacidad; no basta disponer de claves. `npm run test:forms` usa datos ficticios y servicios simulados, sin envíos externos.

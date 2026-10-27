@@ -16,7 +16,8 @@
     "dedup": "node scripts/editorial/dedup.mjs",
     "lint:content": "node scripts/lint-content.mjs",
     "build:review": "astro check && astro build --outDir dist-review && pagefind --site dist-review --output-subdir pagefind",
-    "verify:drafts": "node scripts/verify-draft-publication.mjs"
+    "verify:drafts": "node scripts/verify-draft-publication.mjs",
+    "test:forms": "node --test scripts/forms.test.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
@@ -30,7 +31,7 @@
     "@astrojs/markdown-satteri": "^0.4.0",
     "@fontsource/gentium-plus": "^5.3.0",
     "@fontsource/noto-sans": "^5.3.0",
-    "pa11y": "^9.1.1",
+    "pa11y": "^10.0.0",
     "pagefind": "^1.5.2",
     "typescript": "^6.0.3"
   }

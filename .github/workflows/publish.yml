@@ -66,6 +66,12 @@ jobs:
       - name: Verificar dependencias de producción
         run: npm audit --omit=dev
 
+      - name: Verificar todo el árbol de dependencias
+        run: npm audit
+
+      - name: Comprobar formularios sin servicios externos
+        run: npm run test:forms
+
       # 1. Lint de contenido: slugs, fuentes mínimas, calendario, rangos por formato.
       - name: Lint de contenido
         run: npm run lint:content
@@ -151,12 +157,26 @@ jobs:
           else
             echo "listo=no" >> "$GITHUB_OUTPUT"
             echo "::notice::Faltan CLOUDFLARE_API_TOKEN y CLOUDFLARE_ACCOUNT_ID. El sitio se construyó y verificó, pero no se desplegó."
+            echo "## Despliegue pendiente" >> "$GITHUB_STEP_SUMMARY"
+            echo "No se desplegó: faltan las credenciales de Cloudflare. Un trabajo exitoso no acredita publicación." >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - name: Desplegar
+        id: publicacion
         if: steps.cred.outputs.listo == 'si'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy site/dist --project-name=ciudadan-ia --branch=main
+          workingDirectory: site
+          command: pages deploy dist --project-name=ciudadan-ia --branch=main
+
+      - name: Registrar despliegue realmente ejecutado
+        if: steps.cred.outputs.listo == 'si' && steps.publicacion.outcome == 'success'
+        env:
+          DEPLOYMENT_URL: ${{ steps.publicacion.outputs.deployment-url }}
+          DEPLOYMENT_ID: ${{ steps.publicacion.outputs.pages-deployment-id }}
+        run: |
+          echo "## Despliegue ejecutado por Wrangler" >> "$GITHUB_STEP_SUMMARY"
+          echo "URL: $DEPLOYMENT_URL" >> "$GITHUB_STEP_SUMMARY"
+          echo "ID: $DEPLOYMENT_ID" >> "$GITHUB_STEP_SUMMARY"

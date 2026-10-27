@@ -1,5 +1,7 @@
 # Despliegue
 
+Estado y procedimiento vigente: [despliegue-pendiente.md](despliegue-pendiente.md). Las instrucciones siguientes son antecedentes y deben conciliarse con el tipo real de proyecto. El 27/10/2026 el despliegue se omitió por ausencia de credenciales; no hay disponibilidad pública acreditada.
+
 El sitio se construye y verifica en GitHub Actions con cada push a `main` y cada día a las
 09:05 (hora de Ciudad de México), para publicar las piezas cuya fecha ya llegó.
 
@@ -47,14 +49,12 @@ corriendo: nunca se publica algo que no pasó los gates.
 
 En el proyecto de Cloudflare Pages → *Settings* → *Variables and Secrets*:
 
-- **`BUTTONDOWN_API_KEY`** — alta real de la newsletter. Sin ella el formulario confirma al
-  visitante pero no registra a nadie.
+- **`BUTTONDOWN_API_KEY`** — alta real de la newsletter. Sin ella el formulario no confirma un alta y deriva al estado de participación pendiente.
 - **KV binding `CONTRIB`** — guarda los mensajes del formulario de participación. Se crea en
   *Workers & Pages* → *KV* → *Create namespace* y se asocia al proyecto con el nombre
   `CONTRIB`.
 
-Ambos degradan con elegancia: los formularios responden bien aunque falten, así que el sitio
-puede publicarse antes de configurarlos.
+Los formularios permanecen deshabilitados hasta validar privacidad y habilitar explícitamente las banderas descritas en el procedimiento vigente. Sin un servicio real no se confirma recepción.
 
 ## Dominio propio
 

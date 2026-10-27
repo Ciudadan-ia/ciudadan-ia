@@ -25,25 +25,22 @@ la dependencia vulnerable.
 | Moderadas, árbol completo | 2 | 0 |
 | Vulnerabilidades en dependencias de producción (`--omit=dev`) | No se midió por separado | 0 |
 
-Las 11 altas restantes pertenecen a pa11y/Puppeteer y dependencias de herramientas de
-prueba. Su actualización mayor se mantiene como seguimiento en #6; no se describen
-como resueltas. CI bloquea nuevas críticas en todo el árbol y cualquier vulnerabilidad
-en las dependencias de producción. Esto es una fotografía de la auditoría, no una garantía futura.
+La actualización posterior a pa11y 10.0.0 y Puppeteer 25.16.0 eliminó las 11 altas de las herramientas de prueba: la auditoría actual reporta cero vulnerabilidades en todo el árbol. La tabla anterior conserva el corte inicial de la corrección de Astro. Se mantuvo Node 22.23.4 y se reejecutaron los controles tras la actualización mayor. CI ahora exige también `npm audit` completo. Los resultados son una fotografía de la auditoría, no una garantía futura.
 
 ## Contenidos pendientes fuera de producción
 
-Los seis módulos se trasladaron de `src/pages/` a `src/drafts/`. La integración
+Los seis módulos y sus seis versiones ligeras se mantienen fuera de `src/pages/`, en `src/drafts/`. La integración
 `site/draft-routes.mjs` solo los registra con `CIUDADANIA_DRAFT_PREVIEW=1`.
 `noindex` se conserva como señal adicional: la barrera de publicación es que sus
 rutas y textos no se generan en el build normal.
 
 | Comprobación | Resultado local |
 |---|---|
-| Compilación normal con Astro actualizado | 115 páginas, sin errores |
-| Compilación explícita de revisión | 121 páginas, sin errores, en `dist-review/` |
-| `verify:drafts` en producción | Seis rutas ausentes; textos educativos pendientes ausentes |
-| `verify:drafts` en revisión | Seis rutas presentes, con noindex, fuera del sitemap y de Pagefind |
-| Accesibilidad automatizada del artefacto de revisión | 28 páginas sin incidencias pa11y WCAG2AA; 121 páginas sin enlaces rotos; presupuesto de peso aprobado |
+| Compilación normal con Astro actualizado | 116 páginas, sin errores |
+| Compilación explícita de revisión | 128 páginas, sin errores, en `dist-review/` |
+| `verify:drafts` en producción | Doce rutas ausentes; textos educativos pendientes ausentes |
+| `verify:drafts` en revisión | Doce rutas presentes, con noindex, fuera del sitemap y de Pagefind |
+| Accesibilidad automatizada del artefacto de revisión | 35 páginas sin incidencias pa11y WCAG2AA; 128 páginas sin enlaces rotos; presupuesto de peso aprobado |
 | `npm run lint:content` | Sin errores en los 10 slugs y 20 archivos heredados |
 | `node scripts/verify-web.mjs` desde raíz | Conteos 10/20/10, enlaces, estados simulados, texto seguro y coherencia entre datos del prototipo/Astro |
 
@@ -54,6 +51,12 @@ La rama de PR no puede activar el trabajo de despliegue Cloudflare.
 El prototipo privado anterior conserva sus muestras heredadas maya/náhuatl pendientes
 de validación. No se cambiaron estados editoriales, fechas, traducciones o créditos,
 ni se fusionó main. Faltan revisión científica/pedagógica, validación por hablantes,
-noticias verificadas, `/lite` de los nuevos módulos, prueba manual de accesibilidad y
+noticias verificadas, prueba manual de accesibilidad y
 autorización editorial. Las comprobaciones automatizadas no certifican conformidad
 WCAG 2.2 AA completa.
+
+## Operación segura añadida
+
+Las seis vistas ligeras comparten datos con las completas, no incluyen scripts ni fuentes externas y pesan entre 3.5 y 11.3 KB HTML. Las funciones de suscripción y colaboración no leen datos si falta habilitación o proveedor. Once pruebas con datos ficticios cubren cierres por defecto, consentimiento, error HTTP 400, fallo de red y fallo de almacenamiento. Los formularios no aparecen en la compilación normal. No se activó captación.
+
+Se corrigió el directorio del despliegue Wrangler para incluir `site/functions/` y se añadió al resumen de Actions la distinción entre credenciales ausentes y despliegue realmente ejecutado. No se pudo probar el envío real: faltan las credenciales Cloudflare. El paso de despliegue de main tras #7 fue omitido, aunque el trabajo finalizó exitosamente.
