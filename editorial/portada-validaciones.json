@@ -8,12 +8,15 @@
       "id": "PV01",
       "priority": "P0",
       "subject": "Separación de publicación",
-      "status": "locally-verified",
+      "status": "public-deployment-exclusions-verified",
       "evidence": [
         "14 rutas de módulos y portada excluidas por defecto",
         "40 registros y 3 historias conservan estado pendiente",
         "4 traducciones IA antiguas filtradas del catálogo público",
-        "Formularios deshabilitados"
+        "Formularios deshabilitados",
+        "Despliegue 55aa0c70-82c6-46e3-a5e4-babf7f083abe, ejecución 40561838718",
+        "24 rutas pendientes comprobadas con HTTP 404 en la dirección pública",
+        "Ambas API de captación cerradas: POST vacío redirige 303 a participación pendiente"
       ],
       "responsibleRole": "Responsable tecnológico",
       "assignee": null

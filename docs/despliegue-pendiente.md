@@ -1,31 +1,46 @@
-# Despliegue — estado comprobado y siguiente acción
+# Cloudflare Pages — publicación comprobada
 
-Corte: 27/10/2026. #7, #9, #10 y #11 se integraron en main. Base de código comprobada:
-`7e66cf23d3c4a9e525bb80c2526c616b255f9f55`.
-La ejecución de main [40556280584](https://github.com/Ciudadan-ia/ciudadan-ia/actions/runs/40556280584)
-construyó y verificó el sitio. El paso real «Desplegar» fue omitido por falta de
-credenciales. Después se configuró y comprobó `CLOUDFLARE_ACCOUNT_ID`; ahora falta
-únicamente `CLOUDFLARE_API_TOKEN`. Que el trabajo de evaluación termine
-con éxito no significa que haya ocurrido un despliegue.
+Corte: 27/10/2026. Estado: publicado en Cloudflare Pages Free, sin servicios de pago añadidos.
 
-Responsable por designar: tecnológico; custodia de la cuenta y decisión de proveedor: fundador.
-El fundador inició sesión en Cloudflare. Se verificó Free ($0) como plan activo.
-Se creó y comprobó el proyecto Pages `ciudadan-ia`, de Direct Upload, con rama de
-producción `main` y dirección prevista `ciudadan-ia.pages.dev`. La pantalla del
-proyecto confirma que no tiene despliegues. No se subieron archivos ni se publicó
-contenido. Los contenidos pendientes conservan ese estado.
+- Sitio público: https://ciudadan-ia.pages.dev/
+- Despliegue inmutable: https://55aa0c70.ciudadan-ia.pages.dev/
+- Identificador: `55aa0c70-82c6-46e3-a5e4-babf7f083abe`.
+- Commit publicado: `ed9f8678e5034d56df8b0315afbeb7950e935128`.
+- Ejecución: [40561838718](https://github.com/Ciudadan-ia/ciudadan-ia/actions/runs/40561838718).
+- Proyecto `ciudadan-ia`, Direct Upload, rama de producción `main`; plan Free ($0)
+  comprobado en el panel. Los pasos «Desplegar» y «Registrar despliegue realmente
+  ejecutado» finalizaron con éxito; el panel muestra Production / main.
+- Ambos secretos de GitHub están configurados. La clave se transfirió cifrada para
+  el repositorio; su valor no se guardó en archivos del proyecto ni se reprodujo en
+  mensajes. Token de cuenta `ciudadania-pages-github`, único permiso Pages Write en
+  esta cuenta, vencimiento 25/01/2027. Ese alcance incluye todos sus proyectos Pages.
 
-El Account ID se guardó directamente como secreto de GitHub y se comprobó su
-presencia. Está preparado, sin crear, el token de cuenta `ciudadania-pages-github`:
-una sola política Pages Write para esta cuenta, vencimiento 25/01/2027 (90 días),
-sin restricción de IP para admitir ejecutores de GitHub. Permite administrar todos
-los proyectos Pages de la cuenta; no se limita a un proyecto y no incluye DNS ni
-facturación. El fundador debe confirmar su creación y guardarlo directamente en
-GitHub Secrets como `CLOUDFLARE_API_TOKEN`, sin enviarlo al chat.
+## Verificación de la publicación
 
-Siguiente paso humano: iniciar sesión en GitHub con acceso administrativo al
-repositorio; la pestaña de secretos requiere autenticación en el navegador. La
-clave aún no se creó. La guía de abajo se conserva como procedimiento completo.
+El artefacto `dist` contiene 82 páginas HTML. Cinco páginas públicas (portada,
+lectura ligera, edición inglesa, estado de participación y un artículo) respondieron
+200 y coincidieron byte por byte con el artefacto verificado. Se comprobaron 24
+rutas ausentes: los 14 módulos y vistas de revisión, los índices maya/náhuatl y las
+ocho rutas completas/ligeras de las cuatro traducciones pendientes. Todas devolvieron
+404 con la página de contenido no encontrado; no fue una sustitución por la portada.
+
+Las solicitudes POST vacías a `/api/suscribir` y `/api/contribuir` devolvieron 303 a
+`/participacion-pendiente/`. No se enviaron datos personales ni se abrieron servicios
+de recepción. Se comprobó también la portada en el navegador. El cliente curl con su
+configuración normal pasó las pruebas; Python urllib recibió el bloqueo 1010 de
+Cloudflare. No se cambiaron protecciones de Cloudflare ni validación TLS para probar.
+
+La nueva portada, sus tres historias, los 40 contenidos educativos/editoriales y las
+traducciones pendientes conservan su estado de revisión. La aprobación de la dirección
+de diseño no equivale a revisión científica humana. La copia privada continúa en
+https://ciudadania-prototipo-90d.xquaz.chatgpt.site/portada/ .
+
+Responsable tecnológico: por designar; custodia de la cuenta y renovación del token:
+fundador hasta que se delegue explícitamente. Renovar antes del 25/01/2027, con el mismo
+alcance mínimo y guardado directo en GitHub Secrets. No se creó una automatización de
+renovación ni se activaron membresías, cobros, donativos o captación de voz.
+
+El procedimiento siguiente se conserva como referencia para mantenimiento.
 
 ## Primera etapa gratuita
 
