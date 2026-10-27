@@ -17,6 +17,7 @@ secuencia de salida que conserva cerradas las lecciones y traducciones pendiente
 - [Dictamen por pieza](dictamen.md).
 - [Prueba pedagógica](prueba-pedagogica.md).
 - [Registro de prioridades](../portada-validaciones.json).
+- [Selección de revisores y directorio institucional](seleccion-revisores.md).
 
 ## Orden de resolución
 
