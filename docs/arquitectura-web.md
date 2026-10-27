@@ -17,7 +17,9 @@ El sitio usa Astro SSG, colecciones de Markdown, ediciones es/en/nah/yua, Pagefi
 | `/biblioteca` | 4 recursos institucionales primarios | Enlaces consultados; sin aval institucional |
 | `/editorial-demo` | Crear, editar, guardar y exportar borradores ficticios | Simulación local; no CMS de producción |
 
-`site/src/data/ejecucion-v1.json` contiene el lote nuevo. Las páginas Astro renderizan su contenido como HTML, sin depender de JavaScript para la lectura. Solo el taller editorial usa JavaScript para persistir borradores ficticios en el navegador. No hay cuentas, recepción de datos personales, API de publicación ni infraestructura nueva. Las páginas nuevas llevan `noindex,nofollow` mientras son borradores.
+`site/src/data/ejecucion-v1.json` contiene el lote nuevo. Las páginas de `site/src/drafts/` renderizan HTML sin depender de JavaScript para la lectura. Solo el taller editorial usa JavaScript para persistir borradores ficticios. No hay cuentas, recepción de datos personales, API de publicación ni infraestructura nueva.
+
+Desde el 27/10/2026, `site/draft-routes.mjs` incorpora estas rutas únicamente cuando `CIUDADANIA_DRAFT_PREVIEW=1`. La compilación normal no las genera y no incluye sus textos. Las compilaciones de revisión mantienen `noindex,nofollow` y excluyen estas rutas del sitemap y de la búsqueda. CI conserva `dist` de producción separado de `dist-review`; solo el primero puede enviarse al despliegue heredado. Incorporar una pieza aprobada requerirá un cambio editorial explícito; no basta modificar el estado local de la demo.
 
 El prototipo separado `prototypes/ejecucion-90d/dist/` permite navegación móvil en tres ediciones de muestra y autoevaluación interactiva. Las muestras nah/yua proceden del artículo existente `que-es-un-llm`, conservan su estado `traducido-ia`, muestran español en paralelo y créditos originales. No se generaron traducciones indígenas nuevas. La interfaz nueva y las diez lecciones están en español, con pendiente visible de traducción y validación. Esto no constituye una V1 totalmente traducida ni una validación lingüística.
 

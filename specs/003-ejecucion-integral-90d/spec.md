@@ -49,7 +49,9 @@ Fecha base propuesta D1=26/10/2026, D90=23/01/2027; su aprobación y calendario 
 
 HTML legible sin JavaScript; cobertura `/lite` de contenido nuevo; créditos y estado por lengua; fuentes y responsables requeridos por la Constitución; revisión independiente; accesibilidad automatizada y manual; pesos/enlaces; política de IA y gobernanza; privacidad y restauración. No declarar WCAG 2.2 AA, Lighthouse o validación lingüística por una compilación exitosa. Una herramienta automatizada no certifica conformidad completa.
 
-Auditoría inicial de dependencias: 22 avisos (2 moderados, 19 altos, 1 crítico; Astro directo con corrección disponible). Es deuda del lockfile base y requiere evaluación/corrección separada antes de producción. No se añadieron dependencias a este incremento. El dominio Cloudflare heredado no pudo verificarse operativo; las ejecuciones CI exitosas no prueban disponibilidad pública.
+Auditoría inicial: 22 avisos, incluido uno crítico en Astro. El 27/10/2026 se actualizó Astro 7.2.7→7.4.2 y se fijó Node mínimo 22.23.4. El lockfile corregido reporta cero críticas y cero vulnerabilidades en dependencias de producción. Quedan 11 avisos altos en la cadena de pruebas pa11y/Puppeteer, pendientes de una actualización mayor evaluada en #6. CI bloquea nuevas críticas y vulnerabilidades de producción. El dominio Cloudflare heredado no pudo verificarse operativo; las ejecuciones CI exitosas no prueban disponibilidad pública.
+
+Los módulos pendientes están fuera del enrutamiento de producción: solo se incorporan con `CIUDADANIA_DRAFT_PREVIEW=1`. CI verifica tanto la ausencia de sus rutas y textos en producción como su disponibilidad no indexable en el artefacto de revisión. La preparación para revisión del PR no autoriza publicar sus contenidos.
 
 ## Gestión
 
