@@ -6,9 +6,10 @@
  * Falla con exit 1 si se excede.
  */
 import { readFileSync, statSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 
-const DIST = new URL('../dist/', import.meta.url).pathname;
+const DIST = resolve(new URL('../', import.meta.url).pathname,
+  process.env.CIUDADANIA_BUILD_DIRECTORY || 'dist');
 const KB = 1024;
 let failed = false;
 

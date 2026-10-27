@@ -6,12 +6,24 @@ contexto completo.
 
 ## Comandos
 
+Requiere Node **22.23.4 o superior**. `site/.nvmrc` fija la versión usada en CI;
+con nvm, ejecutar `nvm use` desde esta carpeta antes de `npm ci`.
+
 | Comando | Qué hace |
 | --- | --- |
 | `npm run dev` | Servidor de desarrollo (localhost:4321) |
 | `npm run build` | `astro check` + build a `dist/` — los schemas Zod hacen cumplir la constitución |
-| `npm run verify` | pa11y (WCAG 2.2 AA, 13 páginas) + presupuesto de peso (portada <300 KB, lite <50 KB) |
+| `npm run verify` | pa11y (WCAG2AA, 22 páginas de producción) + enlaces + presupuesto de peso |
+| `npm run verify:drafts` | Comprueba presencia/ausencia de borradores y exclusión del sitemap/búsqueda |
+| `CIUDADANIA_DRAFT_PREVIEW=1 npm run build:review` | Genera 121 páginas en `dist-review/`, incluidas seis rutas pendientes; no es el artefacto de producción |
 | `npm run preview` | Sirve `dist/` local |
+
+El build normal genera 115 páginas y excluye los módulos educativos pendientes.
+Para verificar el artefacto de revisión, usar
+`CIUDADANIA_DRAFT_PREVIEW=1 CIUDADANIA_BUILD_DIRECTORY=dist-review npm run verify:drafts`
+y las mismas variables con `npm run verify`. CI conserva ese artefacto por separado y
+solo permite desplegar `dist/` desde main. El estado simulado del taller editorial no
+autoriza la publicación.
 
 ## Contenido
 

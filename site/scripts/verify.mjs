@@ -7,11 +7,13 @@
  */
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
-import { join, extname } from 'node:path';
+import { join, extname, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import pa11y from 'pa11y';
+import { DRAFT_ROUTES, draftPreviewEnabled } from '../draft-routes.mjs';
 
-const DIST = new URL('../dist/', import.meta.url).pathname;
+const DIST = resolve(new URL('../', import.meta.url).pathname,
+  process.env.CIUDADANIA_BUILD_DIRECTORY || 'dist');
 const PORT = 4177;
 
 const MIME = {
@@ -54,6 +56,8 @@ const PAGES = [
   '/contribuye/',
   '/ediciones/',
   '/docentes/',
+  // Las rutas pendientes solo existen en la compilación de revisión.
+  ...(draftPreviewEnabled() ? DRAFT_ROUTES.map((slug) => `/${slug}/`) : []),
   // Índices a escala (feature 002)
   '/temas/',
   '/temas/tecnologia/',

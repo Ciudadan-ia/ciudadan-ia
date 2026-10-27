@@ -1,0 +1,458 @@
+{
+  "version": "0.1",
+  "status": "draft",
+  "locales": [
+    "es",
+    "nah",
+    "yua"
+  ],
+  "lessons": [
+    {
+      "id": "L01",
+      "type": "lesson",
+      "status": "draft",
+      "minutes": 12,
+      "title": "¿Qué hace realmente una IA?",
+      "body": "Un sistema de IA produce resultados a partir de entradas y patrones aprendidos o reglas. Una respuesta fluida no prueba que comprenda el mundo ni que sea verdadera. Distingue la tarea, los datos disponibles y el contexto antes de confiar en un resultado.",
+      "activity": "Compara una calculadora, un filtro de correo y un asistente de texto. Anota qué entra, qué sale y cómo comprobarías el resultado.",
+      "question": "¿Qué permite confiar mejor en una respuesta?",
+      "answers": [
+        "Su tono seguro",
+        "Verificarla con evidencia independiente"
+      ],
+      "correct": 1,
+      "sources": [
+        "oecd"
+      ],
+      "translationReview": "pending"
+    },
+    {
+      "id": "L02",
+      "type": "lesson",
+      "status": "draft",
+      "minutes": 12,
+      "title": "De los datos a las decisiones",
+      "body": "Los datos representan una selección de la realidad. Si faltan grupos o contextos, un sistema puede funcionar peor para ellos. La calidad incluye procedencia, pertinencia, actualidad y cobertura; más datos no garantizan mejores decisiones.",
+      "activity": "Diseña una encuesta sobre acceso digital. Identifica a quién excluiría si solo se aplica por internet.",
+      "question": "¿Una encuesta en línea representa automáticamente a toda la población?",
+      "answers": [
+        "Sí",
+        "No: puede excluir a personas sin conexión"
+      ],
+      "correct": 1,
+      "sources": [
+        "nist"
+      ],
+      "translationReview": "pending"
+    },
+    {
+      "id": "L03",
+      "type": "lesson",
+      "status": "draft",
+      "minutes": 12,
+      "title": "Respuestas plausibles, errores reales",
+      "body": "Un generador de texto puede producir afirmaciones o referencias incorrectas. Separa cada afirmación verificable, busca la fuente original y comprueba autoría, fecha y contexto. Cuando no encuentres evidencia suficiente, comunica la incertidumbre.",
+      "activity": "Pide una explicación de un tema conocido sin introducir datos personales. Elige tres afirmaciones y busca evidencia original para cada una.",
+      "question": "¿Qué hacer si una cita no aparece en la fuente original?",
+      "answers": [
+        "Compartirla porque parece creíble",
+        "Suspender la afirmación y documentar la duda"
+      ],
+      "correct": 1,
+      "sources": [
+        "nist"
+      ],
+      "translationReview": "pending"
+    },
+    {
+      "id": "L04",
+      "type": "lesson",
+      "status": "draft",
+      "minutes": 12,
+      "title": "Sesgos que podemos observar",
+      "body": "Un sistema puede generar resultados desiguales entre grupos. Antes de atribuir una causa, compara condiciones, datos y medidas de error. Una prueba pequeña identifica señales para investigar, no demuestra por sí sola que un sistema sea justo.",
+      "activity": "Redacta dos casos ficticios equivalentes cambiando solo una característica. Registra diferencias y límites de tu comparación.",
+      "question": "¿Una sola prueba sin diferencias demuestra ausencia de sesgo?",
+      "answers": [
+        "No",
+        "Sí"
+      ],
+      "correct": 0,
+      "sources": [
+        "unesco"
+      ],
+      "translationReview": "pending"
+    },
+    {
+      "id": "L05",
+      "type": "lesson",
+      "status": "draft",
+      "minutes": 12,
+      "title": "Privacidad antes de preguntar",
+      "body": "Antes de usar una herramienta, decide qué información necesita realmente. Sustituye nombres y detalles identificables por ejemplos ficticios. Revisa sus condiciones de tratamiento de datos y evita cargar información de otras personas sin una base válida.",
+      "activity": "Transforma un caso de consulta ciudadana en un ejemplo ficticio conservando solo el problema general.",
+      "question": "¿Qué opción minimiza datos personales?",
+      "answers": [
+        "Cargar un expediente completo",
+        "Usar un caso ficticio sin identificadores"
+      ],
+      "correct": 1,
+      "sources": [
+        "unesco"
+      ],
+      "translationReview": "pending"
+    },
+    {
+      "id": "L06",
+      "type": "lesson",
+      "status": "draft",
+      "minutes": 12,
+      "title": "Pedir ayuda con claridad",
+      "body": "Explica el objetivo, el público, las restricciones y el formato que necesitas. Solicita que se distingan hechos, inferencias y dudas. Una instrucción mejor puede mejorar la utilidad de una respuesta, pero no reemplaza la comprobación.",
+      "activity": "Reescribe “explícame IA” como una solicitud para una sesión comunitaria de diez minutos con ejemplos y límites.",
+      "question": "¿Una buena instrucción garantiza exactitud?",
+      "answers": [
+        "Sí",
+        "No"
+      ],
+      "correct": 1,
+      "sources": [
+        "nist"
+      ],
+      "translationReview": "pending"
+    },
+    {
+      "id": "L07",
+      "type": "lesson",
+      "status": "draft",
+      "minutes": 12,
+      "title": "IA en la vida pública",
+      "body": "Cuando una herramienta influye en una decisión que afecta a personas, pregunta quién decide, con qué evidencia y cómo se puede impugnar el resultado. La supervisión humana necesita capacidad, información y una vía para corregir errores.",
+      "activity": "Para un servicio público ficticio, identifica responsable humano, explicación necesaria y vía de reclamación.",
+      "question": "¿Qué hace útil la supervisión?",
+      "answers": [
+        "Poder revisar y corregir una decisión",
+        "Aprobar todo automáticamente"
+      ],
+      "correct": 0,
+      "sources": [
+        "unesco"
+      ],
+      "translationReview": "pending"
+    },
+    {
+      "id": "L08",
+      "type": "lesson",
+      "status": "draft",
+      "minutes": 12,
+      "title": "Información que merece compartirse",
+      "body": "Antes de compartir una imagen, audio o texto llamativo, revisa su origen, fecha y contexto. Una etiqueta o un detector automatizado no sustituye la investigación. Si no puedes verificar el material, no lo presentes como un hecho confirmado.",
+      "activity": "Examina una publicación ficticia y redacta tres preguntas de verificación antes de compartirla.",
+      "question": "¿Basta con que un detector diga “auténtico”?",
+      "answers": [
+        "No: hay que revisar fuentes y contexto",
+        "Sí"
+      ],
+      "correct": 0,
+      "sources": [
+        "nist"
+      ],
+      "translationReview": "pending"
+    },
+    {
+      "id": "L09",
+      "type": "lesson",
+      "status": "draft",
+      "minutes": 12,
+      "title": "Explicar sin dejar a nadie fuera",
+      "body": "La accesibilidad considera necesidades visuales, auditivas, motoras y cognitivas. Usa lenguaje claro, alternativas textuales, subtítulos y navegación por teclado. Pregunta a las personas participantes qué apoyos necesitan, sin exigir información médica.",
+      "activity": "Adapta una explicación para poder entenderla sin ver una imagen ni escuchar un audio.",
+      "question": "¿Qué medida amplía el acceso?",
+      "answers": [
+        "Depender solo de audio",
+        "Ofrecer texto claro y alternativas"
+      ],
+      "correct": 1,
+      "sources": [
+        "wai"
+      ],
+      "translationReview": "pending"
+    },
+    {
+      "id": "L10",
+      "type": "lesson",
+      "status": "draft",
+      "minutes": 12,
+      "title": "Tu primera sesión comunitaria",
+      "body": "Define un objetivo observable, usa un caso ficticio y reserva tiempo para preguntas. Mide lo aprendido con una tarea breve antes y después. Recoge comentarios sin nombres y documenta errores para mejorar la siguiente sesión.",
+      "activity": "Prepara una microclase de cinco minutos y ensáyala con otra persona que observe claridad, evidencia y cuidado.",
+      "question": "¿Qué evidencia indica aprendizaje?",
+      "answers": [
+        "Resolver una tarea relevante antes y después",
+        "Solo contar asistentes"
+      ],
+      "correct": 0,
+      "sources": [
+        "wai"
+      ],
+      "translationReview": "pending"
+    }
+  ],
+  "faqs": [
+    {
+      "id": "F01",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Qué es CiudadanIA?",
+      "body": "Un proyecto sin fines de lucro de divulgación científica sobre IA y tecnología comunitaria de voz, con soberanía de datos indígenas. El repositorio existente aporta estos principios; este módulo añade propuestas educativas."
+    },
+    {
+      "id": "F02",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿La plataforma ya está lanzada?",
+      "body": "No. Esta es una demostración navegable con contenidos en borrador."
+    },
+    {
+      "id": "F03",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Cuáles son los idiomas?",
+      "body": "El alcance nuevo confirmado es español, maya y náhuatl. El repositorio conserva su edición en inglés. Las variedades y traducciones indígenas requieren validación comunitaria."
+    },
+    {
+      "id": "F04",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Debo saber programar?",
+      "body": "Estas lecciones introductorias no requieren programación."
+    },
+    {
+      "id": "F05",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Cuánto dura una lección?",
+      "body": "Se propone una lectura y actividad de 12 minutos, adaptable a cada grupo."
+    },
+    {
+      "id": "F06",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Puedo confiar en toda respuesta de IA?",
+      "body": "Comprueba las afirmaciones relevantes con fuentes independientes y comunica lo que no sepas."
+    },
+    {
+      "id": "F07",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Se revisan los contenidos?",
+      "body": "La decisión confirmada exige revisores independientes y evaluados. Los borradores de esta demo aún no tienen ese dictamen."
+    },
+    {
+      "id": "F08",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Quién puede revisar?",
+      "body": "Se seleccionará una red voluntaria mediante criterios públicos de competencia, independencia y diversidad de perspectivas."
+    },
+    {
+      "id": "F09",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Cómo se tratan los conflictos?",
+      "body": "Los desacuerdos científicos relevantes se remitirán a especialistas independientes sin conflictos de interés."
+    },
+    {
+      "id": "F10",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Se publicarán dictámenes?",
+      "body": "Se publicarán resúmenes fundamentados con hallazgos, evidencia y resolución, cuidando datos personales."
+    },
+    {
+      "id": "F11",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Puedo corregir un error?",
+      "body": "La ruta V1 prevé un registro editorial en GitHub. El canal institucional aún debe habilitarse."
+    },
+    {
+      "id": "F12",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Puedo inscribirme al piloto aquí?",
+      "body": "Esta demo no recoge inscripciones. La convocatoria se abrirá después de validar responsables, privacidad y capacidad de supervisión."
+    },
+    {
+      "id": "F13",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Cuántas personas tendrá el piloto?",
+      "body": "El alcance solicitado es de 15 a 25 divulgadores. No hay participantes confirmados en esta demo."
+    },
+    {
+      "id": "F14",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Cuánto dura la formación?",
+      "body": "Entre 12 y 20 horas, con práctica supervisada y evaluación. El plan base propone 16 horas."
+    },
+    {
+      "id": "F15",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Hay certificación oficial?",
+      "body": "No se afirma acreditación oficial. Cualquier constancia futura debe describir su alcance real."
+    },
+    {
+      "id": "F16",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Puedo donar ahora?",
+      "body": "No hay captación activa en este prototipo. La ruta jurídica y fiscal necesita validación profesional."
+    },
+    {
+      "id": "F17",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿CiudadanIA ya es una A.C.?",
+      "body": "No existe evidencia verificada de constitución en los recursos auditados. Hay una ruta de preparación."
+    },
+    {
+      "id": "F18",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Guardan mis respuestas?",
+      "body": "Las actividades no envían datos. Solo los borradores editoriales de demostración pueden guardarse en este navegador."
+    },
+    {
+      "id": "F19",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Funciona en móvil?",
+      "body": "El diseño se adapta a pantallas pequeñas. La validación con usuarios y tecnologías de asistencia sigue pendiente."
+    },
+    {
+      "id": "F20",
+      "type": "faq",
+      "status": "draft",
+      "title": "¿Qué significa “aprobado” en la demo?",
+      "body": "Es una simulación local del flujo editorial. No acredita revisión independiente ni publica contenido."
+    }
+  ],
+  "news": [
+    {
+      "id": "N01",
+      "type": "news",
+      "status": "draft",
+      "title": "La IA en los servicios públicos",
+      "body": "Ficha de agenda editorial. Falta seleccionar un acontecimiento real, contrastar fuentes, confirmar fecha y obtener revisión antes de redactar una noticia.",
+      "eventDate": null,
+      "sources": []
+    },
+    {
+      "id": "N02",
+      "type": "news",
+      "status": "draft",
+      "title": "Aprender a verificar fuentes",
+      "body": "Ficha de agenda editorial. Falta seleccionar un acontecimiento real, contrastar fuentes, confirmar fecha y obtener revisión antes de redactar una noticia.",
+      "eventDate": null,
+      "sources": []
+    },
+    {
+      "id": "N03",
+      "type": "news",
+      "status": "draft",
+      "title": "Derechos y supervisión humana",
+      "body": "Ficha de agenda editorial. Falta seleccionar un acontecimiento real, contrastar fuentes, confirmar fecha y obtener revisión antes de redactar una noticia.",
+      "eventDate": null,
+      "sources": []
+    },
+    {
+      "id": "N04",
+      "type": "news",
+      "status": "draft",
+      "title": "Accesibilidad en las herramientas de IA",
+      "body": "Ficha de agenda editorial. Falta seleccionar un acontecimiento real, contrastar fuentes, confirmar fecha y obtener revisión antes de redactar una noticia.",
+      "eventDate": null,
+      "sources": []
+    },
+    {
+      "id": "N05",
+      "type": "news",
+      "status": "draft",
+      "title": "Sesgos en los datos",
+      "body": "Ficha de agenda editorial. Falta seleccionar un acontecimiento real, contrastar fuentes, confirmar fecha y obtener revisión antes de redactar una noticia.",
+      "eventDate": null,
+      "sources": []
+    },
+    {
+      "id": "N06",
+      "type": "news",
+      "status": "draft",
+      "title": "Privacidad en el aula",
+      "body": "Ficha de agenda editorial. Falta seleccionar un acontecimiento real, contrastar fuentes, confirmar fecha y obtener revisión antes de redactar una noticia.",
+      "eventDate": null,
+      "sources": []
+    },
+    {
+      "id": "N07",
+      "type": "news",
+      "status": "draft",
+      "title": "Participación ciudadana y tecnología",
+      "body": "Ficha de agenda editorial. Falta seleccionar un acontecimiento real, contrastar fuentes, confirmar fecha y obtener revisión antes de redactar una noticia.",
+      "eventDate": null,
+      "sources": []
+    },
+    {
+      "id": "N08",
+      "type": "news",
+      "status": "draft",
+      "title": "Alfabetización mediática",
+      "body": "Ficha de agenda editorial. Falta seleccionar un acontecimiento real, contrastar fuentes, confirmar fecha y obtener revisión antes de redactar una noticia.",
+      "eventDate": null,
+      "sources": []
+    },
+    {
+      "id": "N09",
+      "type": "news",
+      "status": "draft",
+      "title": "Evaluar lo aprendido",
+      "body": "Ficha de agenda editorial. Falta seleccionar un acontecimiento real, contrastar fuentes, confirmar fecha y obtener revisión antes de redactar una noticia.",
+      "eventDate": null,
+      "sources": []
+    },
+    {
+      "id": "N10",
+      "type": "news",
+      "status": "draft",
+      "title": "Revisión científica independiente",
+      "body": "Ficha de agenda editorial. Falta seleccionar un acontecimiento real, contrastar fuentes, confirmar fecha y obtener revisión antes de redactar una noticia.",
+      "eventDate": null,
+      "sources": []
+    }
+  ],
+  "sources": [
+    {
+      "id": "unesco",
+      "name": "UNESCO · Ethics of AI",
+      "url": "https://www.unesco.org/en/artificial-intelligence/recommendation-ethics"
+    },
+    {
+      "id": "nist",
+      "name": "NIST · AI Risk Management Framework",
+      "url": "https://www.nist.gov/itl/ai-risk-management-framework"
+    },
+    {
+      "id": "oecd",
+      "name": "OECD · Artificial intelligence",
+      "url": "https://www.oecd.org/en/topics/artificial-intelligence.html"
+    },
+    {
+      "id": "wai",
+      "name": "W3C · Introduction to Web Accessibility",
+      "url": "https://www.w3.org/WAI/fundamentals/accessibility-intro/"
+    }
+  ],
+  "notes": "Contenido nuevo en español; traducciones maya/náhuatl pendientes de validación comunitaria."
+}

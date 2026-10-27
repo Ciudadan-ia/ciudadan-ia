@@ -1,0 +1,7 @@
+---
+import ExecutionDraft from '../layouts/ExecutionDraft.astro';
+import data from '../data/ejecucion-v1.json';
+---
+<ExecutionDraft title="Agenda editorial propuesta">
+  <p class="notice">10 fichas de planificación, 0 noticias publicadas en este módulo. Falta investigar, contrastar fuentes y revisar.</p><div class="news-grid">{data.news.map(item=><article class="card"><span class="badge">{item.id} · Agenda pendiente</span><h2>{item.title}</h2><p>{item.body}</p></article>)}</div>
+</ExecutionDraft>

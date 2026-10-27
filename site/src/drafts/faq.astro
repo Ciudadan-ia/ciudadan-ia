@@ -1,0 +1,7 @@
+---
+import ExecutionDraft from '../layouts/ExecutionDraft.astro';
+import data from '../data/ejecucion-v1.json';
+---
+<ExecutionDraft title="20 preguntas sobre CiudadanIA">
+  <div class="faqs">{data.faqs.map(item => <details><summary>{item.title}</summary><p>{item.body}</p></details>)}</div>
+</ExecutionDraft>

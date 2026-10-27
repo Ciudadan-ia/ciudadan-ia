@@ -1,0 +1,51 @@
+---
+interface Props { title: string; }
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>{title} · CiudadanIA V1</title>
+  </head>
+  <body>
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <header>
+      <div class="shell">
+        <div class="mast">
+          <a class="logo" href="/">ciudadan<span>IA</span></a>
+          <span class="edition">Módulos V1 · borrador de trabajo</span>
+        </div>
+        <nav aria-label="Módulos V1">
+          <a href="/v1">Inicio V1</a>
+          <a href="/aprender">Aprender</a>
+          <a href="/faq">Preguntas</a>
+          <a href="/noticias">Agenda</a>
+          <a href="/biblioteca">Biblioteca</a>
+          <a href="/editorial-demo">Taller editorial</a>
+        </nav>
+      </div>
+    </header>
+    <main class="shell" id="main">
+      <p class="notice">Propuesta en revisión. Contenido nuevo en español pendiente de traducción y validación maya/náhuatl. No sustituye las ediciones existentes.</p>
+      <div class="page-title"><h1>{title}</h1></div>
+      <slot />
+      <a href="/v1" class="return">← Volver a los módulos V1</a>
+    </main>
+    <footer class="shell">
+      <p>Materiales asistidos por IA. Pendientes de revisión pedagógica, científica y comunitaria.</p>
+      <nav aria-label="Gobernanza y transparencia">
+        <a href="/manifiesto">Manifiesto</a>
+        <a href="/gobernanza-de-datos">Gobernanza de datos</a>
+        <a href="/politica-de-ia">Política de IA</a>
+        <a href="/transparencia">Transparencia</a>
+      </nav>
+    </footer>
+  </body>
+</html>
+<style is:global>
+:root{color-scheme:light;--paper:#f6f2e8;--ink:#202921;--accent:#b83c2a;--line:#c9cabb;--soft:#e5e9dc;--serif:Georgia,'Times New Roman',serif}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,sans-serif}a{color:inherit;text-underline-offset:.25em}a:hover{color:var(--accent)}button,input,textarea,select{font:inherit}button,.button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 18px;border:1px solid var(--ink);border-radius:3px;background:var(--ink);color:white;text-decoration:none;cursor:pointer}button:hover,.button:hover{background:var(--accent);color:white}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #125cbd;outline-offset:4px}.skip{position:absolute;top:-70px;background:white;padding:10px;z-index:10}.skip:focus{top:5px}.shell{max-width:1180px;margin:auto;padding:0 32px}header{border-bottom:1px solid var(--line);background:var(--paper)}.mast{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0}.logo{font-weight:800;letter-spacing:-.06em;font-size:29px;text-decoration:none}.logo span{color:var(--accent)}.edition{font:12px/1.5 system-ui;letter-spacing:.12em;text-transform:uppercase}.languages{display:flex;flex-wrap:wrap;gap:14px;font-size:13px}.languages [aria-current]{font-weight:800;border-bottom:2px solid var(--accent);text-decoration:none}nav{display:flex;gap:25px;flex-wrap:wrap;padding:12px 0;font-size:14px}nav a{text-decoration:none}.notice{background:var(--soft);padding:12px 18px;font-size:13px;border-left:3px solid var(--ink)}.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:50px;padding:68px 0 64px;border-bottom:1px solid var(--ink)}.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--accent)}h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.1}h1{font-size:clamp(43px,6.2vw,78px);letter-spacing:-.045em;margin:17px 0 22px}h2{font-size:clamp(30px,4vw,47px);letter-spacing:-.03em;margin:10px 0 18px}h3{font-size:25px;line-height:1.2;margin:10px 0}.lead{font-size:18px;max-width:620px}.hero-art{position:relative;min-height:330px;display:grid;place-items:center;background:var(--soft);border:1px solid var(--line);overflow:hidden}.orb{height:220px;width:220px;border-radius:50%;border:1px solid var(--ink);position:relative;transform:rotate(-25deg)}.orb:before,.orb:after{content:'';position:absolute;border:1px solid var(--ink);border-radius:50%;inset:30px -20px}.orb:after{inset:-20px 65px}.art-note{position:absolute;left:20px;bottom:15px;font:12px/1.5 ui-monospace,monospace}.art-tag{position:absolute;top:24px;left:22px;background:var(--accent);color:white;padding:5px 12px;font-size:12px}.art-word{position:absolute;right:18px;bottom:60px;font:italic 29px var(--serif);background:var(--paper);padding:4px 12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--line)}.stats div{padding:20px 20px 20px 0}.stats strong{font:38px var(--serif);margin-right:10px}.stats span{font-size:13px}.section{padding:55px 0;border-bottom:1px solid var(--line)}.section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:25px}.section-head p{max-width:410px;font-size:14px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{border-top:1px solid var(--ink);padding:20px 0 10px}.meta{font-size:12px;letter-spacing:.06em}.badge{display:inline-block;background:var(--soft);font-size:11px;padding:3px 8px;border:1px solid var(--line);border-radius:20px}.card p{font-size:15px}.card details{background:#fff9;padding:12px 16px}.card summary{cursor:pointer;font-size:14px;font-weight:650;min-height:32px}.card details[open] summary{margin-bottom:12px}.activity{border-left:2px solid var(--accent);padding-left:14px}fieldset{border:1px solid var(--line);margin:16px 0 5px;padding:14px}legend{font-size:14px}fieldset label{display:block;margin:8px 0;font-size:14px}fieldset button{font-size:13px;min-height:42px}.quiz-result{min-height:1.6em;color:#345534;font-weight:650}.faqs details{border-top:1px solid var(--line);padding:17px 0}.faqs summary{font-weight:650;cursor:pointer;min-height:32px}.faqs p{max-width:820px}.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.news-grid h3{font-size:23px}.sources{list-style:none;padding:0}.sources li{display:flex;justify-content:space-between;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}.bilingual{display:grid;grid-template-columns:1fr 1fr;gap:30px;border:1px solid var(--line);padding:24px;background:#fff7}.bilingual h3{font-size:23px}.bilingual p{font-size:15px}.editor{background:var(--soft);padding:25px;border:1px solid var(--line)}.editor select,.editor textarea,.editor input{display:block;width:100%;max-width:800px;padding:12px;margin:7px 0 17px;background:var(--paper);border:1px solid #6c756b}.editor textarea{min-height:130px}.editor .actions{display:flex;gap:12px;flex-wrap:wrap}.editor .secondary{background:transparent;color:var(--ink)}footer{padding:35px 0;font-size:13px}.muted{color:#4d594e}.page-title{padding:40px 0 10px}.return{display:inline-block;margin:20px 0}.status-message{min-height:2em;font-weight:650;font-size:14px}.warning{color:#8f2c1e;font-size:13px}section[id]{scroll-margin-top:20px}@media(max-width:720px){.shell{padding:0 20px}.mast{align-items:start;flex-direction:column;gap:8px;padding:18px 0}.languages{gap:16px}nav{gap:18px;row-gap:9px;font-size:13px}.hero{grid-template-columns:1fr;padding:35px 0;gap:25px}.hero-art{min-height:230px}.orb{height:160px;width:160px}.stats strong{display:block;font-size:32px}.stats span{font-size:12px}.section{padding:35px 0}.section-head{display:block}.cards,.news-grid,.bilingual{grid-template-columns:1fr}.sources li{display:block}.editor{padding:18px}.edition{font-size:10px}.art-word{font-size:23px;bottom:45px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+</style>
