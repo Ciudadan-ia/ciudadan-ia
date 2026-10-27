@@ -5,6 +5,12 @@ name: Verificar y publicar
 #  - cron diario: materializa la cola editorial (las piezas cuya publishDate ya llegó)
 #  - manual: para desplegar a demanda
 on:
+  pull_request:
+    paths:
+      - "site/**"
+      - "prototypes/**"
+      - "scripts/verify-web.mjs"
+      - ".github/workflows/publish.yml"
   push:
     branches: [main]
   schedule:
@@ -47,6 +53,10 @@ jobs:
             site/.astro
           key: astro-${{ runner.os }}-${{ hashFiles('site/src/content/**/*.md') }}
           restore-keys: astro-${{ runner.os }}-
+
+      - name: Verificar prototipo y estados editoriales
+        run: node scripts/verify-web.mjs
+        working-directory: .
 
       - run: npm ci
 

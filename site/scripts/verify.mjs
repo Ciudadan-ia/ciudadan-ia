@@ -54,6 +54,13 @@ const PAGES = [
   '/contribuye/',
   '/ediciones/',
   '/docentes/',
+  // Módulos educativos V1: borradores no indexables (ejecución 90 días)
+  '/v1/',
+  '/aprender/',
+  '/faq/',
+  '/noticias/',
+  '/biblioteca/',
+  '/editorial-demo/',
   // Índices a escala (feature 002)
   '/temas/',
   '/temas/tecnologia/',

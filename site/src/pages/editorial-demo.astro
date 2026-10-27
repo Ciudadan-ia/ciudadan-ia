@@ -1,0 +1,6 @@
+---
+import ExecutionDraft from '../layouts/ExecutionDraft.astro';
+---
+<ExecutionDraft title="Taller editorial de demostración">
+  <div class="editor" data-editor><p class="warning"><strong>Simulación local.</strong> Sin inicio de sesión, revisión independiente ni publicación. Usar solo casos ficticios. Los borradores se guardan en este navegador, no en GitHub ni Google Workspace.</p><label>Borrador<select aria-label="Seleccionar borrador"></select></label><label>Título<input maxlength="200" aria-label="Título del borrador"></label><label>Contenido<textarea maxlength="20000" aria-label="Contenido del borrador"></textarea></label><p>Estado: <strong data-state>Borrador</strong></p><div class="actions"><button type="button" data-save>Guardar borrador</button><button type="button" data-next>Simular siguiente estado</button><button type="button" class="secondary" data-new>Nuevo</button><button type="button" class="secondary" data-export>Exportar JSON</button></div><p role="status" class="status-message"></p><p class="muted">Editar y guardar devuelve el estado a borrador. El flujo real exige autoría, evidencia, revisión independiente, autorización y registro de cambios.</p></div><noscript>La simulación editorial necesita JavaScript. El resto del contenido puede leerse sin él.</noscript><script src="../scripts/ejecucion-editor.mjs"></script>
+</ExecutionDraft>
