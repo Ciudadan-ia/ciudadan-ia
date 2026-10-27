@@ -15,6 +15,7 @@ const { lang } = Astro.props as Props;
 const t = UI[lang];
 const alternates = Object.fromEntries(ALL_LANGS.map((l) => [l, `${langPath(l)}/contribuye/`]));
 const ts = Date.now();
+const formsEnabled = import.meta.env.PUBLIC_FORMS_ENABLED === 'true';
 
 // El consentimiento y las etiquetas del formulario se muestran también en español
 // mientras la UI en lengua está pendiente de validación (lang correcto por bloque).
@@ -24,7 +25,7 @@ const ts = Date.now();
   <div class="wrap measure contribute">
     <h1>{t.contribute}</h1>
 
-    <form method="post" action="/api/contribuir">
+    {formsEnabled ? <form method="post" action="/api/contribuir">
       <div class="field">
         <label for="c-nombre" lang="es">Tu nombre o seudónimo</label>
         <input id="c-nombre" name="nombre" type="text" required maxlength="120" autocomplete="name" />
@@ -85,7 +86,7 @@ const ts = Date.now();
       </p>
 
       <button type="submit">{t.contributeShort} →</button>
-    </form>
+    </form> : <div lang="es"><p>La recepción de colaboraciones todavía no está habilitada. Primero deben confirmarse la persona responsable, el aviso de privacidad y el medio de recepción.</p><p><a href="/participacion-pendiente/">Consultar el estado de participación</a></p></div>}
   </div>
 </Base>
 

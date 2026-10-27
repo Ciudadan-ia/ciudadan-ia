@@ -56,6 +56,7 @@ const PAGES = [
   '/contribuye/',
   '/ediciones/',
   '/docentes/',
+  '/participacion-pendiente/',
   // Las rutas pendientes solo existen en la compilación de revisión.
   ...(draftPreviewEnabled() ? DRAFT_ROUTES.map((slug) => `/${slug}/`) : []),
   // Índices a escala (feature 002)

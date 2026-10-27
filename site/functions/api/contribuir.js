@@ -8,6 +8,9 @@ const MIN_MS = 3000;
 const MAX = { nombre: 120, contacto: 160, lengua: 80, mensaje: 2000 };
 
 export async function onRequestPost({ request, env }) {
+  if (env.FORMS_ENABLED !== 'true' || !env.CONTRIB) {
+    return Response.redirect(new URL('/participacion-pendiente/', request.url), 303);
+  }
   const form = await request.formData();
   const hp = String(form.get('_hp') || '');
   const t = Number(form.get('_t') || 0);
@@ -22,7 +25,8 @@ export async function onRequestPost({ request, env }) {
   const aporte = String(form.get('aporte') || '');
   const mensaje = String(form.get('mensaje') || '').trim().slice(0, MAX.mensaje);
   const consentimiento = form.get('consentimiento') === 'si';
-  const paginaLengua = String(form.get('pagina_lengua') || 'es').slice(0, 5);
+  const paginaLenguaInput = String(form.get('pagina_lengua') || 'es');
+  const paginaLengua = ['es', 'en', 'nah', 'yua'].includes(paginaLenguaInput) ? paginaLenguaInput : 'es';
 
   const valido =
     nombre.length > 0 &&
@@ -35,15 +39,15 @@ export async function onRequestPost({ request, env }) {
     return Response.redirect(new URL(`/${paginaLengua === 'es' ? '' : paginaLengua + '/'}contribuye/?error=1`, request.url), 303);
   }
 
-  if (env.CONTRIB) {
+  try {
     const key = `contrib:${new Date().toISOString()}:${crypto.randomUUID()}`;
     await env.CONTRIB.put(
       key,
       JSON.stringify({ nombre, contacto, lengua, aporte, mensaje, paginaLengua, consentimiento, ts: Date.now() }),
     );
+  } catch {
+    return Response.redirect(new URL('/participacion-pendiente/', request.url), 303);
   }
-  // Sin binding (preview local) el flujo igual confirma — el dato no se pierde en
-  // producción porque el binding es parte del deploy (quickstart.md).
 
   return Response.redirect(new URL('/gracias-contribucion/', request.url), 303);
 }

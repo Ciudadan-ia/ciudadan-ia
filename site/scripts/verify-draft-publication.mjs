@@ -16,6 +16,10 @@ for (const slug of DRAFT_ROUTES) {
     assert(/name="robots" content="noindex,nofollow"/.test(text), `${slug}: falta noindex`);
     assert(text.includes('pendiente') || text.includes('Pendientes'), `${slug}: falta aviso de revisión`);
     assert(!text.includes('data-pagefind-body'), `${slug}: borrador incluido en búsqueda`);
+    if (slug.startsWith('lite/')) {
+      assert(!/<script\b/i.test(text), `${slug}: la lectura ligera no necesita scripts`);
+      assert(!/\.woff2|rel="stylesheet"/.test(text), `${slug}: recurso de estilo externo en lectura ligera`);
+    }
   }
 }
 
@@ -36,8 +40,11 @@ if (!preview) {
   for (const file of files.filter((name) => /\.(html|js|json)$/.test(name))) {
     const text = readFileSync(file, 'utf8');
     assert(!pendingText.some((body) => text.includes(body)), `Contenido pendiente en ${file}`);
+    if (file.endsWith('.html') && process.env.PUBLIC_FORMS_ENABLED !== 'true') {
+      assert(!/action="\/api\/(suscribir|contribuir)"/.test(text), `Formulario no habilitado en ${file}`);
+    }
   }
 }
 console.log(preview
-  ? '✓ Seis rutas de revisión presentes, no indexables y fuera del sitemap/búsqueda.'
-  : '✓ Producción excluye las seis rutas y el contenido pendiente.');
+  ? `✓ ${DRAFT_ROUTES.length} rutas de revisión presentes, no indexables y fuera del sitemap/búsqueda.`
+  : `✓ Producción excluye las ${DRAFT_ROUTES.length} rutas y el contenido pendiente.`);
