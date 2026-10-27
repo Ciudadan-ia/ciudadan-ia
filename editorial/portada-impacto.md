@@ -166,5 +166,7 @@ de rendimiento en teléfonos reales y una red 3G.
 La tanda posterior prepara el [expediente de revisión y salida](revision-portada/README.md),
 con diez afirmaciones localizadas, dictamen por versión y protocolo de comprensión.
 La fuente FTC se enlaza ahora en español. El estudio australiano queda separado de la
-versión AIFS de 2026. La publicación puede plantearse en español sin abrir lecciones,
-traducciones o video pendientes; el fundador todavía debe elegir ese alcance.
+versión AIFS de 2026. El fundador confirmó después esperar a las tres lenguas: español, maya y náhuatl.
+La propuesta de salida inicial solo en español queda descartada. La portada nueva
+requiere versiones completas y validadas en las tres lenguas; las lecciones y el video
+conservan sus propios pendientes. Todavía no hay responsables designados.

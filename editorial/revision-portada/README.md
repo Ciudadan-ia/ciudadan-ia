@@ -2,7 +2,9 @@
 
 Corte: 27 de octubre de 2026. La portada sigue en revisión privada. El contraste
 documental asistido por IA no es un dictamen científico humano. No hay revisores
-asignados ni aprobaciones de publicación acreditadas.
+asignados ni aprobaciones de publicación acreditadas. El fundador confirmó esperar a
+las tres lenguas: español, maya y náhuatl. No habrá salida anticipada de la nueva
+portada solo en español.
 
 ## Resultado preparado
 
@@ -20,11 +22,11 @@ secuencia de salida que conserva cerradas las lecciones y traducciones pendiente
 
 | Orden | Revisión | Responsable por designar | Evidencia de cierre |
 | --- | --- | --- | --- |
-| 1 | Elegir alcance inicial y responsable editorial | Fundador | Decisión explícita sobre español primero o salida trilingüe; nombre y aceptación de quien firma |
+| 1 | Designar responsables y acordar variedades | Fundador + coordinación lingüística por designar | Alcance trilingüe confirmado; faltan nombre y aceptación de quien firma y acuerdo comunitario de variedades |
 | 2 | Revisar cada afirmación de las tres historias | Revisor competente e independiente por tema | Dictamen fechado sobre la versión identificada en la matriz, fuentes comprobadas y correcciones resueltas |
 | 3 | Revisar prevención de fraude y contexto mexicano | Revisor de seguridad + editor | Revisión humana del 100% de la historia de voz y del guion si se usa; ninguna tasa mexicana ni recomendación local sin respaldo |
 | 4 | Validar actividad y comprensión | Responsable educativo + docentes/divulgadores | Dictamen pedagógico; prueba moderada y ajustes registrados antes de cerrar la validación |
-| 5 | Revisar accesibilidad de uso | Tecnológico + persona revisora de accesibilidad | Teclado, zoom, lector de pantalla y teléfono de gama baja; resolver impedimentos críticos |
+| 5 | Validar las tres versiones y su accesibilidad | Hablantes validadores + tecnológico + educativo | Portada completa en español, maya y náhuatl; créditos, equivalencia de significado, navegación, teclado, lector de pantalla y teléfono de gama baja |
 | 6 | Firmar selección, destacado y fecha | Fundador + editor | Aprobación explícita sobre el cambio final, créditos visibles y registro de revisión |
 | 7 | Construir y comprobar la versión pública | Tecnológico | Compilación específica; enlaces solo a contenido aprobado; pruebas de exclusión y comprobación pública tras desplegar |
 
@@ -37,10 +39,12 @@ Una persona con conflicto puede aportar observaciones, pero su firma no sustituy
 dictamen independiente. Los criterios proceden de las decisiones confirmadas del
 proyecto; no se ha evaluado ni contratado a nadie.
 
-## Salida inicial propuesta en español
+## Salida conjunta en tres lenguas confirmada
 
-Esta opción requiere decisión del fundador. Permite publicar únicamente las historias
-que reciban dictamen y firma, manteniendo el contenido restante en revisión.
+El fundador eligió esperar a español, maya y náhuatl y confirmó que todavía no hay
+responsables. Esta decisión sustituye la propuesta previa de salir solo en español.
+La nueva portada permanece privada hasta validar las tres versiones completas.
+La fecha de salida depende de esos dictámenes; no hay una fecha comprometida.
 
 1. Conservar las actividades completas dentro de cada historia aprobada. Sustituir los
    enlaces a L01, L02 y L08 por texto «Lección en preparación», sin enlace público,
@@ -48,31 +52,37 @@ que reciban dictamen y firma, manteniendo el contenido restante en revisión.
 2. Quitar de la portada pública las entradas a `/aprender/`, `/biblioteca/`, `/v1/` y
    cualquier otra ruta pendiente. No activar globalmente `CIUDADANIA_DRAFT_PREVIEW`.
 3. Si solo se aprueba parte del contenido, diseñar la portada únicamente con esas
-   piezas. El hero de voz requiere su propio dictamen de seguridad; no puede conservarse
+   piezas validadas en las tres lenguas. El hero de voz requiere su propio dictamen de seguridad; no puede conservarse
    como gancho si solo se aprobó otra historia.
 4. Mostrar autoría, responsable editorial identificado, etiqueta permanente de redacción
    asistida por IA, estado de revisión y fecha. Revisar las tres historias de este primer
    conjunto; no usar un muestreo para eximir la pieza sensible.
-5. Mantener español como única lengua de la propuesta nueva. La edición inglesa
-   existente conserva su alcance anterior. Maya y náhuatl esperan acuerdo de variedad,
-   traducción y validación comunitaria; nunca se activan por una aprobación del español.
-6. Mantener el guion en revisión y publicar la primera versión sin video. Conservar el
-   estado de narración pendiente previsto en la constitución, sin abrir recepción de voz.
+5. Cerrar primero la revisión del original y acordar con hablantes las variedades de
+   maya y náhuatl. Traducir y validar titulares, historias, límites, actividades, avisos,
+   navegación y textos alternativos de la portada. Comprobar las tres versiones visuales
+   y ligeras; publicar juntas después de sus dictámenes. Los códigos heredados `yua`
+   y `nah` no sustituyen el acuerdo de variedades. La edición inglesa existente
+   conserva su alcance anterior.
+6. Mantener el guion y la producción audiovisual en revisión. La primera salida puede
+   prepararse sin video; conservar el estado de narración pendiente previsto en la
+   constitución, sin abrir recepción de voz.
 7. Añadir únicamente las rutas y datos aprobados a la compilación pública con una prueba
    específica que rechace el resto. Preparar y revisar ese cambio después de los
    dictámenes; este expediente no activa ninguna ruta ni autoriza un despliegue nuevo.
 
 El test con seis personas es una comprobación exploratoria propuesta, no una medición
 representativa ni una certificación. Los criterios y el consentimiento se aprueban
-antes de convocar. Las traducciones y la producción audiovisual no bloquean la opción
-español sin video si el fundador la elige; sí bloquean publicar esos materiales.
+antes de convocar. Las traducciones validadas son ahora una condición para publicar
+la nueva portada en cualquiera de las tres lenguas. El video conserva su revisión y
+producción pendientes; su disponibilidad no fue definida como condición de salida.
 
 ## Decisiones y aportaciones del fundador
 
-- Elegir español primero o esperar las tres lenguas.
-- Indicar quién acepta la responsabilidad editorial y quién revisará ciencia,
+- Decisión resuelta: esperar a las tres lenguas; no volver a solicitar esa elección.
+- Pendiente: indicar quién acepta la responsabilidad editorial y quién revisará ciencia,
   seguridad y pedagogía. Puede asumir la función editorial si lo confirma expresamente;
-  eso no sustituye competencias ni revisión independiente.
+  eso no sustituye competencias ni revisión independiente. Por ahora confirmó que aún
+  no hay personas; no se le asigna automáticamente ninguna función.
 - Autorizar el alcance y condiciones de la prueba con voluntarios cuando estén
   identificados responsable y procedimiento. Nadie ha sido contactado en esta tanda.
 - Aprobar el destacado y la publicación del resultado final después de los dictámenes.

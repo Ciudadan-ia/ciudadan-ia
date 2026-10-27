@@ -58,10 +58,10 @@
     },
     {
       "id": "PV05",
-      "priority": "P1",
+      "priority": "P0",
       "subject": "Traducción y validación comunitaria",
       "status": "pending",
-      "evidenceRequired": "Variedad lingüística acordada, hablantes validadores y créditos verificables; todas las muestras nuevas y anteriores pendientes permanecen en revisión",
+      "evidenceRequired": "Salida conjunta confirmada en español, maya y náhuatl. Acordar variedades, traducción completa de la portada, revisión comunitaria, créditos y prueba de navegación en cada lengua antes de publicar cualquiera de las nuevas versiones.",
       "responsibleRole": "Coordinación lingüística y hablantes validadores",
       "assignee": null
     },
@@ -87,8 +87,8 @@
       "id": "PV08",
       "priority": "P1",
       "subject": "Dependencias para publicar solo contenido aprobado",
-      "status": "release-plan-prepared-not-approved",
-      "evidenceRequired": "Decisión de alcance, lecciones validadas o enlaces retirados, firma editorial y dictámenes de la versión final. No activar globalmente el modo de borradores.",
+      "status": "trilingual-scope-confirmed-human-reviews-pending",
+      "evidenceRequired": "Alcance trilingüe confirmado; responsables aún sin designar. Se requieren dictámenes del original y de las tres versiones, lecciones validadas o enlaces retirados, firma editorial y aprobación final. No activar globalmente el modo de borradores.",
       "responsibleRole": "Fundador, editorial y tecnológico",
       "assignee": null,
       "plan": "editorial/revision-portada/README.md"
@@ -129,5 +129,19 @@
       "eligibleAsOpenedSource": false
     }
   ],
-  "reviewDossier": "editorial/revision-portada/README.md"
+  "reviewDossier": "editorial/revision-portada/README.md",
+  "releaseDecision": {
+    "date": "2026-10-27",
+    "source": "Respuesta directa del fundador en esta conversación",
+    "status": "confirmed",
+    "scope": "Publicar la nueva portada cuando estén listas y validadas las tres lenguas juntas",
+    "requiredLanguages": [
+      "español",
+      "maya",
+      "náhuatl"
+    ],
+    "languageVarietiesConfirmed": false,
+    "editorialAndReviewRolesAssigned": false,
+    "publicationAuthorized": false
+  }
 }

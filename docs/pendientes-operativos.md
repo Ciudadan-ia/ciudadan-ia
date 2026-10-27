@@ -15,3 +15,5 @@ Los nombramientos, variantes, Constitución Maestra, cohorte del piloto, sede de
 Preparado en código: actualización pa11y con auditoría completa limpia; seis vistas ligeras; cierre de formularios por defecto; pruebas sin servicios reales; separación de artefactos y de resultado de despliegue. Su verificación no sustituye las decisiones humanas anteriores.
 
 La portada tiene un [expediente específico de revisión y salida](../editorial/revision-portada/README.md). Su publicación sigue bloqueada; la conexión con Cloudflare está resuelta. La pestaña institucional de Workspace puede conservar un estado anterior y debe conciliarse antes de usarla como reporte vigente.
+
+Decisión posterior del fundador, 27/10/2026: esperar la nueva portada validada en español, maya y náhuatl antes de publicarla. Todavía no hay responsables editoriales ni revisores designados. Prioridad: acuerdo de variedades con hablantes, asignación de responsables y dictámenes; sin convocatoria ejecutada.
