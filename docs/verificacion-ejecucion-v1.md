@@ -49,8 +49,8 @@ la salida de producción; `draft-review` conserva la revisión sin ejecutar desp
 La rama de PR no puede activar el trabajo de despliegue Cloudflare.
 
 El prototipo privado anterior conserva sus muestras heredadas maya/náhuatl pendientes
-de validación. No se cambiaron estados editoriales, fechas, traducciones o créditos,
-ni se fusionó main. Faltan revisión científica/pedagógica, validación por hablantes,
+de validación. No se cambiaron estados editoriales, fechas, traducciones o créditos.
+Las correcciones técnicas de #7 y #9 se integraron en main; eso no aprueba el contenido. Faltan revisión científica/pedagógica, validación por hablantes,
 noticias verificadas, prueba manual de accesibilidad y
 autorización editorial. Las comprobaciones automatizadas no certifican conformidad
 WCAG 2.2 AA completa.
@@ -60,3 +60,7 @@ WCAG 2.2 AA completa.
 Las seis vistas ligeras comparten datos con las completas, no incluyen scripts ni fuentes externas y pesan entre 3.5 y 11.3 KB HTML. Las funciones de suscripción y colaboración no leen datos si falta habilitación o proveedor. Once pruebas con datos ficticios cubren cierres por defecto, consentimiento, error HTTP 400, fallo de red y fallo de almacenamiento. Los formularios no aparecen en la compilación normal. No se activó captación.
 
 Se corrigió el directorio del despliegue Wrangler para incluir `site/functions/` y se añadió al resumen de Actions la distinción entre credenciales ausentes y despliegue realmente ejecutado. No se pudo probar el envío real: faltan las credenciales Cloudflare. El paso de despliegue de main tras #7 fue omitido, aunque el trabajo finalizó exitosamente.
+
+## Cierre de integración
+
+#7 y #9 están integradas. La ejecución de main 40533219665 terminó con sus comprobaciones correctas y omitió los pasos reales de publicación por falta de acceso Cloudflare. La incidencia #6 se cerró tras verificar cero vulnerabilidades; #8 conserva el bloqueo de despliegue. El respaldo Git se restauró en una carpeta aislada, con instalación desde lockfile, once pruebas de formularios y reconstrucción de producción sin las doce rutas pendientes. La revisión con hablantes y las decisiones institucionales continúan abiertas.
