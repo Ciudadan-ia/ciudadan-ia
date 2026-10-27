@@ -81,6 +81,7 @@ jobs:
       - name: Build
         env:
           CIUDADANIA_DRAFT_PREVIEW: '0'
+          PUBLIC_FORMS_ENABLED: 'false'
         run: npm run build
 
       - name: Verificar exclusión de borradores en producción
@@ -149,6 +150,18 @@ jobs:
           name: dist
           path: site/dist
 
+      # Wrangler 4 requiere Node >=22 también en este trabajo independiente.
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: site/.nvmrc
+
+      - name: Comprobar el artefacto que se enviará a producción
+        working-directory: site
+        env:
+          CIUDADANIA_DRAFT_PREVIEW: '0'
+          PUBLIC_FORMS_ENABLED: 'false'
+        run: node scripts/verify-draft-publication.mjs
+
       - name: Comprobar credenciales
         id: cred
         run: |
@@ -168,6 +181,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: '4.154.0'
           workingDirectory: site
           command: pages deploy dist --project-name=ciudadan-ia --branch=main
 
