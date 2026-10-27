@@ -162,3 +162,9 @@ abiertas ni se usaron para calcular prevalencia. Se conservan como pendientes.
 La comprobación de peso incluye todas las variantes locales de imágenes como una
 cota conservadora, incluso las de carga diferida. Esto no sustituye una medición
 de rendimiento en teléfonos reales y una red 3G.
+
+La tanda posterior prepara el [expediente de revisión y salida](revision-portada/README.md),
+con diez afirmaciones localizadas, dictamen por versión y protocolo de comprensión.
+La fuente FTC se enlaza ahora en español. El estudio australiano queda separado de la
+versión AIFS de 2026. La publicación puede plantearse en español sin abrir lecciones,
+traducciones o video pendientes; el fundador todavía debe elegir ese alcance.

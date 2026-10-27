@@ -1,0 +1,189 @@
+{
+  "date": "2026-10-27",
+  "assessmentBy": "Contraste documental asistido por IA; no dictamen humano",
+  "publicationApproved": false,
+  "sourcesOpened": 11,
+  "humanScientificReviewsCompleted": 0,
+  "renderTemplateSha256": "5d86ba70c95b53d100061d10e19b196532f57506fcb3f6ea913a1614f8dd6219",
+  "mediaRegistry": "../portada-medios.json",
+  "entries": [
+    {
+      "storyId": "voz",
+      "title": "Suena como tu familia. Puede ser una voz clonada.",
+      "contentSha256": "c491b01515cf09fea069ab3cb2132d573efb19fd7e2c7c41a5398a0fed714af2",
+      "hashMethod": "SHA-256 de JSON UTF-8 de la historia, claves ordenadas, sin espacios",
+      "humanReview": {
+        "reviewer": null,
+        "competence": null,
+        "conflicts": null,
+        "date": null,
+        "decision": null,
+        "approvedContentSha256": null
+      },
+      "claims": [
+        {
+          "id": "VOZ01",
+          "claim": "La IA permite imitar voces y se han emitido alertas sobre su uso para fingir emergencias familiares y pedir dinero.",
+          "sourceUrls": [
+            "https://consumidor.ftc.gov/alertas-para-consumidores/2023/03/los-estafadores-usan-inteligencia-artificial-para-perfeccionar-sus-esquemas-de-emergencia-familiar",
+            "https://www.ic3.gov/PSA/2024/PSA241203"
+          ],
+          "locator": "FTC: cuerpo de la alerta en español; FBI: AI-Generated Audio, aka Vocal Cloning.",
+          "scopeLimit": "Alertas estadounidenses; no estiman prevalencia en México.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        },
+        {
+          "id": "VOZ02",
+          "claim": "Reconocer una voz no basta para confirmar la identidad; contrastar la historia por un número conocido es una recomendación de la FTC.",
+          "sourceUrls": [
+            "https://consumidor.ftc.gov/alertas-para-consumidores/2023/03/los-estafadores-usan-inteligencia-artificial-para-perfeccionar-sus-esquemas-de-emergencia-familiar"
+          ],
+          "locator": "FTC: párrafo de verificación de la historia.",
+          "scopeLimit": "No determina si una llamada concreta es fraudulenta; actividad ficticia sin grabación ni datos personales.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        },
+        {
+          "id": "VOZ03",
+          "claim": "El NIST examina técnicas de transparencia y detección del contenido sintético y sus límites.",
+          "sourceUrls": [
+            "https://www.nist.gov/publications/reducing-risks-posed-synthetic-content-overview-technical-approaches-digital-content"
+          ],
+          "locator": "NIST AI 100-4: resumen y secciones 1–2; PDF pp. 6–8.",
+          "scopeLimit": "Ninguna técnica es una solución completa. El informe no demuestra la frecuencia local ni valida un detector para este sitio.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        }
+      ]
+    },
+    {
+      "storyId": "tiempo",
+      "title": "La IA ya pronostica el tiempo. ¿Cómo aprende a mirar el cielo?",
+      "contentSha256": "2a0930f3f65b19e69c770b0661f3e94b9d9ba3a3b53a53880208f096b4781f8a",
+      "hashMethod": "SHA-256 de JSON UTF-8 de la historia, claves ordenadas, sin espacios",
+      "humanReview": {
+        "reviewer": null,
+        "competence": null,
+        "conflicts": null,
+        "date": null,
+        "decision": null,
+        "approvedContentSha256": null
+      },
+      "claims": [
+        {
+          "id": "TIE01",
+          "claim": "ECMWF puso en operación AIFS Single el 25 de febrero de 2025 y AIFS ENS el 1 de julio de 2025.",
+          "sourceUrls": [
+            "https://www.ecmwf.int/en/about/media-centre/news/2025/ecmwfs-ai-forecasts-become-operational",
+            "https://www.ecmwf.int/en/about/media-centre/news/2025/ecmwfs-ensemble-ai-forecasts-become-operational",
+            "https://www.ecmwf.int/en/forecasts/dataset/aifs-machine-learning-data"
+          ],
+          "locator": "ECMWF: comunicados de inicio operativo y encabezado de AIFS Machine Learning data.",
+          "scopeLimit": "Hitos del desarrollador, no tres verificaciones independientes.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        },
+        {
+          "id": "TIE02",
+          "claim": "ECMWF documenta una actualización de ambos sistemas a versión 2 el 12 de mayo de 2026.",
+          "sourceUrls": [
+            "https://www.ecmwf.int/en/forecasts/dataset/aifs-machine-learning-data"
+          ],
+          "locator": "ECMWF: AIFS Machine Learning data, dos párrafos iniciales.",
+          "scopeLimit": "La evaluación australiana de datos de 2024 no evalúa esta versión.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        },
+        {
+          "id": "TIE03",
+          "claim": "Trotta y colaboradores evalúan el posprocesamiento de AIFS en Australia para temperatura, punto de rocío y viento.",
+          "sourceUrls": [
+            "https://arxiv.org/html/2504.12672v2"
+          ],
+          "locator": "arXiv v2: Abstract, Notice y sección 2 Data.",
+          "scopeLimit": "Estudio de datos de 2024; no permite extrapolar a México o huracanes futuros; no se abrió la versión editorial de revista.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        },
+        {
+          "id": "TIE04",
+          "claim": "La OMM sitúa la IA junto a observaciones, modelos físicos y especialistas.",
+          "sourceUrls": [
+            "https://public.wmo.int/themes/artificial-intelligence"
+          ],
+          "locator": "OMM: Overview, párrafos sobre observaciones, ciencia física y sistema amplio.",
+          "scopeLimit": "Marco institucional, no evaluación independiente de precisión para México.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        }
+      ]
+    },
+    {
+      "storyId": "trabajo",
+      "title": "Tu trabajo tiene muchas tareas. La IA puede cambiar algunas.",
+      "contentSha256": "b380c0485499cb8d0a5f4317dc79ff109a0441506925a81334343c08f1cdbf3f",
+      "hashMethod": "SHA-256 de JSON UTF-8 de la historia, claves ordenadas, sin espacios",
+      "humanReview": {
+        "reviewer": null,
+        "competence": null,
+        "conflicts": null,
+        "date": null,
+        "decision": null,
+        "approvedContentSha256": null
+      },
+      "claims": [
+        {
+          "id": "TRA01",
+          "claim": "La OIT estima exposición ocupacional combinando datos de tareas, juicio experto y predicciones de IA.",
+          "sourceUrls": [
+            "https://www.ilo.org/publications/generative-ai-and-jobs-2025-update"
+          ],
+          "locator": "OIT: Research Brief, descripción inicial y metodología resumida.",
+          "scopeLimit": "Exposición potencial, no despidos observados ni predicción de un empleo individual.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        },
+        {
+          "id": "TRA02",
+          "claim": "La OCDE distingue ocupaciones expuestas a IA de riesgo de automatización y describe diferencias de habilidades.",
+          "sourceUrls": [
+            "https://www.oecd.org/en/publications/skills-in-the-ai-age_972bd15e-en/full-report/component-6.html"
+          ],
+          "locator": "OCDE: capítulo 2, Jobs with greatest exposure to AI are not necessarily those with a high risk of automation.",
+          "scopeLimit": "Informe institucional que sintetiza estudios y poblaciones diferentes; no prometer empleo o productividad personal.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        },
+        {
+          "id": "TRA03",
+          "claim": "El JRC analiza exposición a IA mediante capacidades, tareas y ocupaciones del mercado laboral europeo.",
+          "sourceUrls": [
+            "https://publications.jrc.ec.europa.eu/repository/handle/JRC145832"
+          ],
+          "locator": "JRC145832: título, resumen y ficha, 13 de marzo de 2026.",
+          "scopeLimit": "Se abrió la ficha y el resumen, no el documento completo; working paper, no resultado de despidos en México.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        }
+      ]
+    }
+  ],
+  "openFollowups": [
+    {
+      "subject": "Fuentes mexicanas de prevención",
+      "result": "SSPC y Sonora: HTTP 403; CONDUSEF HTML y PDF mayo 2026: timeout. No incorporadas como fuentes abiertas ni al cómputo de 11.",
+      "blockingScope": "Revisión de contexto local y cualquier recomendación o dato que se atribuya a México."
+    },
+    {
+      "subject": "Derechos de la imagen",
+      "result": "Registro anterior conserva NOAA vía USGS, archivo 9 de octubre de 2024, Public Domain. Nueva consulta USGS: timeout en web y HTTP 403 por cliente directo; no se altera ni se afirma una revalidación nueva.",
+      "blockingScope": "Confirmación editorial del crédito, fecha y licencia conservados antes de salida."
+    },
+    {
+      "subject": "Documento completo JRC y versión editorial de Trotta",
+      "result": "JRC: ficha y resumen públicos consultados; Trotta: repositorio v2 y aviso de aceptación consultados. No se afirma lectura del documento completo de JRC ni de la versión editorial de Trotta.",
+      "blockingScope": "Cualquier afirmación más específica requiere abrir y revisar el texto pertinente."
+    }
+  ]
+}
