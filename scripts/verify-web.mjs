@@ -17,4 +17,16 @@ const nextStatus=(await import('data:text/javascript,export const nextStatus=cur
 assert.equal(nextStatus('draft'),'review');assert.equal(nextStatus('review'),'approved');assert.equal(nextStatus('approved'),'draft');assert.equal(nextStatus('unexpected'),'draft');
 assert(script.includes("active.status='draft'"),'Editar debe invalidar la aprobación simulada');assert(script.includes('simulation:true'));assert(!script.includes('fetch('),'La demo no debe enviar datos');
 const astro=path.resolve('site/src/drafts');assert(fs.existsSync(astro),'Falta la base de borradores Astro');{for(const route of ['v1','aprender','faq','noticias','biblioteca','editorial-demo'])assert(fs.existsSync(path.join(astro,route+'.astro')));}
+const portada=JSON.parse(fs.readFileSync('site/src/data/portada-propuesta.json','utf8'));
+assert.equal(portada.status,'draft');assert.equal(portada.publicationApproved,false);
+assert.equal(portada.humanReview,'pending');
+const storyIds=new Set();
+for(const story of portada.stories){
+  assert(!storyIds.has(story.id));storyIds.add(story.id);
+  assert(data.lessons.some(lesson=>lesson.id===story.lesson),'Puente educativo inexistente');
+  assert(story.sources.length>=3,'Faltan fuentes de una historia');
+  assert.equal(new Set(story.sources.map(source=>source.url)).size,story.sources.length);
+  assert(story.sources.every(source=>source.opened && source.url.startsWith('https://')));
+  assert(story.limit.length>40,'Falta explicar el alcance de la evidencia');
+}
 console.log('Verificación web correcta: 10 lecciones, 20 FAQ, 10 fichas borrador; 3 muestras navegables; enlaces locales; renderizado seguro de texto; transiciones editoriales.');
