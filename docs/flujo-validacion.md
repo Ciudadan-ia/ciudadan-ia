@@ -1,6 +1,8 @@
 # Flujo de validación de traducciones
 
 Cómo una traducción pasa de `traducido-ia` a `validado` (US4 de la spec; constitución I y V).
+Actualizado el 27/10/2026: las traducciones pendientes solo aparecen en la revisión
+privada. No se generan sus rutas en producción ni se anuncian ediciones vacías.
 En el MVP la conversación con validadores ocurre por correo/WhatsApp; el sitio solo refleja
 estados y créditos — todo se controla con frontmatter, sin tocar código.
 
@@ -20,11 +22,14 @@ estados y créditos — todo se controla con frontmatter, sin tocar código.
    translator: "IA (Claude) — ayamo oquittaqueh tlahtohqueh"   # o equivalente
    ```
 
-   Al publicar, el sitio la muestra SOLO en vista bilingüe con el aviso de pendiente.
+   La compilación privada de revisión la muestra en vista bilingüe con el aviso de
+   pendiente. La compilación de producción la excluye, también en `/lite/`.
 
-2. **Editorial** envía a la persona validadora el enlace público
-   (`/{lang}/articulos/{slug}/`): la vista bilingüe en paralelo es su herramienta de
-   revisión — traducción junto al original, párrafo a párrafo.
+2. **Editorial** acuerda la variedad lingüística y prepara una copia de revisión
+   autorizada, con la traducción junto al original, párrafo a párrafo. Un enlace a una
+   ruta del prototipo privado solo sirve si la persona tiene acceso; no hacer público
+   el prototipo para resolver esa limitación. Cualquier envío o invitación requiere
+   autorización del fundador; esta guía no acredita que haya ocurrido.
 
 3. **Validadora** devuelve correcciones por el canal acordado (documento, audio de WhatsApp,
    texto corregido completo — lo que le resulte natural).
@@ -45,8 +50,10 @@ estados y créditos — todo se controla con frontmatter, sin tocar código.
 
 ## Reversa
 
-Si una validación se retira o se detecta un problema, basta regresar `status: traducido-ia`
-(y retirar `validator`): la pieza vuelve a vista bilingüe con aviso en el siguiente build.
+Si una validación se retira o se detecta un problema, regresar `status: traducido-ia`
+(y retirar `validator`): la pieza se retira de producción en el siguiente despliegue
+y permanece en la revisión privada bilingüe con aviso. Comprobar además el resultado
+público; cambiar un archivo no acredita que se haya desplegado.
 
 ## Compensación y reconocimiento
 

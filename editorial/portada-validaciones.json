@@ -29,7 +29,9 @@
       "evidence": [
         "Voz: FTC, FBI y NIST; alertas y descripción técnica, sin tasas mexicanas",
         "Tiempo: ECMWF contrastado con Bureau of Meteorology y OMM; límites regionales explícitos",
-        "Trabajo: OIT, OCDE y JRC; exposición potencial separada de resultados de empleo"
+        "Trabajo: OIT, OCDE y JRC; exposición potencial separada de resultados de empleo",
+        "11 fuentes de la propuesta reabiertas; NIST PDF secciones 1–2 contrastadas; FTC ahora enlaza su versión oficial en español",
+        "10 afirmaciones con fuente, localizador, límites y huella de la versión en editorial/revision-portada/afirmaciones.json"
       ],
       "responsibleRole": "Revisor científico independiente previamente evaluado",
       "assignee": null
@@ -41,7 +43,8 @@
       "status": "pending",
       "evidenceRequired": "Nombre del revisor, fecha, observaciones y aprobación de cada afirmación del caso de voces clonadas; comprobar recomendaciones y contexto mexicano",
       "responsibleRole": "Responsable editorial y revisor de seguridad",
-      "assignee": null
+      "assignee": null,
+      "reviewTemplate": "editorial/revision-portada/dictamen.md"
     },
     {
       "id": "PV04",
@@ -50,7 +53,8 @@
       "status": "pending",
       "evidenceRequired": "Revisión del puente historia-lección por responsable educativo y prueba moderada propuesta con seis docentes/divulgadores; consentimiento y registro mínimo aprobados antes de convocar",
       "responsibleRole": "Responsable educativo",
-      "assignee": null
+      "assignee": null,
+      "protocol": "editorial/revision-portada/prueba-pedagogica.md"
     },
     {
       "id": "PV05",
@@ -77,6 +81,25 @@
       "status": "pending",
       "evidenceRequired": "Guion revisado, narración autorizada, subtítulos, transcripción, derechos y prueba de reproducción a solicitud; no hay audio ni video producido",
       "responsibleRole": "Responsable educativo y producción audiovisual",
+      "assignee": null
+    },
+    {
+      "id": "PV08",
+      "priority": "P1",
+      "subject": "Dependencias para publicar solo contenido aprobado",
+      "status": "release-plan-prepared-not-approved",
+      "evidenceRequired": "Decisión de alcance, lecciones validadas o enlaces retirados, firma editorial y dictámenes de la versión final. No activar globalmente el modo de borradores.",
+      "responsibleRole": "Fundador, editorial y tecnológico",
+      "assignee": null,
+      "plan": "editorial/revision-portada/README.md"
+    },
+    {
+      "id": "PV09",
+      "priority": "P1",
+      "subject": "Accesibilidad de uso y derechos de medios",
+      "status": "pending-human-verification",
+      "evidenceRequired": "Revisión con lector de pantalla, zoom y dispositivo/red reales; confirmación del registro NOAA/USGS. Las pruebas automáticas no certifican accesibilidad completa.",
+      "responsibleRole": "Tecnológico y editorial",
       "assignee": null
     }
   ],
@@ -105,5 +128,6 @@
       "access": "403; versión arXiv v2 abierta, aceptada según aviso del manuscrito; versión editorial sin comprobar",
       "eligibleAsOpenedSource": false
     }
-  ]
+  ],
+  "reviewDossier": "editorial/revision-portada/README.md"
 }
