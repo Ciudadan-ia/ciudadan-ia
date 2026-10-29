@@ -8,6 +8,7 @@
 import { readFileSync, statSync, existsSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { draftPreviewEnabled } from '../draft-routes.mjs';
+import { ARTICLE_DRAFT_ROUTES } from '../draft-routes.mjs';
 
 const DIST = resolve(new URL('../', import.meta.url).pathname,
   process.env.CIUDADANIA_BUILD_DIRECTORY || 'dist');
@@ -69,6 +70,11 @@ check('Buscar', 'buscar/index.html', 300);
 if (draftPreviewEnabled()) {
   check('Portada propuesta, con todas las variantes de foto', 'portada/index.html', 300);
   check('Lite portada propuesta', 'lite/portada/index.html', 50);
+  check('Índice de historias', 'historias/index.html', 300);
+  for (const route of ARTICLE_DRAFT_ROUTES) {
+    check(route, `${route}/index.html`, 300);
+    check(`Lite ${route}`, `lite/${route}/index.html`, 50);
+  }
 }
 
 // --- Gate global: ninguna página puede crecer sin control (constitución III) ---

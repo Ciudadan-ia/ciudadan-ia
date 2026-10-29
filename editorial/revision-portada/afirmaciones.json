@@ -4,7 +4,7 @@
   "publicationApproved": false,
   "sourcesOpened": 11,
   "humanScientificReviewsCompleted": 0,
-  "renderTemplateSha256": "5d86ba70c95b53d100061d10e19b196532f57506fcb3f6ea913a1614f8dd6219",
+  "renderTemplateSha256": "2f64b23b3fee69e62d1942957d3c63a0c9986327d07153d1e8f98f150b5506dd",
   "mediaRegistry": "../portada-medios.json",
   "entries": [
     {
@@ -165,6 +165,17 @@
           "scopeLimit": "Se abrió la ficha y el resumen, no el documento completo; working paper, no resultado de despidos en México.",
           "documentaryAssessment": "supported-with-stated-limits",
           "humanDecision": null
+        },
+        {
+          "id": "TRA04",
+          "claim": "El resumen OIT de 2025 estima que una de cada cuatro personas trabajadoras en el mundo está en una ocupación con algún grado de exposición a IA generativa; plantea transformación antes que sustitución completa para la mayoría de los empleos.",
+          "sourceUrls": [
+            "https://www.ilo.org/publications/generative-ai-and-jobs-2025-update"
+          ],
+          "locator": "OIT: Research Brief, viñeta One in four workers; 20 de mayo de 2025.",
+          "scopeLimit": "Estimación global de exposición, no despidos observados ni probabilidad individual; no extrapolar como cifra de México.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
         }
       ]
     }
@@ -185,5 +196,7 @@
       "result": "JRC: ficha y resumen públicos consultados; Trotta: repositorio v2 y aviso de aceptación consultados. No se afirma lectura del documento completo de JRC ni de la versión editorial de Trotta.",
       "blockingScope": "Cualquier afirmación más específica requiere abrir y revisar el texto pertinente."
     }
-  ]
+  ],
+  "extensionCheckedAt": "2026-10-28",
+  "extensionNote": "Nueva redacción de tres artículos en articulos-afirmaciones.json. Revisión humana pendiente; la ampliación no aprueba piezas ni traducciones."
 }

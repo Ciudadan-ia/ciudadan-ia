@@ -32,6 +32,15 @@ secuencia de salida que conserva cerradas las lecciones y traducciones pendiente
 | 7 | Construir y comprobar la versión pública | Tecnológico | Compilación específica; enlaces solo a contenido aprobado; pruebas de exclusión y comprobación pública tras desplegar |
 
 El dictamen documental identifica hallazgos, no selecciona automáticamente revisores.
+La ampliación del 28 de octubre desarrolla tres artículos completos, su índice y
+una biblioteca agrupada por historia. El expediente adicional está en
+[articulos-afirmaciones.json](articulos-afirmaciones.json), con huellas de los textos,
+referencias por sección y dictámenes vacíos. Las rutas `/historias/` y sus tres
+artículos, incluidas sus versiones ligeras, solo existen en compilación de revisión.
+Las diez fichas de agenda conservan su estado de planificación: no se convirtieron
+automáticamente en noticias. Los artículos ampliados son explicadores, no tres
+noticias de última hora, y requieren revisión completa de titular, texto y actividad.
+
 El revisor puede cubrir varios temas si acredita competencia. Revisores de contenidos
 sensibles no deben aprobar su propio texto sin contraste independiente. Registrar
 competencia demostrable, independencia y conflictos, recusaciones y diversidad de

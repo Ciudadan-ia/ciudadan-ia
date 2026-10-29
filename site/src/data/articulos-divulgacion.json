@@ -1,0 +1,220 @@
+{
+  "status": "draft",
+  "publicationApproved": false,
+  "humanReview": "pending",
+  "translationValidation": "pending",
+  "checkedAt": "2026-10-28",
+  "articles": [
+    {
+      "storyId": "voz",
+      "slug": "voz-clonada",
+      "title": "Una voz conocida ya no es una prueba. ¿Cómo recuperamos la confianza?",
+      "deck": "Una llamada puede sonar familiar y contar una historia falsa. La pregunta ya no es solo qué escuchamos, sino cómo comprobamos quién está al otro lado.",
+      "hook": "Imagina un mensaje que parece venir de alguien cercano: hay una urgencia y necesita ayuda. Antes de resolver si la historia es cierta, ya sentiste algo. Este ejemplo es ficticio: sirve para abrir la conversación, no describe a una víctima real.",
+      "takeaways": [
+        "Una voz reconocible puede imitarse; por sí sola no acredita identidad.",
+        "La FTC propone verificar la historia mediante un número que ya conozcas.",
+        "Las alertas consultadas no permiten calcular la frecuencia del problema en México."
+      ],
+      "process": [
+        { "label": "La señal", "text": "Un audio parece familiar." },
+        { "label": "La pregunta", "text": "¿Qué evidencia confirma quién habla?" },
+        { "label": "El contraste", "text": "Comprobar la historia por un canal conocido, según la FTC." }
+      ],
+      "sections": [
+        {
+          "id": "voz-imitacion",
+          "title": "Lo que una imitación sí puede hacer",
+          "paragraphs": [
+            "En su alerta de 2024, el FBI describe usos de audio generado por IA para hacerse pasar por familiares y solicitar pagos ante una supuesta crisis. La voz es parte del engaño: vuelve creíble una identidad que todavía no está comprobada.",
+            "El contenido sintético es material generado o modificado mediante herramientas computacionales. Que exista un audio convincente no demuestra que la persona representada haya pronunciado esas palabras. Tampoco demuestra, por sí solo, que se cometió un delito: el contexto y el uso importan."
+          ],
+          "sourceIndexes": [1, 2],
+          "claimIds": ["VOZ01", "VOZ03"]
+        },
+        {
+          "id": "voz-verificacion",
+          "title": "La confianza necesita otro punto de apoyo",
+          "paragraphs": [
+            "La FTC recomienda comprobar la historia llamando a la persona mediante un número que ya sepas que le pertenece. El punto es buscar una confirmación independiente del mensaje que te está pidiendo actuar. Si no logras localizarla, su alerta propone intentar con otra persona cercana.",
+            "Pensemos en una comparación: reconocer la letra de un sobre no demuestra quién lo envió. El sonido familiar puede ser una pista; verificar la procedencia exige algo más. Esta es una analogía educativa, no una prueba para clasificar una llamada concreta."
+          ],
+          "sourceIndexes": [0],
+          "claimIds": ["VOZ02"]
+        },
+        {
+          "id": "voz-detectores",
+          "title": "¿Bastaría con un detector?",
+          "paragraphs": [
+            "El NIST estudia varias vías para dar transparencia al contenido digital: rastrear su procedencia, etiquetar material sintético y desarrollar herramientas de detección. Son enfoques distintos: preguntar de dónde viene un archivo no es lo mismo que buscar señales de generación artificial.",
+            "Aquí no evaluamos un detector ni proponemos que una herramienta decida por el grupo. La pregunta para investigar sería: ¿con qué ejemplos se probó, qué errores comete y en qué condiciones? Pedir esa información permite discutir la tecnología sin confundir una demostración con una garantía."
+          ],
+          "sourceIndexes": [2],
+          "claimIds": ["VOZ03"]
+        }
+      ],
+      "glossary": [
+        { "term": "Contenido sintético", "definition": "Material generado o alterado computacionalmente, como el audio descrito en las alertas consultadas." },
+        { "term": "Procedencia", "definition": "Información sobre el origen y la historia de un contenido: quién lo produjo y cómo llegó hasta nosotros." }
+      ],
+      "activity": {
+        "title": "Una pausa antes de creer",
+        "minutes": 7,
+        "materials": "Papel y conversación. No requiere internet, cuentas ni grabaciones.",
+        "steps": [
+          "Lean el ejemplo ficticio del inicio. Separen lo que el mensaje afirma de lo que realmente saben.",
+          "Propongan dos formas de verificar la historia y contrasten sus ideas con la recomendación enlazada de la FTC.",
+          "Reescriban el titular para una conversación con su comunidad, conservando lo comprobado y la incertidumbre."
+        ],
+        "output": "Una frase que distinga reconocer una voz de comprobar una identidad.",
+        "care": "Usen personajes inventados. No pidan audios, números, transferencias ni relatos personales de fraude."
+      },
+      "check": {
+        "question": "¿Una voz que reconozco basta para demostrar quién me llama?",
+        "answer": "No. Las alertas describen imitaciones de voz. La FTC propone verificar la historia por un número conocido. Esto no significa que toda llamada urgente sea falsa: significa que el sonido no resuelve por sí solo la identidad."
+      },
+      "nextQuestion": "¿Qué otras señales usamos para confiar en una imagen, un texto o una respuesta de IA?"
+    },
+    {
+      "storyId": "tiempo",
+      "slug": "ia-pronostico-tiempo",
+      "title": "Una IA puede anticipar el tiempo. El reto es saber cuándo confiar.",
+      "deck": "Los pronósticos con IA ya forman parte de la meteorología operativa. Para entender el avance hay que mirar los datos, la evaluación y el lugar donde se usarán.",
+      "hook": "Una maestra prepara una actividad al aire libre. Antes de salir, consulta el pronóstico. Imaginemos que una de sus herramientas usa IA: ¿qué tendría que saber para interpretar el resultado? Es una situación educativa inventada, no una recomendación meteorológica.",
+      "takeaways": [
+        "ECMWF incorporó AIFS a su operación en 2025 junto a modelos basados en física.",
+        "Un resultado se evalúa para variables, lugares y periodos determinados.",
+        "El estudio australiano consultado no demuestra precisión para una comunidad mexicana."
+      ],
+      "process": [
+        { "label": "Observaciones", "text": "Mediciones y registros del estado del tiempo." },
+        { "label": "Modelo", "text": "Patrones aprendidos para elaborar un pronóstico." },
+        { "label": "Evaluación", "text": "Comparar predicciones con lo que después se observó." }
+      ],
+      "sections": [
+        {
+          "id": "tiempo-hito",
+          "title": "El avance ocurrió; tiene fecha y versión",
+          "paragraphs": [
+            "El 25 de febrero de 2025, ECMWF puso en operación AIFS Single. En julio incorporó su sistema de conjuntos, que produce varios escenarios. Su documentación registra una actualización de ambos a la versión 2 el 12 de mayo de 2026. Identificar la versión evita mezclar resultados de sistemas diferentes.",
+            "Según ECMWF, el sistema parte de condiciones iniciales construidas con observaciones y otros procesos meteorológicos. Un modelo entrenado con la evolución anterior del tiempo genera el pronóstico. Por eso, decir que usa IA no significa que pueda trabajar sin mediciones ni conocimientos meteorológicos."
+          ],
+          "sourceIndexes": [0, 1, 2],
+          "claimIds": ["TIE01", "TIE02"]
+        },
+        {
+          "id": "tiempo-comparacion",
+          "title": "Acertar no es una sola cosa",
+          "paragraphs": [
+            "Trotta y colaboradores estudiaron el posprocesamiento de AIFS en Australia para temperatura, punto de rocío y viento, usando datos de 2024. Analizaron ajustes estadísticos y combinaciones con pronósticos tradicionales. La investigación aporta una evaluación externa al desarrollador, con un contexto concreto.",
+            "Eso no responde automáticamente cómo funcionará en México, con una versión posterior o ante otro fenómeno. Para valorar un titular sobre precisión, habría que preguntar qué variable se midió, dónde, durante cuánto tiempo y frente a qué comparación. Una respuesta útil debe permitir reconstruir esa evaluación."
+          ],
+          "sourceIndexes": [3],
+          "claimIds": ["TIE03"]
+        },
+        {
+          "id": "tiempo-personas",
+          "title": "Del cálculo a una decisión hay más pasos",
+          "paragraphs": [
+            "La OMM sitúa la IA dentro de un sistema que necesita observaciones, modelos físicos, infraestructura y especialistas. También advierte que los beneficios dependen de la calidad de los datos y que los resultados pueden ser menos fiables en regiones con pocas observaciones o ante situaciones distintas de las usadas para entrenar.",
+            "Una pregunta para la clase: incluso si conocemos una probabilidad de lluvia, ¿qué información falta para decidir sobre una actividad? Podrían importar el lugar, las condiciones del terreno y las necesidades del grupo. Es un ejercicio de razonamiento: esta página no emite alertas ni sustituye a los servicios meteorológicos oficiales."
+          ],
+          "sourceIndexes": [4],
+          "claimIds": ["TIE04"]
+        }
+      ],
+      "glossary": [
+        { "term": "Pronóstico", "definition": "Estimación de condiciones futuras que puede compararse después con observaciones." },
+        { "term": "Conjunto de pronósticos", "definition": "Varios escenarios calculados con diferencias entre ellos para explorar futuros posibles." }
+      ],
+      "activity": {
+        "title": "¿Qué necesitarías para decir que acertó?",
+        "minutes": 8,
+        "materials": "Papel. Se puede realizar sin conexión usando un ejemplo inventado.",
+        "steps": [
+          "Escriban un pronóstico ficticio con lugar, hora y variable: por ejemplo, una temperatura para mañana en una localidad inventada.",
+          "Describan qué medición necesitarían después para compararlo. Acuerden qué significaría un error pequeño o grande en ese ejercicio.",
+          "Distingan tres cosas: una predicción, una observación y una decisión. Expliquen qué información adicional necesita cada una."
+        ],
+        "output": "Un ejemplo que permita comparar una predicción con una observación sin confundirlas.",
+        "care": "No planifiquen actividades de riesgo con este ejercicio ni lo conviertan en una alerta local."
+      },
+      "check": {
+        "question": "Si un modelo tuvo buenos resultados en Australia, ¿ya sabemos cómo funcionará en nuestra comunidad?",
+        "answer": "Todavía no. Necesitamos una evaluación pertinente para el lugar, la variable, el periodo y la versión del modelo. El estudio consultado tiene un alcance determinado y no valida por sí mismo un uso local."
+      },
+      "nextQuestion": "¿Cómo cambia nuestra confianza cuando conocemos el margen de error de una predicción?"
+    },
+    {
+      "storyId": "trabajo",
+      "slug": "ia-tareas-trabajo",
+      "title": "¿La IA hará tu trabajo? Primero hay que abrirlo por dentro.",
+      "deck": "Un oficio reúne tareas distintas. Mirarlas por separado permite hablar de cambios reales sin convertir una estimación de exposición en una sentencia sobre el empleo.",
+      "hook": "Imagina una jornada docente: preparar una explicación, escuchar una duda, revisar un texto y conversar con una familia. Todo forma parte del trabajo, pero no exige lo mismo. Este ejemplo es una propuesta para pensar; no describe una evaluación del desempeño de docentes.",
+      "takeaways": [
+        "La OIT estudia exposición a IA mediante tareas, juicio experto y estimaciones de capacidades.",
+        "Exposición, automatización y pérdida de empleo describen cosas distintas.",
+        "Los estudios globales o europeos no predicen el futuro laboral de una persona."
+      ],
+      "process": [
+        { "label": "El oficio", "text": "Un conjunto de responsabilidades." },
+        { "label": "Las tareas", "text": "Actividades que pueden cambiar de formas distintas." },
+        { "label": "Las decisiones", "text": "Qué probar, qué revisar y quién responde." }
+      ],
+      "sections": [
+        {
+          "id": "trabajo-exposicion",
+          "title": "Qué están midiendo los estudios",
+          "paragraphs": [
+            "La actualización de la OIT de 2025 combina información sobre tareas, participación de expertos y predicciones de IA para estimar exposición ocupacional a la IA generativa. Su resumen señala que una de cada cuatro personas trabajadoras en el mundo está en una ocupación con algún grado de exposición.",
+            "La cifra no significa que una de cada cuatro personas perderá su trabajo. Describe el alcance potencial de una tecnología sobre ciertas tareas de las ocupaciones analizadas. La OIT plantea que la transformación es más probable que la sustitución completa en la mayoría de los empleos, manteniendo la necesidad de participación humana."
+          ],
+          "sourceIndexes": [0],
+          "claimIds": ["TRA01", "TRA04"]
+        },
+        {
+          "id": "trabajo-tres-palabras",
+          "title": "Tres palabras que conviene separar",
+          "paragraphs": [
+            "Exposición pregunta si las capacidades de la IA se relacionan con actividades de un trabajo. Automatización se refiere a que ciertas tareas pasen a realizarse mediante tecnología. Un cambio observado en empleo requiere datos sobre lo que ocurrió a personas y puestos. La OCDE explica que los indicadores de exposición no equivalen a una probabilidad de automatización.",
+            "El documento de trabajo del JRC estudia capacidades, tareas y ocupaciones del mercado laboral europeo. Es otra forma de investigar exposición, con métodos y población propios. Su resumen no autoriza a convertir el resultado en un pronóstico para una escuela, un negocio o una comunidad de México."
+          ],
+          "sourceIndexes": [1, 2],
+          "claimIds": ["TRA02", "TRA03"]
+        },
+        {
+          "id": "trabajo-ejemplo",
+          "title": "Un mapa pequeño para una conversación grande",
+          "paragraphs": [
+            "Volvamos al ejemplo docente. Un equipo podría probar un borrador de explicación, revisar sus afirmaciones y decidir si sirve para su grupo. También podría concluir que el tiempo necesario para comprobarlo vuelve poco útil esa ayuda. Son posibilidades para comparar, no beneficios medidos en este proyecto.",
+            "La actividad debe permitir preguntar quién revisa el resultado, quién responde por los errores y qué tareas vale la pena conservar como aprendizaje. No pedimos que las personas describan temores laborales ni calificamos su disposición a usar IA. La finalidad es reconocer decisiones concretas detrás de una promesa tecnológica."
+          ],
+          "sourceIndexes": [],
+          "claimIds": [],
+          "example": true
+        }
+      ],
+      "glossary": [
+        { "term": "Exposición ocupacional", "definition": "Estimación de la relación entre capacidades de una tecnología y tareas de una ocupación; no equivale a despidos observados." },
+        { "term": "IA generativa", "definition": "Sistemas que producen contenido, como texto, imágenes o audio, a partir de patrones aprendidos." }
+      ],
+      "activity": {
+        "title": "Abre una tarea y decide qué revisar",
+        "minutes": 10,
+        "materials": "Papel y un caso inventado. No requiere usar una herramienta de IA.",
+        "steps": [
+          "Elijan una actividad ficticia, como preparar una explicación para una clase. Divídanla en tres tareas observables.",
+          "Para cada tarea, indiquen una ayuda que podrían probar y qué tendría que comprobar una persona antes de aceptar el resultado.",
+          "Acuerden quién sería responsable de la decisión y qué compararían para saber si la ayuda fue útil, incluyendo el tiempo de revisión."
+        ],
+        "output": "Un mapa de tres tareas con una condición de revisión para cada una.",
+        "care": "No incluyan datos de estudiantes, evaluaciones reales, salarios ni información de empleadores."
+      },
+      "check": {
+        "question": "¿El dato «una de cada cuatro personas está en una ocupación expuesta» significa que perderán su empleo?",
+        "answer": "No. La exposición es una estimación del alcance potencial sobre tareas. No es una medición de despidos ni una predicción individual. La cifra de la OIT tiene alcance global y se refiere a algún grado de exposición."
+      },
+      "nextQuestion": "¿Qué decisiones sobre la IA deberían discutirse con quienes realizan el trabajo?"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ Plantilla sin completar. No constituye una aprobación.
 | Campo | A completar por la persona revisora |
 | --- | --- |
 | Historia | voz, tiempo o trabajo |
-| Versión | Commit y SHA-256 de la pieza en afirmaciones.json |
+| Versión | Commit y SHA-256 de la pieza en afirmaciones.json o del artículo ampliado en articulos-afirmaciones.json |
 | Persona revisora | Nombre para crédito público y rol |
 | Competencia e independencia | Experiencia relevante, conflictos declarados y resolución |
 | Fecha y alcance | Científico, seguridad, pedagógico o accesibilidad |

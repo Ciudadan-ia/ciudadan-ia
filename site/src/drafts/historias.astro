@@ -1,0 +1,27 @@
+---
+import fullCss from '../styles/impact-draft.css?raw';
+import liteCss from '../styles/execution-lite.css?raw';
+import { articles, getStory, readingMinutes } from '../lib/divulgacion';
+const lite = Astro.url.pathname.startsWith('/lite/');
+const prefix = lite ? '/lite' : '';
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Historias para entender la IA · CiudadanIA · En revisión</title>
+    <style is:inline set:html={lite ? liteCss : fullCss} />
+  </head>
+  <body>
+    <a class="skip" href="#main">Saltar al contenido</a>
+    <div class="review">Borradores · revisión humana y traducciones pendientes · <a href={`${lite ? '' : '/lite'}/historias/`}>{lite ? 'Versión visual' : 'Lectura ligera'}</a></div>
+    <header class="shell"><div class="mast"><a class="brand" href={`${prefix}/portada/`}>ciudadan<span>IA</span></a><p>Ciencia que se cuenta.<br />Ideas que se comparten.</p></div><nav class="nav" aria-label="Historias"><a href={`${prefix}/portada/`}>← Portada propuesta</a><a href="#lecturas">Elige una historia</a><a href={`${prefix}/biblioteca/`}>Consulta las fuentes</a></nav></header>
+    <main id="main" class="shell">
+      <section class="section reading-intro"><p class="eyebrow">De una buena pregunta a una conversación</p><h1>La IA,<em> de cerca.</em></h1><p class="intro">Una voz familiar, el pronóstico de mañana o una tarea en el trabajo. Tres historias para descubrir qué cambia, cómo lo sabemos y qué falta entender.</p><p>Explicadores con fuentes y actividades para tu grupo. No son noticias de última hora.</p></section>
+      <section id="lecturas" class="section" aria-labelledby="lecturas-title"><h2 id="lecturas-title">Elige lo que te mueve.</h2><div class="reading-grid">{articles.map((article, i) => <article class={`reading-card reading-card-${article.storyId}`}><p class="reading-number" aria-hidden="true">0{i + 1}</p><p class="eyebrow">{getStory(article.storyId).topic}</p><h3><a href={`${prefix}/historias/${article.slug}/`}>{article.title}</a></h3><p>{article.deck}</p><p class="meta">{readingMinutes(article)} min de lectura · actividad de {article.activity.minutes} min · Borrador</p><a class="text-link" href={`${prefix}/historias/${article.slug}/`}>Leer y llevar a mi grupo →</a></article>)}</div></section>
+      <section class="section teaching"><div><p class="eyebrow">Para docentes y divulgadores</p><h2>Que el titular sea el principio.</h2><p>Después de leer, pide al grupo una afirmación que pueda respaldar, un límite que deba conservar y una pregunta que aún no tenga respuesta.</p></div><div><h3>Sin conexión también se conversa.</h3><p>Las actividades se pueden realizar en papel y los artículos tienen versión ligera. Puedes usar la función de impresión del navegador para preparar una lectura; las propuestas siguen pendientes de validación pedagógica.</p><a href={`${prefix}/aprender/`}>Explorar lecciones en revisión →</a></div></section>
+    </main>
+    <footer class="shell"><p>Síntesis y actividades asistidas por IA · revisión científica, educativa y lingüística pendientes. Objetivo de salida conjunta: español, maya y náhuatl.</p><a href={`${prefix}/portada/`}>Volver a la portada</a></footer>
+  </body>
+</html>
