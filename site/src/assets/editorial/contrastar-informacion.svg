@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="des-art-title des-art-desc">
+  <title id="des-art-title">Mirar una afirmación con lupa</title>
+  <desc id="des-art-desc">Ilustración conceptual con tarjetas de afirmación, fuente y contexto, conectadas por una lupa. No son noticias reales ni una demostración de detección automática.</desc>
+  <rect width="960" height="540" fill="#eee1db"/>
+  <circle cx="478" cy="275" r="225" fill="none" stroke="#d7c4bb" stroke-width="2"/>
+  <circle cx="478" cy="275" r="180" fill="none" stroke="#d7c4bb" stroke-width="2"/>
+  <g transform="rotate(-9 260 250)">
+    <rect x="70" y="87" width="335" height="341" rx="12" fill="#faf4ee" stroke="#302923" stroke-width="3"/>
+    <rect x="96" y="113" width="282" height="38" fill="#a81d54"/>
+    <path d="M108 199 H345 M108 236 H305 M108 273 H328" stroke="#cbb8ad" stroke-width="13" stroke-linecap="round"/>
+    <text x="236" y="370" text-anchor="middle" font-family="system-ui,sans-serif" font-size="35" fill="#302923">Afirmación</text>
+  </g>
+  <path d="M412 184 H534 M422 350 H544" stroke="#a81d54" stroke-width="5" stroke-dasharray="9 12"/>
+  <rect x="610" y="85" width="270" height="150" rx="12" fill="#335548"/>
+  <text x="745" y="177" text-anchor="middle" font-family="system-ui,sans-serif" font-size="41" fill="#fff">Fuente</text>
+  <rect x="612" y="290" width="270" height="150" rx="12" fill="#faf4ee" stroke="#302923" stroke-width="3"/>
+  <text x="747" y="380" text-anchor="middle" font-family="system-ui,sans-serif" font-size="37" fill="#302923">Contexto</text>
+  <circle cx="490" cy="260" r="97" fill="#faf4ee" fill-opacity=".85" stroke="#302923" stroke-width="16"/>
+  <path d="m555 334 84 93" stroke="#302923" stroke-width="32" stroke-linecap="round"/>
+  <text x="489" y="288" text-anchor="middle" font-family="Georgia,serif" font-size="97" fill="#a81d54">?</text>
+</svg>

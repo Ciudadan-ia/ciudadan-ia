@@ -2,14 +2,16 @@
 import fullCss from '../styles/impact-draft.css?raw';
 import liteCss from '../styles/execution-lite.css?raw';
 import { articles, checkedAt, getStory, readingMinutes } from '../lib/divulgacion';
+import ArticleIllustration from '../components/ArticleIllustration.astro';
 const lite = Astro.url.pathname.startsWith('/lite/');
 const prefix = lite ? '/lite' : '';
 const slug = Astro.url.pathname.split('/').filter(Boolean).at(-1);
 const article = articles.find((item) => item.slug === slug);
 if (!article) throw new Error(`Artículo de revisión no encontrado: ${slug}`);
 const story = getStory(article.storyId);
-const related = articles.filter((item) => item.slug !== article.slug);
+const related = articles.filter((item) => item.slug !== article.slug).slice(-3);
 const fullPath = `/historias/${article.slug}/`;
+const sourceNote = (source: object) => 'note' in source ? String(source.note) : '';
 ---
 <!doctype html>
 <html lang="es">
@@ -30,6 +32,7 @@ const fullPath = `/historias/${article.slug}/`;
         <div class="article-layout">
           <aside class="article-map" aria-labelledby="mapa-title"><h2 id="mapa-title">En esta historia</h2><nav aria-label="Secciones del artículo">{article.sections.map(section => <a href={`#${section.id}`}>{section.title}</a>)}<a href="#palabras">Dos palabras para entender</a><a href="#actividad">Actividad para tu grupo</a><a href="#fuentes">Fuentes y límites</a></nav></aside>
           <div class="article-body">
+            {!lite && article.image && <ArticleIllustration kind={article.image.kind} caption={article.image.caption} />}
             <p class="article-hook">{article.hook}</p>
             <section class="takeaways" aria-labelledby="ideas-title"><p class="eyebrow">Antes de seguir</p><h2 id="ideas-title">Tres ideas para llevarte</h2><ul>{article.takeaways.map(item => <li>{item}</li>)}</ul><a class="text-link" href="#fuentes">Ver en qué fuentes se apoyan ↓</a></section>
             <div class="process" role="group" aria-label="Esquema conceptual, no datos medidos">{article.process.map((step, i) => <div><span class="step-number" aria-hidden="true">0{i + 1}</span><strong>{step.label}</strong><p>{step.text}</p></div>)}</div>
@@ -37,7 +40,7 @@ const fullPath = `/historias/${article.slug}/`;
             <section class="article-section glossary-box" id="palabras" aria-labelledby="palabras-title"><h2 id="palabras-title">Dos palabras para entender</h2><dl>{article.glossary.map(item => <><dt>{item.term}</dt><dd>{item.definition}</dd></>)}</dl></section>
             <section class="article-section teacher-sheet" id="actividad" aria-labelledby="actividad-title"><p class="eyebrow">Para llevar a tu comunidad · propuesta por validar</p><h2 id="actividad-title">{article.activity.title}</h2><p class="meta">{article.activity.minutes} minutos orientativos · {article.activity.materials}</p><ol>{article.activity.steps.map(step => <li>{step}</li>)}</ol><p><strong>Al terminar:</strong> {article.activity.output}</p><p>{article.activity.care}</p><p class="meta">Imprimible con la función de impresión del navegador. Revisar y adaptar con docentes y hablantes antes de usarlo como material validado.</p></section>
             <section class="article-section" aria-labelledby="pregunta-title"><h2 id="pregunta-title">Haz una pausa. ¿Cómo lo explicarías?</h2><details class="comprehension"><summary>{article.check.question}</summary><p>{article.check.answer}</p><p class="meta">Respuesta orientativa para conversar, no una evaluación de personas.</p></details></section>
-            <section class="article-section" id="fuentes" aria-labelledby="fuentes-title"><p class="eyebrow">Abrir, comprobar, preguntar</p><h2 id="fuentes-title">Fuentes y alcance</h2><p>{story.limit}</p><p class="meta">Enlaces y secciones citadas consultados el 28 oct 2026. Las fechas de publicación figuran en cada referencia. Una consulta documental no sustituye la revisión humana.</p><ol class="article-sources">{story.sources.map((source, i) => <li id={`fuente-${i + 1}`}><a href={source.url}>{source.name} ↗</a><small>{source.type} · {source.date}</small>{source.name.startsWith('JRC') && <small>Se consultó la ficha y el resumen; no el documento completo.</small>}{source.name.startsWith('Trotta') && <small>Versión arXiv v2 consultada; no la versión editorial de la revista.</small>}</li>)}</ol></section>
+            <section class="article-section" id="fuentes" aria-labelledby="fuentes-title"><p class="eyebrow">Abrir, comprobar, preguntar</p><h2 id="fuentes-title">Fuentes y alcance</h2><p>{story.limit}</p><p class="meta">Enlaces y secciones citadas consultados el 28 oct 2026. Las fechas de publicación figuran en cada referencia. Una consulta documental no sustituye la revisión humana.</p><ol class="article-sources">{story.sources.map((source, i) => <li id={`fuente-${i + 1}`}><a href={source.url}>{source.name} ↗</a><small>{source.type} · {source.date}</small>{sourceNote(source) && <small>{sourceNote(source)}</small>}{source.name.startsWith('JRC') && <small>Se consultó la ficha y el resumen; no el documento completo.</small>}{source.name.startsWith('Trotta') && <small>Versión arXiv v2 consultada; no la versión editorial de la revista.</small>}</li>)}</ol></section>
             <aside class="learning"><p><strong>Una pregunta para seguir</strong></p><p>{article.nextQuestion}</p><a href={`${prefix}/aprender/#${story.lesson}`}>{story.lessonTitle} · lección en revisión →</a><p class="meta">Español en borrador. Maya y náhuatl pendientes de traducción y validación; audio pendiente.</p></aside>
           </div>
         </div>

@@ -10,6 +10,9 @@ assert(existsSync(join(dist, 'index.html')), 'Falta la compilación del sitio');
 const preview = draftPreviewEnabled();
 const articles = JSON.parse(readFileSync(new URL('../src/data/articulos-divulgacion.json', import.meta.url), 'utf8'));
 const portada = JSON.parse(readFileSync(new URL('../src/data/portada-propuesta.json', import.meta.url), 'utf8'));
+const additional = JSON.parse(readFileSync(new URL('../src/data/articulos-fuentes.json', import.meta.url), 'utf8'));
+const allStories = [...portada.stories, ...additional.stories];
+const media = JSON.parse(readFileSync(new URL('../../editorial/revision-portada/articulos-medios.json', import.meta.url), 'utf8'));
 const dossier = JSON.parse(readFileSync(new URL('../../editorial/revision-portada/articulos-afirmaciones.json', import.meta.url), 'utf8'));
 const canonical = (value) => Array.isArray(value) ? value.map(canonical)
   : value && typeof value === 'object'
@@ -27,7 +30,7 @@ const claims = JSON.parse(readFileSync(new URL('../../editorial/revision-portada
 const claimIds = new Set(claims.entries.flatMap((entry) => entry.claims.map((claim) => claim.id)));
 assert.equal(new Set(articles.articles.map((article) => article.slug)).size, articles.articles.length);
 for (const article of articles.articles) {
-  const story = portada.stories.find((item) => item.id === article.storyId);
+  const story = allStories.find((item) => item.id === article.storyId);
   assert(story, 'Artículo sin historia y fuentes');
   assert(story.sources.length >= 3);
   assert(DRAFT_ROUTES.includes(`historias/${article.slug}`), 'Artículo sin ruta de revisión');
@@ -35,6 +38,14 @@ for (const article of articles.articles) {
   assert(record && record.contentSha256 === sha(JSON.stringify(canonical(article))), 'Versión del artículo sin expediente');
   assert.equal(record.humanReview.decision, null);
   assert.equal(record.humanReview.approvedContentSha256, null);
+  if (article.image) {
+    const image = media.entries.find((entry) => entry.kind === article.image.kind);
+    assert(image && image.caption === article.image.caption, 'Ilustración sin registro de procedencia');
+    const svg = readFileSync(new URL(`../${image.sourcePath}`, import.meta.url), 'utf8');
+    assert.equal(sha(svg), image.sha256, 'Imagen modificada sin actualizar expediente');
+    assert(svg.includes('<title') && svg.includes('<desc') && svg.includes('role="img"'), 'Falta alternativa de imagen');
+    assert(!/<script\b|<image\b|https?:\/\/(?!www\.w3\.org)/i.test(svg), 'Recurso externo o script inesperado en imagen');
+  }
   for (const section of article.sections) {
     assert(section.sourceIndexes.length > 0 || section.example === true, 'Sección factual sin referencias');
     assert(section.sourceIndexes.every((index) => Number.isInteger(index) && story.sources[index]), 'Referencia inexistente');
@@ -44,7 +55,8 @@ for (const article of articles.articles) {
     for (const prefix of ['', 'lite/']) {
       const html = readFileSync(join(dist, `${prefix}historias/${article.slug}/index.html`), 'utf8');
       assert(html.includes(article.deck) && html.includes(article.sections[0].paragraphs[0]), 'Lectura incompleta o divergente');
-      if (prefix) assert(!/<(?:img|script)\b/i.test(html), 'Artículo ligero con imagen o script');
+      if (prefix) assert(!/<(?:img|svg|script)\b/i.test(html), 'Artículo ligero con imagen o script');
+      if (!prefix && article.image) assert(html.includes('<svg') && html.includes(article.image.caption), 'Falta ilustración o crédito de la imagen');
       for (const match of html.matchAll(/href="(#[^"]+|\/[^"?]*#[^"]+)"/g)) {
         const url = new URL(match[1], `https://review.invalid/${prefix}historias/${article.slug}/`);
         const target = readFileSync(join(dist, decodeURIComponent(url.pathname), 'index.html'), 'utf8');
@@ -106,7 +118,9 @@ if (!preview) {
   const pendingText = [...[...data.lessons, ...data.faqs, ...data.news].map((item) => item.body),
     ...portada.stories.flatMap((story) => [story.title, story.summary, story.evidence,
       story.limit, story.question, story.activity]),
+    ...additional.stories.map((story) => story.limit),
     ...articles.articles.flatMap((article) => [article.title, article.deck, article.hook,
+      ...(article.image ? [article.image.caption] : []),
       ...article.sections.flatMap((section) => section.paragraphs), ...article.activity.steps])];
   for (const file of files.filter((name) => /\.(html|js|json)$/.test(name))) {
     const text = readFileSync(file, 'utf8');

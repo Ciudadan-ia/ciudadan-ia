@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="edu-art-title edu-art-desc">
+  <title id="edu-art-title">Resolver una tarea y comprenderla son preguntas distintas</title>
+  <desc id="edu-art-desc">Ilustración conceptual de un cuaderno abierto, una respuesta en pantalla y una tarjeta que pregunta por qué. No muestra estudiantes ni resultados de un estudio.</desc>
+  <rect width="960" height="540" fill="#e4ebe6"/>
+  <circle cx="730" cy="140" r="210" fill="#d4dfd6"/>
+  <path d="M50 405 Q230 310 450 430 T930 410" fill="none" stroke="#c3d0c5" stroke-width="2"/>
+  <g transform="rotate(-7 285 290)">
+    <path d="M95 155 Q190 119 285 164 Q380 119 475 155 V421 Q380 387 285 432 Q190 387 95 421Z" fill="#faf4ee" stroke="#302923" stroke-width="5"/>
+    <path d="M285 164 V432" stroke="#302923" stroke-width="4"/>
+    <path d="M130 213 H242 M130 249 H225 M130 285 H244 M130 321 H211 M327 212 H436 M327 248 H424" stroke="#9eaa9f" stroke-width="9" stroke-linecap="round"/>
+    <circle cx="379" cy="326" r="39" fill="#335548"/>
+    <path d="m359 326 15 15 27-32" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="rotate(5 700 230)">
+    <rect x="554" y="80" width="305" height="230" rx="18" fill="#302923"/>
+    <rect x="569" y="96" width="275" height="198" rx="6" fill="#faf4ee"/>
+    <path d="M606 139 H789 M606 172 H749 M606 205 H780" stroke="#b9c7bb" stroke-width="10" stroke-linecap="round"/>
+    <rect x="600" y="236" width="167" height="31" rx="15" fill="#d4dfd6"/>
+    <path d="M535 310 H878 L904 336 H509Z" fill="#302923"/>
+  </g>
+  <g transform="rotate(-4 690 414)">
+    <path d="M550 356 H837 V458 H681 L642 489 V458 H550Z" fill="#a81d54"/>
+    <text x="693" y="421" text-anchor="middle" font-family="system-ui,sans-serif" font-size="42" font-weight="650" fill="#fff">¿Por qué?</text>
+  </g>
+</svg>

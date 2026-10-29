@@ -1,10 +1,11 @@
 import data from '../data/articulos-divulgacion.json';
 import portada from '../data/portada-propuesta.json';
+import additional from '../data/articulos-fuentes.json';
 
 export const articles = data.articles;
 export const checkedAt = data.checkedAt;
 export const getStory = (id: string) => {
-  const story = portada.stories.find((item) => item.id === id);
+  const story = [...portada.stories, ...additional.stories].find((item) => item.id === id);
   if (!story) throw new Error(`Historia sin expediente: ${id}`);
   return story;
 };

@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-28",
+  "humanApproval": null,
+  "entries": [
+    {
+      "kind": "educacion",
+      "sourcePath": "src/assets/editorial/aprender-con-ia.svg",
+      "sha256": "a54a66002a55837f75ffba662062a0c4d4fd2da5c53a16d3d5f2a6e9a40868b5",
+      "method": "Ilustración vectorial original compuesta en SVG; sin materiales de terceros",
+      "caption": "Ilustración editorial original · una solución y una pista abren caminos distintos. No muestra participantes ni datos de los estudios.",
+      "represents": "Esquema conceptual; no personas, comunidades, resultados medidos ni traducciones reales",
+      "humanApproval": null
+    },
+    {
+      "kind": "desinformacion",
+      "sourcePath": "src/assets/editorial/contrastar-informacion.svg",
+      "sha256": "9b0d56f943a21a80274fc591303ffa650393e1e680d59a1bfff3134481a57f5c",
+      "method": "Ilustración vectorial original compuesta en SVG; sin materiales de terceros",
+      "caption": "Ilustración editorial original · una lupa conecta afirmación, fuente y contexto. Las tarjetas son esquemáticas, no publicaciones reales.",
+      "represents": "Esquema conceptual; no personas, comunidades, resultados medidos ni traducciones reales",
+      "humanApproval": null
+    },
+    {
+      "kind": "lenguas",
+      "sourcePath": "src/assets/editorial/lenguas-y-comunidad.svg",
+      "sha256": "0d85389ff50a8ec8926a1bc39d9e95ad53504474514a0a7ef0452e45575d9112",
+      "method": "Ilustración vectorial original compuesta en SVG; sin materiales de terceros",
+      "caption": "Ilustración editorial original · conversación entre personas y una propuesta de traducción. No reproduce palabras en lenguas indígenas ni representa a una comunidad.",
+      "represents": "Esquema conceptual; no personas, comunidades, resultados medidos ni traducciones reales",
+      "humanApproval": null
+    }
+  ]
+}

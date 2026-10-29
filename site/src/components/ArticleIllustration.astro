@@ -1,0 +1,10 @@
+---
+import education from '../assets/editorial/aprender-con-ia.svg?raw';
+import information from '../assets/editorial/contrastar-informacion.svg?raw';
+import languages from '../assets/editorial/lenguas-y-comunidad.svg?raw';
+interface Props { kind: string; caption: string; }
+const { kind, caption } = Astro.props;
+const illustrations: Record<string, string> = { educacion: education, desinformacion: information, lenguas: languages };
+if (!illustrations[kind]) throw new Error(`Ilustración editorial no registrada: ${kind}`);
+---
+<figure class="article-illustration"><Fragment set:html={illustrations[kind]} /><figcaption>{caption}</figcaption></figure>

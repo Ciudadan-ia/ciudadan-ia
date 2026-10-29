@@ -4,7 +4,9 @@ import photo from '../assets/editorial/milton-noaa-2024.png';
 import data from '../data/portada-propuesta.json';
 import fullCss from '../styles/impact-draft.css?raw';
 import liteCss from '../styles/execution-lite.css?raw';
-import { articles, readingMinutes as articleReadingMinutes } from '../lib/divulgacion';
+import { articles, getStory, readingMinutes as articleReadingMinutes } from '../lib/divulgacion';
+import ArticleIllustration from '../components/ArticleIllustration.astro';
+const newArticles = articles.filter(article => article.image);
 const lite = Astro.url.pathname.startsWith('/lite/');
 const prefix = lite ? '/lite' : '';
 const [voice, weather, work] = data.stories;
@@ -54,7 +56,7 @@ const readingMinutes = (story: typeof voice) => Math.max(1, Math.ceil(
       </article>
       <aside class="entry"><p><strong>Para docentes y divulgadores.</strong> Empieza con una historia que se sienta cercana. Abre una pregunta. Después, explica la IA que hay detrás.</p><a class="text-link" href="#guias">Prepara una conversación de 5 minutos →</a></aside>
       <section id="historias" class="section" aria-labelledby="historias-heading">
-        <div class="section-head"><h2 id="historias-heading">El mundo ya está cambiando.<br />Vamos a entenderlo.</h2><p>Asombro, oportunidades y riesgos cercanos. Explicadores con contexto, no noticias de última hora. <a href={`${prefix}/historias/`}>Explorar las tres lecturas →</a></p></div>
+        <div class="section-head"><h2 id="historias-heading">El mundo ya está cambiando.<br />Vamos a entenderlo.</h2><p>Asombro, oportunidades y riesgos cercanos. Explicadores con contexto, no noticias de última hora. <a href={`${prefix}/historias/`}>Explorar las seis lecturas →</a></p></div>
         <div class="grid">
           <article class="story-card">
             {!lite && <figure class="card-image"><Image src={photo} alt="Vista satelital del huracán Milton sobre el golfo de México, el 9 de octubre de 2024." width={640} widths={[320,640]} sizes="(max-width:720px) 100vw, 550px" format="webp" quality={72} loading="lazy" /><figcaption>Archivo: Milton, 9 oct 2024 · NOAA / USGS · Dominio público. La imagen no muestra una predicción de IA. <a href="https://www.usgs.gov/media/images/hurricane-milton-noaa-satellite-image">Origen y crédito</a>.</figcaption></figure>}
@@ -66,6 +68,8 @@ const readingMinutes = (story: typeof voice) => Math.max(1, Math.ceil(
           </article>
         </div>
       </section>
+      <section class="section" aria-labelledby="nuevas-heading"><div class="section-head"><h2 id="nuevas-heading">Aprender. Contrastar.<br />Hacernos escuchar.</h2><p>Tres lecturas nuevas para conversar sobre educación, desinformación y lenguas indígenas. Borradores con investigación y actividades.</p></div><div class="reading-grid">{newArticles.map(article => <article class={`reading-card reading-card-${article.storyId}`}>
+        {!lite && article.image && <ArticleIllustration kind={article.image.kind} caption={article.image.caption} />}<p class="eyebrow">{getStory(article.storyId).topic}</p><h3><a href={`${prefix}/historias/${article.slug}/`}>{article.title}</a></h3><p>{article.deck}</p><p class="meta">{articleReadingMinutes(article)} min de lectura · actividad de {article.activity.minutes} min · Borrador</p><a class="text-link" href={`${prefix}/historias/${article.slug}/`}>Leer y llevar a mi grupo →</a></article>)}</div></section>
       <section class="section" id="guias" aria-labelledby="guias-heading">
         <div class="teaching">
           <div><p class="eyebrow">Del asombro al aprendizaje</p><h2 id="guias-heading">Una historia puede abrir toda una clase.</h2><p>No hace falta empezar con palabras difíciles. Lleva esta secuencia a una conversación breve y adapta los ejemplos con tu comunidad.</p><a class="button" href={`${prefix}/aprender/`}>Explorar las 10 lecciones en revisión →</a></div>

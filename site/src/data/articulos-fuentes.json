@@ -1,0 +1,124 @@
+{
+  "checkedAt": "2026-10-28",
+  "stories": [
+    {
+      "id": "educacion",
+      "topic": "Educación · Aprender con criterio",
+      "limit": "Los ensayos estudian matemáticas en una secundaria de Turquía y contenidos de física universitaria en Harvard. Usan diseños y evaluaciones distintos: no permiten declarar que toda IA mejora o perjudica el aprendizaje ni extrapolar sus resultados a escuelas mexicanas o enseñanza en maya y náhuatl.",
+      "lesson": "L06",
+      "lessonTitle": "Pedir ayuda con claridad",
+      "sources": [
+        {
+          "name": "Bastani y colaboradores · aprendizaje con y sin apoyos de IA",
+          "url": "https://www.pnas.org/doi/10.1073/pnas.2422633122",
+          "date": "2025-06-25",
+          "type": "Investigación primaria · ensayo aleatorizado; PNAS",
+          "opened": true,
+          "lastCheckedAt": "2026-10-28"
+        },
+        {
+          "name": "Kestin y colaboradores · tutor diseñado para física universitaria",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12179260/",
+          "date": "2025-06-03",
+          "type": "Investigación primaria · ensayo aleatorizado; Scientific Reports",
+          "opened": true,
+          "lastCheckedAt": "2026-10-28",
+          "note": "Texto abierto consultado en PMC; no se reproducen figuras del estudio."
+        },
+        {
+          "name": "UNESCO · orientación sobre IA generativa en educación",
+          "url": "https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research",
+          "date": "2023-09-07",
+          "type": "Guía institucional · no es un ensayo de eficacia",
+          "opened": true,
+          "lastCheckedAt": "2026-10-28"
+        },
+        {
+          "name": "PNAS · corrección del artículo de Bastani y colaboradores",
+          "url": "https://www.pnas.org/doi/10.1073/pnas.2518204122",
+          "date": "2025-08-20",
+          "type": "Corrección editorial",
+          "opened": true,
+          "lastCheckedAt": "2026-10-28",
+          "note": "Corrige una afiliación de autor. La versión en línea fue corregida; la nota no comunica cambios en los resultados."
+        }
+      ]
+    },
+    {
+      "id": "desinformacion",
+      "topic": "Información · Lo convincente también se comprueba",
+      "limit": "El experimento con GPT-3 empleó textos breves y participantes angloparlantes reclutados en Facebook. No mide la credulidad de comunidades mexicanas ni el comportamiento de modelos actuales. El estudio de alfabetización de 2020 es anterior a la IA generativa de uso masivo y encontró efectos distintos entre poblaciones.",
+      "lesson": "L08",
+      "lessonTitle": "Información que merece compartirse",
+      "sources": [
+        {
+          "name": "Spitale, Biller-Andorno y Germani · GPT-3 e información falsa",
+          "url": "https://arxiv.org/abs/2301.11924",
+          "date": "2023",
+          "type": "Investigación primaria · resumen de autores en repositorio",
+          "opened": true,
+          "lastCheckedAt": "2026-10-28",
+          "note": "Publicado en Science Advances, DOI 10.1126/sciadv.adh1850. Se consultó el resumen de los autores y los resultados indexados; el acceso al editor respondió 403."
+        },
+        {
+          "name": "Guess y colaboradores · intervención de alfabetización mediática",
+          "url": "https://www.pnas.org/content/pnas/117/27/15536.full.pdf",
+          "date": "2020-06-22",
+          "type": "Investigación primaria · experimentos; PNAS",
+          "opened": true,
+          "lastCheckedAt": "2026-10-28"
+        },
+        {
+          "name": "NIST · procedencia, detección y contenido sintético",
+          "url": "https://www.nist.gov/publications/reducing-risks-posed-synthetic-content-overview-technical-approaches-digital-content",
+          "date": "2024-11-20",
+          "type": "Informe técnico · NIST AI 100-4",
+          "opened": true,
+          "lastCheckedAt": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "id": "lenguas",
+      "topic": "Lenguas indígenas · Tecnología con comunidad",
+      "limit": "AmericasNLP evalúa tareas, sistemas y conjuntos de datos concretos. La revisión humana de 2024 descrita aquí corresponde al bribri; no valida traducciones al maya o al náhuatl. Los sistemas de 2025 se presentan como experimentales. Las variedades y las personas validadoras de CiudadanIA siguen por acordar.",
+      "lesson": "L09",
+      "lessonTitle": "Explicar sin dejar a nadie fuera",
+      "sources": [
+        {
+          "name": "AmericasNLP 2025 · traducción, materiales educativos y evaluación",
+          "url": "https://aclanthology.org/2025.americasnlp-1.16.pdf",
+          "date": "2025-05-04",
+          "type": "Investigación primaria · actas de taller ACL",
+          "opened": true,
+          "lastCheckedAt": "2026-10-28",
+          "note": "PDF consultado, incluida la declaración ética. La ficha y el PDF difieren en el conteo de equipos; no se usa esa cifra en el artículo."
+        },
+        {
+          "name": "AmericasNLP 2024 · traducción y evaluación humana en bribri",
+          "url": "https://aclanthology.org/2024.americasnlp-1.28/",
+          "date": "2024-06",
+          "type": "Investigación primaria · ficha y resumen de actas ACL",
+          "opened": true,
+          "lastCheckedAt": "2026-10-28"
+        },
+        {
+          "name": "Carroll y colaboradores · principios CARE de gobernanza de datos indígenas",
+          "url": "https://www.gida-global.org/s/dsj-1158_carroll.pdf",
+          "date": "2020",
+          "type": "Artículo conceptual · Data Science Journal; copia en GIDA",
+          "opened": true,
+          "lastCheckedAt": "2026-10-28"
+        },
+        {
+          "name": "GIDA · marco de los principios CARE",
+          "url": "https://www.gida-global.org/careprinciples",
+          "date": "Consultado: 2026-10-28",
+          "type": "Marco de gobernanza · misma procedencia conceptual que el artículo CARE",
+          "opened": true,
+          "lastCheckedAt": "2026-10-28"
+        }
+      ]
+    }
+  ]
+}

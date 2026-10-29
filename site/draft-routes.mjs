@@ -1,6 +1,8 @@
 // Solo se incorporan al sitio con una compilación explícita de revisión.
 export const ARTICLE_DRAFT_ROUTES = Object.freeze([
   'historias/voz-clonada', 'historias/ia-pronostico-tiempo', 'historias/ia-tareas-trabajo',
+  'historias/ia-educacion-aprender', 'historias/ia-desinformacion-convincente',
+  'historias/ia-lenguas-indigenas-traduccion',
 ]);
 export const BASE_DRAFT_ROUTES = Object.freeze([
   'v1', 'aprender', 'faq', 'noticias', 'biblioteca', 'editorial-demo', 'portada',
