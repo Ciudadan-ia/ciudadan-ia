@@ -7,7 +7,7 @@ const lite = Astro.url.pathname.startsWith('/lite/');
 const prefix = lite ? '/lite' : '';
 const fullPath = Astro.url.pathname.replace(/^\/lite\//, '/');
 const switchPath = lite ? fullPath : `/lite${fullPath}`;
-const links = [['portada', 'Portada propuesta'], ['v1', 'Inicio V1'], ['aprender', 'Aprender'], ['faq', 'Preguntas'],
+const links = [['portada', 'Portada propuesta'], ['historias', 'Historias'], ['v1', 'Inicio V1'], ['aprender', 'Aprender'], ['faq', 'Preguntas'],
   ['noticias', 'Agenda'], ['biblioteca', 'Biblioteca'], ['editorial-demo', 'Taller editorial']];
 ---
 <!doctype html>

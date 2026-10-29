@@ -2,11 +2,70 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 import { DRAFT_ROUTES, draftPreviewEnabled } from '../draft-routes.mjs';
+import { createHash } from 'node:crypto';
 
 const dist = resolve(new URL('../', import.meta.url).pathname,
   process.env.CIUDADANIA_BUILD_DIRECTORY || 'dist');
 assert(existsSync(join(dist, 'index.html')), 'Falta la compilación del sitio');
 const preview = draftPreviewEnabled();
+const articles = JSON.parse(readFileSync(new URL('../src/data/articulos-divulgacion.json', import.meta.url), 'utf8'));
+const portada = JSON.parse(readFileSync(new URL('../src/data/portada-propuesta.json', import.meta.url), 'utf8'));
+const additional = JSON.parse(readFileSync(new URL('../src/data/articulos-fuentes.json', import.meta.url), 'utf8'));
+const allStories = [...portada.stories, ...additional.stories];
+const media = JSON.parse(readFileSync(new URL('../../editorial/revision-portada/articulos-medios.json', import.meta.url), 'utf8'));
+const dossier = JSON.parse(readFileSync(new URL('../../editorial/revision-portada/articulos-afirmaciones.json', import.meta.url), 'utf8'));
+const canonical = (value) => Array.isArray(value) ? value.map(canonical)
+  : value && typeof value === 'object'
+    ? Object.fromEntries(Object.keys(value).sort().map((key) => [key, canonical(value[key])])) : value;
+const sha = (text) => createHash('sha256').update(text).digest('hex');
+assert.equal(articles.status, 'draft');
+assert.equal(articles.publicationApproved, false);
+assert.equal(articles.humanReview, 'pending');
+assert.equal(articles.translationValidation, 'pending');
+assert.equal(dossier.publicationApproved, false);
+assert.equal(dossier.humanScientificReviewsCompleted, 0);
+assert.equal(sha(readFileSync(new URL('../src/drafts/historia.astro', import.meta.url))), dossier.renderTemplateSha256,
+  'Cambió la plantilla: actualizar expediente y reabrir revisión');
+const claims = JSON.parse(readFileSync(new URL('../../editorial/revision-portada/afirmaciones.json', import.meta.url), 'utf8'));
+const claimIds = new Set(claims.entries.flatMap((entry) => entry.claims.map((claim) => claim.id)));
+assert.equal(new Set(articles.articles.map((article) => article.slug)).size, articles.articles.length);
+for (const article of articles.articles) {
+  const story = allStories.find((item) => item.id === article.storyId);
+  assert(story, 'Artículo sin historia y fuentes');
+  assert(story.sources.length >= 3);
+  assert(DRAFT_ROUTES.includes(`historias/${article.slug}`), 'Artículo sin ruta de revisión');
+  const record = dossier.entries.find((entry) => entry.storyId === article.storyId);
+  assert(record && record.contentSha256 === sha(JSON.stringify(canonical(article))), 'Versión del artículo sin expediente');
+  assert.equal(record.humanReview.decision, null);
+  assert.equal(record.humanReview.approvedContentSha256, null);
+  if (article.image) {
+    const image = media.entries.find((entry) => entry.kind === article.image.kind);
+    assert(image && image.caption === article.image.caption, 'Ilustración sin registro de procedencia');
+    const svg = readFileSync(new URL(`../${image.sourcePath}`, import.meta.url), 'utf8');
+    assert.equal(sha(svg), image.sha256, 'Imagen modificada sin actualizar expediente');
+    assert(svg.includes('<title') && svg.includes('<desc') && svg.includes('role="img"'), 'Falta alternativa de imagen');
+    assert(!/<script\b|<image\b|https?:\/\/(?!www\.w3\.org)/i.test(svg), 'Recurso externo o script inesperado en imagen');
+  }
+  for (const section of article.sections) {
+    assert(section.sourceIndexes.length > 0 || section.example === true, 'Sección factual sin referencias');
+    assert(section.sourceIndexes.every((index) => Number.isInteger(index) && story.sources[index]), 'Referencia inexistente');
+    assert(section.claimIds.every((id) => claimIds.has(id)), 'Afirmación sin registro');
+  }
+  if (preview) {
+    for (const prefix of ['', 'lite/']) {
+      const html = readFileSync(join(dist, `${prefix}historias/${article.slug}/index.html`), 'utf8');
+      assert(html.includes(article.deck) && html.includes(article.sections[0].paragraphs[0]), 'Lectura incompleta o divergente');
+      if (prefix) assert(!/<(?:img|svg|script)\b/i.test(html), 'Artículo ligero con imagen o script');
+      if (!prefix && article.image) assert(html.includes('<svg') && html.includes(article.image.caption), 'Falta ilustración o crédito de la imagen');
+      for (const match of html.matchAll(/href="(#[^"]+|\/[^"?]*#[^"]+)"/g)) {
+        const url = new URL(match[1], `https://review.invalid/${prefix}historias/${article.slug}/`);
+        const target = readFileSync(join(dist, decodeURIComponent(url.pathname), 'index.html'), 'utf8');
+        const id = decodeURIComponent(url.hash.slice(1));
+        assert(target.includes(`id="${id}"`), `Fragmento sin destino: ${match[1]}`);
+      }
+    }
+  }
+}
 for (const slug of DRAFT_ROUTES) {
   const html = join(dist, slug, 'index.html');
   assert.equal(existsSync(html), preview, `${slug}: salida inesperada para este modo`);
@@ -54,12 +113,15 @@ for (const file of files.filter((name) => /sitemap.*\.xml$/.test(name))) {
 }
 if (!preview) {
   const data = JSON.parse(readFileSync(new URL('../src/data/ejecucion-v1.json', import.meta.url), 'utf8'));
-  const portada = JSON.parse(readFileSync(new URL('../src/data/portada-propuesta.json', import.meta.url), 'utf8'));
   assert.equal(portada.status, 'draft');
   assert.equal(portada.publicationApproved, false);
   const pendingText = [...[...data.lessons, ...data.faqs, ...data.news].map((item) => item.body),
     ...portada.stories.flatMap((story) => [story.title, story.summary, story.evidence,
-      story.limit, story.question, story.activity])];
+      story.limit, story.question, story.activity]),
+    ...additional.stories.map((story) => story.limit),
+    ...articles.articles.flatMap((article) => [article.title, article.deck, article.hook,
+      ...(article.image ? [article.image.caption] : []),
+      ...article.sections.flatMap((section) => section.paragraphs), ...article.activity.steps])];
   for (const file of files.filter((name) => /\.(html|js|json)$/.test(name))) {
     const text = readFileSync(file, 'utf8');
     assert(!pendingText.some((body) => text.includes(body)), `Contenido pendiente en ${file}`);
@@ -72,3 +134,4 @@ console.log(preview
   ? `✓ ${DRAFT_ROUTES.length} rutas de revisión presentes, no indexables y fuera del sitemap/búsqueda.`
   : `✓ Producción excluye las ${DRAFT_ROUTES.length} rutas y el contenido pendiente.`);
 console.log(`✓ ${pendingTranslations} traducciones IA pendientes identificadas; solo se permiten en revisión.`);
+console.log(`✓ ${articles.articles.length} artículos con expediente de versión; referencias y revisión pendientes comprobadas.`);

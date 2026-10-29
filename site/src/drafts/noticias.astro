@@ -1,7 +1,10 @@
 ---
 import ExecutionDraft from '../layouts/ExecutionDraft.astro';
 import data from '../data/ejecucion-v1.json';
+import { articles, getStory, readingMinutes } from '../lib/divulgacion';
+const prefix = Astro.url.pathname.startsWith('/lite/') ? '/lite' : '';
 ---
 <ExecutionDraft title="Agenda editorial propuesta">
+  <section aria-labelledby="lecturas-title"><h2 id="lecturas-title">Historias desarrolladas para revisión</h2><p>Seis explicadores completos: contexto, fuentes, límites y actividades. Siguen pendientes de validación; las fichas de agenda de abajo conservan su estado de planificación.</p><div class="news-grid">{articles.map(article => <article class="card"><p class="meta">{getStory(article.storyId).topic} · Borrador</p><h3><a href={`${prefix}/historias/${article.slug}/`}>{article.title}</a></h3><p>{article.deck}</p><p class="meta">{readingMinutes(article)} min de lectura</p></article>)}</div></section>
   <p class="notice">10 fichas de planificación, 0 noticias publicadas en este módulo. Falta investigar, contrastar fuentes y revisar.</p><div class="news-grid">{data.news.map(item=><article class="card"><span class="badge">{item.id} · Agenda pendiente</span><h2>{item.title}</h2><p>{item.body}</p></article>)}</div>
 </ExecutionDraft>

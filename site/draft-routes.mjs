@@ -1,6 +1,12 @@
 // Solo se incorporan al sitio con una compilación explícita de revisión.
+export const ARTICLE_DRAFT_ROUTES = Object.freeze([
+  'historias/voz-clonada', 'historias/ia-pronostico-tiempo', 'historias/ia-tareas-trabajo',
+  'historias/ia-educacion-aprender', 'historias/ia-desinformacion-convincente',
+  'historias/ia-lenguas-indigenas-traduccion',
+]);
 export const BASE_DRAFT_ROUTES = Object.freeze([
   'v1', 'aprender', 'faq', 'noticias', 'biblioteca', 'editorial-demo', 'portada',
+  'historias', ...ARTICLE_DRAFT_ROUTES,
 ]);
 export const DRAFT_ROUTES = Object.freeze(BASE_DRAFT_ROUTES.flatMap((slug) => [slug, `lite/${slug}`]));
 
@@ -16,8 +22,9 @@ export function executionDraftPreview() {
         for (const slug of DRAFT_ROUTES) {
           injectRoute({
             pattern: `/${slug}`,
-            entrypoint: new URL(`./src/drafts/${slug === 'lite/editorial-demo'
-              ? 'editorial-lite' : slug.replace(/^lite\//, '')}.astro`, import.meta.url),
+            entrypoint: new URL(`./src/drafts/${slug.replace(/^lite\//, '').startsWith('historias/')
+              ? 'historia' : slug === 'lite/editorial-demo'
+                ? 'editorial-lite' : slug.replace(/^lite\//, '')}.astro`, import.meta.url),
             prerender: true,
           });
         }

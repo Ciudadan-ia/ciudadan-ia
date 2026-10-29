@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="len-art-title len-art-desc">
+  <title id="len-art-title">Una propuesta de traducción vuelve a las personas</title>
+  <desc id="len-art-desc">Ilustración conceptual de dos tarjetas de conversación sobre una mesa compartida: propuesta y revisión. No representa una comunidad específica ni contiene texto en lenguas indígenas.</desc>
+  <rect width="960" height="540" fill="#e6e6d8"/>
+  <circle cx="480" cy="292" r="219" fill="#f7f1e8"/>
+  <g transform="rotate(-5 282 170)">
+    <path d="M76 62 H460 V247 H231 L184 294 V247 H76Z" fill="#a81d54"/>
+    <text x="267" y="146" text-anchor="middle" font-family="system-ui,sans-serif" font-size="41" fill="#fff">Propuesta</text>
+    <path d="M134 188 H389" stroke="#fff" stroke-opacity=".6" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g transform="rotate(5 706 191)">
+    <path d="M513 91 H883 V279 H781 L739 318 V279 H513Z" fill="#335548"/>
+    <text x="699" y="181" text-anchor="middle" font-family="system-ui,sans-serif" font-size="41" fill="#fff">Revisión</text>
+    <path d="M568 224 H823" stroke="#fff" stroke-opacity=".6" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <ellipse cx="480" cy="427" rx="309" ry="62" fill="#c4cbb9"/>
+  <circle cx="246" cy="351" r="32" fill="#302923"/>
+  <path d="M184 436 Q182 387 246 390 Q308 387 308 436" fill="#302923"/>
+  <circle cx="480" cy="325" r="32" fill="#a81d54"/>
+  <path d="M420 410 Q418 361 480 364 Q542 361 542 410" fill="#a81d54"/>
+  <circle cx="716" cy="351" r="32" fill="#335548"/>
+  <path d="M654 436 Q652 387 716 390 Q778 387 778 436" fill="#335548"/>
+  <rect x="365" y="426" width="230" height="43" rx="4" fill="#faf4ee"/>
+  <path d="M395 448 H566" stroke="#9ba48e" stroke-width="7" stroke-linecap="round"/>
+</svg>

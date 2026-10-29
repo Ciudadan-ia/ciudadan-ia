@@ -1,0 +1,306 @@
+{
+  "date": "2026-10-28",
+  "assessmentBy": "Contraste documental asistido por IA; no dictamen humano",
+  "publicationApproved": false,
+  "humanScientificReviewsCompleted": 0,
+  "renderTemplateSha256": "4f3e631f8903612712ff9cf6f973cc86e0c51f50a7811b1d54d3a3da4a217fe4",
+  "claimRegistry": "afirmaciones.json",
+  "entries": [
+    {
+      "storyId": "voz",
+      "route": "/historias/voz-clonada/",
+      "title": "Una voz conocida ya no es una prueba. ¿Cómo recuperamos la confianza?",
+      "contentSha256": "7db2d0781c4cfaeb03a84648ab3855add50fab8c95b4625657fe73abab64c146",
+      "hashMethod": "SHA-256 de JSON UTF-8 del artículo, claves ordenadas, sin espacios",
+      "humanReview": {
+        "reviewer": null,
+        "competence": null,
+        "conflicts": null,
+        "date": null,
+        "decision": null,
+        "approvedContentSha256": null
+      },
+      "sections": [
+        {
+          "id": "voz-imitacion",
+          "claimIds": [
+            "VOZ01",
+            "VOZ03"
+          ],
+          "sourceIndexes": [
+            1,
+            2
+          ],
+          "example": false
+        },
+        {
+          "id": "voz-verificacion",
+          "claimIds": [
+            "VOZ02"
+          ],
+          "sourceIndexes": [
+            0
+          ],
+          "example": false
+        },
+        {
+          "id": "voz-detectores",
+          "claimIds": [
+            "VOZ03"
+          ],
+          "sourceIndexes": [
+            2
+          ],
+          "example": false
+        }
+      ]
+    },
+    {
+      "storyId": "tiempo",
+      "route": "/historias/ia-pronostico-tiempo/",
+      "title": "Una IA puede anticipar el tiempo. El reto es saber cuándo confiar.",
+      "contentSha256": "d64ca2a4b5a5a21c4106d9a479274f036bbee097bc088f6289d9d8583301ccc7",
+      "hashMethod": "SHA-256 de JSON UTF-8 del artículo, claves ordenadas, sin espacios",
+      "humanReview": {
+        "reviewer": null,
+        "competence": null,
+        "conflicts": null,
+        "date": null,
+        "decision": null,
+        "approvedContentSha256": null
+      },
+      "sections": [
+        {
+          "id": "tiempo-hito",
+          "claimIds": [
+            "TIE01",
+            "TIE02"
+          ],
+          "sourceIndexes": [
+            0,
+            1,
+            2
+          ],
+          "example": false
+        },
+        {
+          "id": "tiempo-comparacion",
+          "claimIds": [
+            "TIE03"
+          ],
+          "sourceIndexes": [
+            3
+          ],
+          "example": false
+        },
+        {
+          "id": "tiempo-personas",
+          "claimIds": [
+            "TIE04"
+          ],
+          "sourceIndexes": [
+            4
+          ],
+          "example": false
+        }
+      ]
+    },
+    {
+      "storyId": "trabajo",
+      "route": "/historias/ia-tareas-trabajo/",
+      "title": "¿La IA hará tu trabajo? Primero hay que abrirlo por dentro.",
+      "contentSha256": "e06eb9772aca7ec9fd86e205194ea32b3b974cb57770c452e58fbeebf8db7920",
+      "hashMethod": "SHA-256 de JSON UTF-8 del artículo, claves ordenadas, sin espacios",
+      "humanReview": {
+        "reviewer": null,
+        "competence": null,
+        "conflicts": null,
+        "date": null,
+        "decision": null,
+        "approvedContentSha256": null
+      },
+      "sections": [
+        {
+          "id": "trabajo-exposicion",
+          "claimIds": [
+            "TRA01",
+            "TRA04"
+          ],
+          "sourceIndexes": [
+            0
+          ],
+          "example": false
+        },
+        {
+          "id": "trabajo-tres-palabras",
+          "claimIds": [
+            "TRA02",
+            "TRA03"
+          ],
+          "sourceIndexes": [
+            1,
+            2
+          ],
+          "example": false
+        },
+        {
+          "id": "trabajo-ejemplo",
+          "claimIds": [],
+          "sourceIndexes": [],
+          "example": true
+        }
+      ]
+    },
+    {
+      "storyId": "educacion",
+      "route": "/historias/ia-educacion-aprender/",
+      "title": "Te dio la respuesta. ¿También te ayudó a aprender?",
+      "contentSha256": "71534cee9cf1d1a95b453f5323c7d1c94950b015e0e3bed8af3616b96e328828",
+      "hashMethod": "SHA-256 de JSON UTF-8 del artículo, claves ordenadas, sin espacios",
+      "humanReview": {
+        "reviewer": null,
+        "competence": null,
+        "conflicts": null,
+        "date": null,
+        "decision": null,
+        "approvedContentSha256": null
+      },
+      "sections": [
+        {
+          "id": "educacion-resultados",
+          "claimIds": [
+            "EDU01"
+          ],
+          "sourceIndexes": [
+            0,
+            3
+          ],
+          "example": false
+        },
+        {
+          "id": "educacion-diseno",
+          "claimIds": [
+            "EDU02"
+          ],
+          "sourceIndexes": [
+            1
+          ],
+          "example": false
+        },
+        {
+          "id": "educacion-docentes",
+          "claimIds": [
+            "EDU03"
+          ],
+          "sourceIndexes": [
+            2
+          ],
+          "example": false
+        }
+      ]
+    },
+    {
+      "storyId": "desinformacion",
+      "route": "/historias/ia-desinformacion-convincente/",
+      "title": "Lo escribió una IA. ¿Por qué suena tan convincente?",
+      "contentSha256": "ead7eb47d684c3790a37dbe6cef84871e19344077239affd12a73f7f4b364a6b",
+      "hashMethod": "SHA-256 de JSON UTF-8 del artículo, claves ordenadas, sin espacios",
+      "humanReview": {
+        "reviewer": null,
+        "competence": null,
+        "conflicts": null,
+        "date": null,
+        "decision": null,
+        "approvedContentSha256": null
+      },
+      "sections": [
+        {
+          "id": "desinfo-experimento",
+          "claimIds": [
+            "DES01"
+          ],
+          "sourceIndexes": [
+            0
+          ],
+          "example": false
+        },
+        {
+          "id": "desinfo-contextos",
+          "claimIds": [
+            "DES02"
+          ],
+          "sourceIndexes": [
+            1
+          ],
+          "example": false
+        },
+        {
+          "id": "desinfo-procedencia",
+          "claimIds": [
+            "DES03"
+          ],
+          "sourceIndexes": [
+            2
+          ],
+          "example": false
+        }
+      ]
+    },
+    {
+      "storyId": "lenguas",
+      "route": "/historias/ia-lenguas-indigenas-traduccion/",
+      "title": "La IA dice hablar tu lengua. ¿Quién revisa lo que realmente dice?",
+      "contentSha256": "1fa2e43d8b1d6efc6e01eb93039e80bd9c00c6e4db1ea73250b0a030929b79ac",
+      "hashMethod": "SHA-256 de JSON UTF-8 del artículo, claves ordenadas, sin espacios",
+      "humanReview": {
+        "reviewer": null,
+        "competence": null,
+        "conflicts": null,
+        "date": null,
+        "decision": null,
+        "approvedContentSha256": null
+      },
+      "sections": [
+        {
+          "id": "lenguas-posibilidades",
+          "claimIds": [
+            "LEN01"
+          ],
+          "sourceIndexes": [
+            0
+          ],
+          "example": false
+        },
+        {
+          "id": "lenguas-evaluar",
+          "claimIds": [
+            "LEN02"
+          ],
+          "sourceIndexes": [
+            1
+          ],
+          "example": false
+        },
+        {
+          "id": "lenguas-acuerdos",
+          "claimIds": [
+            "LEN03"
+          ],
+          "sourceIndexes": [
+            2,
+            3
+          ],
+          "example": false
+        }
+      ]
+    }
+  ],
+  "pending": [
+    "Revisión humana científica y educativa de cada artículo y actividad",
+    "Revisión especializada de seguridad y contexto mexicano para voz",
+    "Responsable editorial y atribución nominal",
+    "Traducciones y validación comunitaria en variedades por acordar",
+    "Accesibilidad con personas y dispositivos reales",
+    "Aprobación explícita de publicación conjunta en tres lenguas"
+  ]
+}

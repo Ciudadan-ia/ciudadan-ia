@@ -1,0 +1,610 @@
+{
+  "status": "draft",
+  "publicationApproved": false,
+  "humanReview": "pending",
+  "translationValidation": "pending",
+  "checkedAt": "2026-10-28",
+  "articles": [
+    {
+      "storyId": "voz",
+      "slug": "voz-clonada",
+      "title": "Una voz conocida ya no es una prueba. ¿Cómo recuperamos la confianza?",
+      "deck": "Una llamada puede sonar familiar y contar una historia falsa. La pregunta ya no es solo qué escuchamos, sino cómo comprobamos quién está al otro lado.",
+      "hook": "Imagina un mensaje que parece venir de alguien cercano: hay una urgencia y necesita ayuda. Antes de resolver si la historia es cierta, ya sentiste algo. Este ejemplo es ficticio: sirve para abrir la conversación, no describe a una víctima real.",
+      "takeaways": [
+        "Una voz reconocible puede imitarse; por sí sola no acredita identidad.",
+        "La FTC propone verificar la historia mediante un número que ya conozcas.",
+        "Las alertas consultadas no permiten calcular la frecuencia del problema en México."
+      ],
+      "process": [
+        {
+          "label": "La señal",
+          "text": "Un audio parece familiar."
+        },
+        {
+          "label": "La pregunta",
+          "text": "¿Qué evidencia confirma quién habla?"
+        },
+        {
+          "label": "El contraste",
+          "text": "Comprobar la historia por un canal conocido, según la FTC."
+        }
+      ],
+      "sections": [
+        {
+          "id": "voz-imitacion",
+          "title": "Lo que una imitación sí puede hacer",
+          "paragraphs": [
+            "En su alerta de 2024, el FBI describe usos de audio generado por IA para hacerse pasar por familiares y solicitar pagos ante una supuesta crisis. La voz es parte del engaño: vuelve creíble una identidad que todavía no está comprobada.",
+            "El contenido sintético es material generado o modificado mediante herramientas computacionales. Que exista un audio convincente no demuestra que la persona representada haya pronunciado esas palabras. Tampoco demuestra, por sí solo, que se cometió un delito: el contexto y el uso importan."
+          ],
+          "sourceIndexes": [
+            1,
+            2
+          ],
+          "claimIds": [
+            "VOZ01",
+            "VOZ03"
+          ]
+        },
+        {
+          "id": "voz-verificacion",
+          "title": "La confianza necesita otro punto de apoyo",
+          "paragraphs": [
+            "La FTC recomienda comprobar la historia llamando a la persona mediante un número que ya sepas que le pertenece. El punto es buscar una confirmación independiente del mensaje que te está pidiendo actuar. Si no logras localizarla, su alerta propone intentar con otra persona cercana.",
+            "Pensemos en una comparación: reconocer la letra de un sobre no demuestra quién lo envió. El sonido familiar puede ser una pista; verificar la procedencia exige algo más. Esta es una analogía educativa, no una prueba para clasificar una llamada concreta."
+          ],
+          "sourceIndexes": [
+            0
+          ],
+          "claimIds": [
+            "VOZ02"
+          ]
+        },
+        {
+          "id": "voz-detectores",
+          "title": "¿Bastaría con un detector?",
+          "paragraphs": [
+            "El NIST estudia varias vías para dar transparencia al contenido digital: rastrear su procedencia, etiquetar material sintético y desarrollar herramientas de detección. Son enfoques distintos: preguntar de dónde viene un archivo no es lo mismo que buscar señales de generación artificial.",
+            "Aquí no evaluamos un detector ni proponemos que una herramienta decida por el grupo. La pregunta para investigar sería: ¿con qué ejemplos se probó, qué errores comete y en qué condiciones? Pedir esa información permite discutir la tecnología sin confundir una demostración con una garantía."
+          ],
+          "sourceIndexes": [
+            2
+          ],
+          "claimIds": [
+            "VOZ03"
+          ]
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Contenido sintético",
+          "definition": "Material generado o alterado computacionalmente, como el audio descrito en las alertas consultadas."
+        },
+        {
+          "term": "Procedencia",
+          "definition": "Información sobre el origen y la historia de un contenido: quién lo produjo y cómo llegó hasta nosotros."
+        }
+      ],
+      "activity": {
+        "title": "Una pausa antes de creer",
+        "minutes": 7,
+        "materials": "Papel y conversación. No requiere internet, cuentas ni grabaciones.",
+        "steps": [
+          "Lean el ejemplo ficticio del inicio. Separen lo que el mensaje afirma de lo que realmente saben.",
+          "Propongan dos formas de verificar la historia y contrasten sus ideas con la recomendación enlazada de la FTC.",
+          "Reescriban el titular para una conversación con su comunidad, conservando lo comprobado y la incertidumbre."
+        ],
+        "output": "Una frase que distinga reconocer una voz de comprobar una identidad.",
+        "care": "Usen personajes inventados. No pidan audios, números, transferencias ni relatos personales de fraude."
+      },
+      "check": {
+        "question": "¿Una voz que reconozco basta para demostrar quién me llama?",
+        "answer": "No. Las alertas describen imitaciones de voz. La FTC propone verificar la historia por un número conocido. Esto no significa que toda llamada urgente sea falsa: significa que el sonido no resuelve por sí solo la identidad."
+      },
+      "nextQuestion": "¿Qué otras señales usamos para confiar en una imagen, un texto o una respuesta de IA?"
+    },
+    {
+      "storyId": "tiempo",
+      "slug": "ia-pronostico-tiempo",
+      "title": "Una IA puede anticipar el tiempo. El reto es saber cuándo confiar.",
+      "deck": "Los pronósticos con IA ya forman parte de la meteorología operativa. Para entender el avance hay que mirar los datos, la evaluación y el lugar donde se usarán.",
+      "hook": "Una maestra prepara una actividad al aire libre. Antes de salir, consulta el pronóstico. Imaginemos que una de sus herramientas usa IA: ¿qué tendría que saber para interpretar el resultado? Es una situación educativa inventada, no una recomendación meteorológica.",
+      "takeaways": [
+        "ECMWF incorporó AIFS a su operación en 2025 junto a modelos basados en física.",
+        "Un resultado se evalúa para variables, lugares y periodos determinados.",
+        "El estudio australiano consultado no demuestra precisión para una comunidad mexicana."
+      ],
+      "process": [
+        {
+          "label": "Observaciones",
+          "text": "Mediciones y registros del estado del tiempo."
+        },
+        {
+          "label": "Modelo",
+          "text": "Patrones aprendidos para elaborar un pronóstico."
+        },
+        {
+          "label": "Evaluación",
+          "text": "Comparar predicciones con lo que después se observó."
+        }
+      ],
+      "sections": [
+        {
+          "id": "tiempo-hito",
+          "title": "El avance ocurrió; tiene fecha y versión",
+          "paragraphs": [
+            "El 25 de febrero de 2025, ECMWF puso en operación AIFS Single. En julio incorporó su sistema de conjuntos, que produce varios escenarios. Su documentación registra una actualización de ambos a la versión 2 el 12 de mayo de 2026. Identificar la versión evita mezclar resultados de sistemas diferentes.",
+            "Según ECMWF, el sistema parte de condiciones iniciales construidas con observaciones y otros procesos meteorológicos. Un modelo entrenado con la evolución anterior del tiempo genera el pronóstico. Por eso, decir que usa IA no significa que pueda trabajar sin mediciones ni conocimientos meteorológicos."
+          ],
+          "sourceIndexes": [
+            0,
+            1,
+            2
+          ],
+          "claimIds": [
+            "TIE01",
+            "TIE02"
+          ]
+        },
+        {
+          "id": "tiempo-comparacion",
+          "title": "Acertar no es una sola cosa",
+          "paragraphs": [
+            "Trotta y colaboradores estudiaron el posprocesamiento de AIFS en Australia para temperatura, punto de rocío y viento, usando datos de 2024. Analizaron ajustes estadísticos y combinaciones con pronósticos tradicionales. La investigación aporta una evaluación externa al desarrollador, con un contexto concreto.",
+            "Eso no responde automáticamente cómo funcionará en México, con una versión posterior o ante otro fenómeno. Para valorar un titular sobre precisión, habría que preguntar qué variable se midió, dónde, durante cuánto tiempo y frente a qué comparación. Una respuesta útil debe permitir reconstruir esa evaluación."
+          ],
+          "sourceIndexes": [
+            3
+          ],
+          "claimIds": [
+            "TIE03"
+          ]
+        },
+        {
+          "id": "tiempo-personas",
+          "title": "Del cálculo a una decisión hay más pasos",
+          "paragraphs": [
+            "La OMM sitúa la IA dentro de un sistema que necesita observaciones, modelos físicos, infraestructura y especialistas. También advierte que los beneficios dependen de la calidad de los datos y que los resultados pueden ser menos fiables en regiones con pocas observaciones o ante situaciones distintas de las usadas para entrenar.",
+            "Una pregunta para la clase: incluso si conocemos una probabilidad de lluvia, ¿qué información falta para decidir sobre una actividad? Podrían importar el lugar, las condiciones del terreno y las necesidades del grupo. Es un ejercicio de razonamiento: esta página no emite alertas ni sustituye a los servicios meteorológicos oficiales."
+          ],
+          "sourceIndexes": [
+            4
+          ],
+          "claimIds": [
+            "TIE04"
+          ]
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Pronóstico",
+          "definition": "Estimación de condiciones futuras que puede compararse después con observaciones."
+        },
+        {
+          "term": "Conjunto de pronósticos",
+          "definition": "Varios escenarios calculados con diferencias entre ellos para explorar futuros posibles."
+        }
+      ],
+      "activity": {
+        "title": "¿Qué necesitarías para decir que acertó?",
+        "minutes": 8,
+        "materials": "Papel. Se puede realizar sin conexión usando un ejemplo inventado.",
+        "steps": [
+          "Escriban un pronóstico ficticio con lugar, hora y variable: por ejemplo, una temperatura para mañana en una localidad inventada.",
+          "Describan qué medición necesitarían después para compararlo. Acuerden qué significaría un error pequeño o grande en ese ejercicio.",
+          "Distingan tres cosas: una predicción, una observación y una decisión. Expliquen qué información adicional necesita cada una."
+        ],
+        "output": "Un ejemplo que permita comparar una predicción con una observación sin confundirlas.",
+        "care": "No planifiquen actividades de riesgo con este ejercicio ni lo conviertan en una alerta local."
+      },
+      "check": {
+        "question": "Si un modelo tuvo buenos resultados en Australia, ¿ya sabemos cómo funcionará en nuestra comunidad?",
+        "answer": "Todavía no. Necesitamos una evaluación pertinente para el lugar, la variable, el periodo y la versión del modelo. El estudio consultado tiene un alcance determinado y no valida por sí mismo un uso local."
+      },
+      "nextQuestion": "¿Cómo cambia nuestra confianza cuando conocemos el margen de error de una predicción?"
+    },
+    {
+      "storyId": "trabajo",
+      "slug": "ia-tareas-trabajo",
+      "title": "¿La IA hará tu trabajo? Primero hay que abrirlo por dentro.",
+      "deck": "Un oficio reúne tareas distintas. Mirarlas por separado permite hablar de cambios reales sin convertir una estimación de exposición en una sentencia sobre el empleo.",
+      "hook": "Imagina una jornada docente: preparar una explicación, escuchar una duda, revisar un texto y conversar con una familia. Todo forma parte del trabajo, pero no exige lo mismo. Este ejemplo es una propuesta para pensar; no describe una evaluación del desempeño de docentes.",
+      "takeaways": [
+        "La OIT estudia exposición a IA mediante tareas, juicio experto y estimaciones de capacidades.",
+        "Exposición, automatización y pérdida de empleo describen cosas distintas.",
+        "Los estudios globales o europeos no predicen el futuro laboral de una persona."
+      ],
+      "process": [
+        {
+          "label": "El oficio",
+          "text": "Un conjunto de responsabilidades."
+        },
+        {
+          "label": "Las tareas",
+          "text": "Actividades que pueden cambiar de formas distintas."
+        },
+        {
+          "label": "Las decisiones",
+          "text": "Qué probar, qué revisar y quién responde."
+        }
+      ],
+      "sections": [
+        {
+          "id": "trabajo-exposicion",
+          "title": "Qué están midiendo los estudios",
+          "paragraphs": [
+            "La actualización de la OIT de 2025 combina información sobre tareas, participación de expertos y predicciones de IA para estimar exposición ocupacional a la IA generativa. Su resumen señala que una de cada cuatro personas trabajadoras en el mundo está en una ocupación con algún grado de exposición.",
+            "La cifra no significa que una de cada cuatro personas perderá su trabajo. Describe el alcance potencial de una tecnología sobre ciertas tareas de las ocupaciones analizadas. La OIT plantea que la transformación es más probable que la sustitución completa en la mayoría de los empleos, manteniendo la necesidad de participación humana."
+          ],
+          "sourceIndexes": [
+            0
+          ],
+          "claimIds": [
+            "TRA01",
+            "TRA04"
+          ]
+        },
+        {
+          "id": "trabajo-tres-palabras",
+          "title": "Tres palabras que conviene separar",
+          "paragraphs": [
+            "Exposición pregunta si las capacidades de la IA se relacionan con actividades de un trabajo. Automatización se refiere a que ciertas tareas pasen a realizarse mediante tecnología. Un cambio observado en empleo requiere datos sobre lo que ocurrió a personas y puestos. La OCDE explica que los indicadores de exposición no equivalen a una probabilidad de automatización.",
+            "El documento de trabajo del JRC estudia capacidades, tareas y ocupaciones del mercado laboral europeo. Es otra forma de investigar exposición, con métodos y población propios. Su resumen no autoriza a convertir el resultado en un pronóstico para una escuela, un negocio o una comunidad de México."
+          ],
+          "sourceIndexes": [
+            1,
+            2
+          ],
+          "claimIds": [
+            "TRA02",
+            "TRA03"
+          ]
+        },
+        {
+          "id": "trabajo-ejemplo",
+          "title": "Un mapa pequeño para una conversación grande",
+          "paragraphs": [
+            "Volvamos al ejemplo docente. Un equipo podría probar un borrador de explicación, revisar sus afirmaciones y decidir si sirve para su grupo. También podría concluir que el tiempo necesario para comprobarlo vuelve poco útil esa ayuda. Son posibilidades para comparar, no beneficios medidos en este proyecto.",
+            "La actividad debe permitir preguntar quién revisa el resultado, quién responde por los errores y qué tareas vale la pena conservar como aprendizaje. No pedimos que las personas describan temores laborales ni calificamos su disposición a usar IA. La finalidad es reconocer decisiones concretas detrás de una promesa tecnológica."
+          ],
+          "sourceIndexes": [],
+          "claimIds": [],
+          "example": true
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Exposición ocupacional",
+          "definition": "Estimación de la relación entre capacidades de una tecnología y tareas de una ocupación; no equivale a despidos observados."
+        },
+        {
+          "term": "IA generativa",
+          "definition": "Sistemas que producen contenido, como texto, imágenes o audio, a partir de patrones aprendidos."
+        }
+      ],
+      "activity": {
+        "title": "Abre una tarea y decide qué revisar",
+        "minutes": 10,
+        "materials": "Papel y un caso inventado. No requiere usar una herramienta de IA.",
+        "steps": [
+          "Elijan una actividad ficticia, como preparar una explicación para una clase. Divídanla en tres tareas observables.",
+          "Para cada tarea, indiquen una ayuda que podrían probar y qué tendría que comprobar una persona antes de aceptar el resultado.",
+          "Acuerden quién sería responsable de la decisión y qué compararían para saber si la ayuda fue útil, incluyendo el tiempo de revisión."
+        ],
+        "output": "Un mapa de tres tareas con una condición de revisión para cada una.",
+        "care": "No incluyan datos de estudiantes, evaluaciones reales, salarios ni información de empleadores."
+      },
+      "check": {
+        "question": "¿El dato «una de cada cuatro personas está en una ocupación expuesta» significa que perderán su empleo?",
+        "answer": "No. La exposición es una estimación del alcance potencial sobre tareas. No es una medición de despidos ni una predicción individual. La cifra de la OIT tiene alcance global y se refiere a algún grado de exposición."
+      },
+      "nextQuestion": "¿Qué decisiones sobre la IA deberían discutirse con quienes realizan el trabajo?"
+    },
+    {
+      "storyId": "educacion",
+      "slug": "ia-educacion-aprender",
+      "title": "Te dio la respuesta. ¿También te ayudó a aprender?",
+      "deck": "Un tutor de IA puede abrir una buena conversación o resolver el ejercicio por ti. Dos ensayos muestran por qué el diseño de la ayuda y la forma de evaluar importan.",
+      "hook": "Una docente imagina dos ayudas para el mismo problema: una muestra la solución; otra pregunta qué intentaste y ofrece una pista. ¿Cuál te permitiría resolver un ejercicio nuevo sin apoyo? Es una escena inventada para pensar, no un resultado del piloto de CiudadanIA.",
+      "takeaways": [
+        "Resolver con ayuda y demostrar lo aprendido sin ella son resultados diferentes.",
+        "Dos ensayos encontraron resultados distintos con diseños de tutor y contextos diferentes.",
+        "La actividad de este artículo es una propuesta educativa, todavía sin validación con participantes."
+      ],
+      "process": [
+        {
+          "label": "Intentar",
+          "text": "Poner en palabras lo que ya sabes."
+        },
+        {
+          "label": "Recibir una pista",
+          "text": "Mantener una parte del problema por resolver."
+        },
+        {
+          "label": "Explicar sin ayuda",
+          "text": "Comprobar qué puedes hacer después."
+        }
+      ],
+      "sections": [
+        {
+          "id": "educacion-resultados",
+          "title": "La respuesta correcta no cuenta toda la historia",
+          "paragraphs": [
+            "Bastani y colaboradores estudiaron herramientas basadas en GPT-4 en matemáticas de secundaria en Turquía. El grupo con la interfaz de ayuda general mejoró durante la práctica asistida, pero obtuvo peores resultados que el control al examinarse sin ayuda. La variante con apoyos diseñados con docentes mitigó ese perjuicio, sin mostrar una mejora positiva en el examen.",
+            "La diferencia invita a separar dos preguntas: ¿terminé el ejercicio mientras tenía apoyo?, y ¿qué puedo resolver cuando ese apoyo desaparece? El estudio observa un contexto y resultados de corto plazo. Su corrección editorial de agosto de 2025 afecta una afiliación, no comunica cambios en estos resultados."
+          ],
+          "sourceIndexes": [
+            0,
+            3
+          ],
+          "claimIds": [
+            "EDU01"
+          ]
+        },
+        {
+          "id": "educacion-diseno",
+          "title": "También hay evidencia de una ayuda bien diseñada",
+          "paragraphs": [
+            "En otro ensayo, Kestin y colaboradores compararon un tutor de IA diseñado con principios pedagógicos con una clase de aprendizaje activo sobre contenidos de física universitaria en Harvard. Encontraron mejores resultados en la evaluación inmediata con ese tutor. No se trataba de usar libremente cualquier chatbot.",
+            "Los dos trabajos no son una competencia entre titulares. Cambian la población, el contenido, el tutor y la evaluación. El resultado de una experiencia no permite prometer el mismo efecto en otra escuela, a largo plazo o en otra lengua."
+          ],
+          "sourceIndexes": [
+            1
+          ],
+          "claimIds": [
+            "EDU02"
+          ]
+        },
+        {
+          "id": "educacion-docentes",
+          "title": "La decisión educativa empieza antes de abrir el chat",
+          "paragraphs": [
+            "La orientación de UNESCO propone un enfoque centrado en las personas, con validación pedagógica y atención a la privacidad. Es una guía para pensar y organizar el uso de estas herramientas; no es una prueba experimental de que una aplicación concreta enseñe mejor.",
+            "Como propuesta para docentes, antes de elegir una herramienta podemos escribir qué debe aprender el grupo, qué parte de la tarea conservará y cómo explicará el resultado sin asistencia. Este artículo no recomienda contratar una plataforma ni ingresar trabajos reales de estudiantes."
+          ],
+          "sourceIndexes": [
+            2
+          ],
+          "claimIds": [
+            "EDU03"
+          ]
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Aprendizaje sin asistencia",
+          "definition": "Lo que una persona puede explicar o resolver cuando ya no dispone de la ayuda de la actividad."
+        },
+        {
+          "term": "Diseño pedagógico",
+          "definition": "Decisiones sobre objetivos, apoyos, práctica y evaluación que organizan una experiencia de aprendizaje."
+        }
+      ],
+      "activity": {
+        "title": "Cambia una solución por una pista",
+        "minutes": 10,
+        "materials": "Papel y un problema ficticio elegido por la persona docente. No requiere IA ni conexión.",
+        "steps": [
+          "Escriban dos tarjetas: una con la solución del problema y otra con una pista que permita seguir pensando.",
+          "Discutan qué tendría que hacer quien aprende en cada caso y qué información necesitaría la persona docente para acompañarle.",
+          "Propongan un problema diferente que sirva para explicar el procedimiento sin mirar las tarjetas."
+        ],
+        "output": "Una ayuda revisable y una pregunta para comprobar comprensión sin asistencia.",
+        "care": "No se recogen calificaciones ni datos de estudiantes. Adaptar el ejercicio con docentes antes de usarlo como material validado."
+      },
+      "check": {
+        "question": "Si alguien entrega una tarea correcta con IA, ¿ya sabemos cuánto aprendió?",
+        "answer": "Todavía no. Habría que observar qué puede explicar y resolver sin ese apoyo. Los ensayos citados miden resultados definidos; una tarea terminada no los sustituye."
+      },
+      "nextQuestion": "¿Qué ayuda mantiene a quien aprende como protagonista de la tarea?",
+      "image": {
+        "kind": "educacion",
+        "caption": "Ilustración editorial original · una solución y una pista abren caminos distintos. No muestra participantes ni datos de los estudios."
+      }
+    },
+    {
+      "storyId": "desinformacion",
+      "slug": "ia-desinformacion-convincente",
+      "title": "Lo escribió una IA. ¿Por qué suena tan convincente?",
+      "deck": "Un texto claro puede informar o engañar. La fluidez no resuelve si una afirmación es verdadera: hay que abrir sus fuentes y mirar el contexto.",
+      "hook": "En un grupo circula un anuncio impecable: una supuesta biblioteca abrirá toda la noche. El mensaje incluye una explicación segura, pero no un enlace al aviso original. Es un caso inventado: el ejercicio consiste en decidir qué comprobar antes de compartirlo.",
+      "takeaways": [
+        "En un experimento con GPT-3, los textos generados también pudieron transmitir desinformación convincente.",
+        "Preguntar si una afirmación es cierta y preguntar si la escribió una IA son tareas distintas.",
+        "La alfabetización mediática tiene evidencia experimental, pero sus resultados varían entre contextos."
+      ],
+      "process": [
+        {
+          "label": "Afirmación",
+          "text": "¿Qué dice exactamente el mensaje?"
+        },
+        {
+          "label": "Fuente",
+          "text": "¿Dónde está el documento original?"
+        },
+        {
+          "label": "Contexto",
+          "text": "¿De qué lugar y fecha está hablando?"
+        }
+      ],
+      "sections": [
+        {
+          "id": "desinfo-experimento",
+          "title": "La claridad puede servir a dos propósitos",
+          "paragraphs": [
+            "Spitale, Biller-Andorno y Germani compararon mensajes breves escritos por personas y por GPT-3. Sus resultados indican que el modelo podía producir información verdadera más fácil de comprender y también desinformación más convincente que la humana en esa tarea. Identificar quién escribió los mensajes resultó difícil para los participantes.",
+            "El experimento empleó textos en inglés y participantes reclutados en Facebook. No demuestra que todos los textos de IA engañen, que cualquier modelo actual tenga el mismo efecto o que ocurra lo mismo en una comunidad mexicana. La pregunta útil es cómo se respaldó cada afirmación."
+          ],
+          "sourceIndexes": [
+            0
+          ],
+          "claimIds": [
+            "DES01"
+          ]
+        },
+        {
+          "id": "desinfo-contextos",
+          "title": "Aprender a contrastar ayuda, pero no funciona igual en todos lados",
+          "paragraphs": [
+            "Guess y colaboradores evaluaron una intervención de alfabetización mediática en Estados Unidos e India. Mejoró la distinción entre titulares verdaderos y falsos en algunas muestras; en una muestra de una zona mayormente rural del norte de India no encontraron efecto. La persistencia también varió.",
+            "El trabajo es de 2020 y no evalúa chatbots actuales. Nos permite reconocer que un recurso breve puede estudiarse y que su adaptación importa. No permite afirmar que la actividad propuesta aquí ya reduzca la desinformación: eso requeriría una evaluación propia."
+          ],
+          "sourceIndexes": [
+            1
+          ],
+          "claimIds": [
+            "DES02"
+          ]
+        },
+        {
+          "id": "desinfo-procedencia",
+          "title": "Saber de dónde viene es una pregunta distinta",
+          "paragraphs": [
+            "El NIST examina técnicas para rastrear procedencia, etiquetar y detectar contenido sintético. Saber que un archivo fue generado o alterado no decide, por sí solo, si todas sus afirmaciones son falsas. La procedencia y el contraste del contenido aportan información diferente.",
+            "En nuestro anuncio inventado, una comprobación concreta sería buscar el aviso de la biblioteca, su fecha y el lugar al que se refiere. Un mensaje sin respaldo puede quedar como no confirmado mientras se investiga. No hace falta repetirlo a más personas para poder analizarlo."
+          ],
+          "sourceIndexes": [
+            2
+          ],
+          "claimIds": [
+            "DES03"
+          ]
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Contrastar",
+          "definition": "Comparar una afirmación con evidencia pertinente, identificable y situada en su contexto."
+        },
+        {
+          "term": "No confirmado",
+          "definition": "Estado de una afirmación para la que todavía no tenemos respaldo suficiente; no equivale automáticamente a falsa."
+        }
+      ],
+      "activity": {
+        "title": "Antes de reenviar, abre tres preguntas",
+        "minutes": 8,
+        "materials": "Papel y el anuncio ficticio del inicio. Se puede realizar sin conexión.",
+        "steps": [
+          "Subrayen una afirmación comprobable y separen el tono convincente de la evidencia disponible.",
+          "Escriban qué documento buscarían, de qué institución debería proceder y qué fecha o lugar revisarían.",
+          "Redacten una respuesta breve que conserve la incertidumbre, sin presentar como verificado lo que aún no se comprobó."
+        ],
+        "output": "Una ficha con afirmación, fuente que falta y contexto por comprobar.",
+        "care": "Usen un caso inventado y de bajo riesgo. No difundan rumores reales ni pidan experiencias privadas del grupo."
+      },
+      "check": {
+        "question": "Si averiguo que un texto lo escribió una IA, ¿ya sé si es falso?",
+        "answer": "No. El origen y la veracidad son preguntas distintas. El estudio con GPT-3 incluyó contenido verdadero y falso; cada afirmación necesita evidencia y contexto."
+      },
+      "nextQuestion": "¿Qué dato cambiaría tu decisión de compartir este mensaje?",
+      "image": {
+        "kind": "desinformacion",
+        "caption": "Ilustración editorial original · una lupa conecta afirmación, fuente y contexto. Las tarjetas son esquemáticas, no publicaciones reales."
+      }
+    },
+    {
+      "storyId": "lenguas",
+      "slug": "ia-lenguas-indigenas-traduccion",
+      "title": "La IA dice hablar tu lengua. ¿Quién revisa lo que realmente dice?",
+      "deck": "La traducción automática abre posibilidades educativas. Para usarlas con sentido hacen falta tareas bien evaluadas, hablantes que revisen y acuerdos sobre los materiales.",
+      "hook": "Un equipo prepara una invitación a una actividad comunitaria y una herramienta devuelve una traducción. El texto aparece completo, pero nadie del equipo puede revisarlo. ¿Está listo para circular? Esta escena es ficticia; aquí no se presenta ninguna traducción como validada.",
+      "takeaways": [
+        "AmericasNLP investiga traducción, ejercicios educativos y evaluación en lenguas indígenas.",
+        "Una puntuación automática no equivale a una revisión de significado y uso por hablantes.",
+        "En CiudadanIA siguen pendientes el acuerdo de variedades y las validaciones de maya y náhuatl."
+      ],
+      "process": [
+        {
+          "label": "Propósito",
+          "text": "Acordar qué necesita la comunidad."
+        },
+        {
+          "label": "Propuesta",
+          "text": "Preparar un borrador para una tarea concreta."
+        },
+        {
+          "label": "Revisión",
+          "text": "Comprobar sentido, variedad y uso con hablantes."
+        }
+      ],
+      "sections": [
+        {
+          "id": "lenguas-posibilidades",
+          "title": "Hay investigación; también hay límites explícitos",
+          "paragraphs": [
+            "AmericasNLP 2025 reúne investigaciones sobre traducción entre español y lenguas indígenas, generación de ejemplos educativos y métodos de evaluación. Su declaración ética indica que los sistemas del ejercicio son experimentos científicos y no están listos para resolver problemas reales.",
+            "Esto permite explorar posibilidades sin anunciar un traductor universal. Un sistema debe evaluarse para la lengua, variedad y tarea de interés; el nombre de una lengua en una lista no acredita la calidad de cualquier salida."
+          ],
+          "sourceIndexes": [
+            0
+          ],
+          "claimIds": [
+            "LEN01"
+          ]
+        },
+        {
+          "id": "lenguas-evaluar",
+          "title": "Reconocer palabras no basta para revisar un mensaje",
+          "paragraphs": [
+            "El trabajo de AmericasNLP 2024 incluye evaluación humana de traducciones al bribri, con revisión de significado, fluidez y tipos de error. Es una tarea concreta en una lengua concreta: ese dictamen no valida una traducción al maya o al náhuatl.",
+            "Para nuestra invitación inventada, proponemos acordar quién puede revisar, qué variedad se necesita y qué debe entender una persona al leerla. La pregunta no sería solo si el texto parece una traducción, sino si comunica la invitación que la comunidad quiere hacer."
+          ],
+          "sourceIndexes": [
+            1
+          ],
+          "claimIds": [
+            "LEN02"
+          ]
+        },
+        {
+          "id": "lenguas-acuerdos",
+          "title": "La tecnología también necesita acuerdos",
+          "paragraphs": [
+            "Los principios CARE, presentados por Carroll y colaboradores y difundidos por GIDA, orientan la gobernanza de datos indígenas hacia beneficio colectivo, autoridad para controlar, responsabilidad y ética. Es un marco conceptual para las decisiones sobre datos, no una licencia automática ni un dictamen jurídico del proyecto.",
+            "En CiudadanIA proponemos separar revisión de una traducción, permiso para publicarla y autorización de usos posteriores. Compartir una frase para una actividad educativa no se interpretará como permiso para crear un corpus, entrenar modelos o clonar una voz. Es una condición de trabajo del proyecto, pendiente de acordarse con las personas y comunidades participantes."
+          ],
+          "sourceIndexes": [
+            2,
+            3
+          ],
+          "claimIds": [
+            "LEN03"
+          ]
+        }
+      ],
+      "glossary": [
+        {
+          "term": "Variedad lingüística",
+          "definition": "Forma de una lengua utilizada en un contexto o comunidad. Su identificación y convención escrita deben acordarse con hablantes."
+        },
+        {
+          "term": "Revisión por hablantes",
+          "definition": "Comprobación situada del sentido, la expresión y el uso de un material; no se sustituye por una etiqueta de traducción automática."
+        }
+      ],
+      "activity": {
+        "title": "Diseña la ficha antes de traducir",
+        "minutes": 10,
+        "materials": "Papel y una invitación ficticia en español. No requiere traducir, grabar ni usar IA.",
+        "steps": [
+          "Definan qué comunica la invitación, a quién se dirige y dónde se usaría.",
+          "Escriban qué variedad y qué personas revisoras tendrían que acordarse. Si el grupo no lo sabe, déjenlo pendiente.",
+          "Separen tres decisiones: revisar, publicar y autorizar otros usos. Indiquen quién debe participar en cada acuerdo."
+        ],
+        "output": "Una ficha de propósito, variedad pendiente, revisión y permisos por acordar.",
+        "care": "No soliciten conocimientos reservados, narraciones, grabaciones ni traducciones improvisadas. No se presume que alguien represente a toda una comunidad."
+      },
+      "check": {
+        "question": "¿Que una IA devuelva texto en una lengua permite publicarlo como traducción validada?",
+        "answer": "No. Hace falta una revisión pertinente de significado, variedad y uso, además de los acuerdos de publicación. Ninguno de los estudios citados valida las traducciones pendientes de CiudadanIA."
+      },
+      "nextQuestion": "¿Qué tendría que decidir tu comunidad antes de incorporar una herramienta de traducción?",
+      "image": {
+        "kind": "lenguas",
+        "caption": "Ilustración editorial original · conversación entre personas y una propuesta de traducción. No reproduce palabras en lenguas indígenas ni representa a una comunidad."
+      }
+    }
+  ]
+}

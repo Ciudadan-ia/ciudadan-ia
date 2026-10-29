@@ -4,7 +4,7 @@
   "publicationApproved": false,
   "sourcesOpened": 11,
   "humanScientificReviewsCompleted": 0,
-  "renderTemplateSha256": "5d86ba70c95b53d100061d10e19b196532f57506fcb3f6ea913a1614f8dd6219",
+  "renderTemplateSha256": "b4226df7770028fac7b8749c19998bbb76400b02a75120e0b5e32f6b7f0302cb",
   "mediaRegistry": "../portada-medios.json",
   "entries": [
     {
@@ -165,6 +165,166 @@
           "scopeLimit": "Se abrió la ficha y el resumen, no el documento completo; working paper, no resultado de despidos en México.",
           "documentaryAssessment": "supported-with-stated-limits",
           "humanDecision": null
+        },
+        {
+          "id": "TRA04",
+          "claim": "El resumen OIT de 2025 estima que una de cada cuatro personas trabajadoras en el mundo está en una ocupación con algún grado de exposición a IA generativa; plantea transformación antes que sustitución completa para la mayoría de los empleos.",
+          "sourceUrls": [
+            "https://www.ilo.org/publications/generative-ai-and-jobs-2025-update"
+          ],
+          "locator": "OIT: Research Brief, viñeta One in four workers; 20 de mayo de 2025.",
+          "scopeLimit": "Estimación global de exposición, no despidos observados ni probabilidad individual; no extrapolar como cifra de México.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        }
+      ]
+    },
+    {
+      "storyId": "educacion",
+      "title": "Te dio la respuesta. ¿También te ayudó a aprender?",
+      "contentSha256": "f5888aa0bbdd611bc3f0d0b97f3b5e9fa599d65dcf39cc17b4a255bbeda8ef58",
+      "hashMethod": "SHA-256 de JSON UTF-8 de la ficha de fuentes, claves ordenadas, sin espacios",
+      "humanReview": {
+        "reviewer": null,
+        "competence": null,
+        "conflicts": null,
+        "date": null,
+        "decision": null,
+        "approvedContentSha256": null
+      },
+      "claims": [
+        {
+          "id": "EDU01",
+          "claim": "Bastani y colaboradores estudiaron herramientas basadas en GPT-4 en matemáticas de secundaria en Turquía. El grupo con la interfaz de ayuda general mejoró durante la práctica asistida, pero obtuvo peores resultados que el control al examinarse sin ayuda. La variante con apoyos diseñados con docentes mitigó ese perjuicio, sin mostrar una mejora positiva en el examen.",
+          "sourceUrls": [
+            "https://www.pnas.org/doi/10.1073/pnas.2422633122",
+            "https://www.pnas.org/doi/10.1073/pnas.2518204122"
+          ],
+          "locator": "PNAS: introducción y Main Results; corrección de afiliación 20/08/2025",
+          "scopeLimit": "Los ensayos estudian matemáticas en una secundaria de Turquía y contenidos de física universitaria en Harvard. Usan diseños y evaluaciones distintos: no permiten declarar que toda IA mejora o perjudica el aprendizaje ni extrapolar sus resultados a escuelas mexicanas o enseñanza en maya y náhuatl.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        },
+        {
+          "id": "EDU02",
+          "claim": "En otro ensayo, Kestin y colaboradores compararon un tutor de IA diseñado con principios pedagógicos con una clase de aprendizaje activo sobre contenidos de física universitaria en Harvard. Encontraron mejores resultados en la evaluación inmediata con ese tutor. No se trataba de usar libremente cualquier chatbot.",
+          "sourceUrls": [
+            "https://pmc.ncbi.nlm.nih.gov/articles/PMC12179260/"
+          ],
+          "locator": "Scientific Reports, copia PMC: Abstract; Context, limitations, and future directions",
+          "scopeLimit": "Los ensayos estudian matemáticas en una secundaria de Turquía y contenidos de física universitaria en Harvard. Usan diseños y evaluaciones distintos: no permiten declarar que toda IA mejora o perjudica el aprendizaje ni extrapolar sus resultados a escuelas mexicanas o enseñanza en maya y náhuatl.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        },
+        {
+          "id": "EDU03",
+          "claim": "La orientación de UNESCO propone un enfoque centrado en las personas, con validación pedagógica y atención a la privacidad. Es una guía para pensar y organizar el uso de estas herramientas; no es una prueba experimental de que una aplicación concreta enseñe mejor.",
+          "sourceUrls": [
+            "https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research"
+          ],
+          "locator": "UNESCO: Towards a human-centered approach",
+          "scopeLimit": "Los ensayos estudian matemáticas en una secundaria de Turquía y contenidos de física universitaria en Harvard. Usan diseños y evaluaciones distintos: no permiten declarar que toda IA mejora o perjudica el aprendizaje ni extrapolar sus resultados a escuelas mexicanas o enseñanza en maya y náhuatl.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        }
+      ]
+    },
+    {
+      "storyId": "desinformacion",
+      "title": "Lo escribió una IA. ¿Por qué suena tan convincente?",
+      "contentSha256": "0d4d8f030f1d83c93e3141688a9af0ddf9300b3e7ebc22a361b0432ea75b5d65",
+      "hashMethod": "SHA-256 de JSON UTF-8 de la ficha de fuentes, claves ordenadas, sin espacios",
+      "humanReview": {
+        "reviewer": null,
+        "competence": null,
+        "conflicts": null,
+        "date": null,
+        "decision": null,
+        "approvedContentSha256": null
+      },
+      "claims": [
+        {
+          "id": "DES01",
+          "claim": "Spitale, Biller-Andorno y Germani compararon mensajes breves escritos por personas y por GPT-3. Sus resultados indican que el modelo podía producir información verdadera más fácil de comprender y también desinformación más convincente que la humana en esa tarea. Identificar quién escribió los mensajes resultó difícil para los participantes.",
+          "sourceUrls": [
+            "https://arxiv.org/abs/2301.11924"
+          ],
+          "locator": "Resumen de autores en arXiv; resultados y límites indexados del artículo Science Advances",
+          "scopeLimit": "El experimento con GPT-3 empleó textos breves y participantes angloparlantes reclutados en Facebook. No mide la credulidad de comunidades mexicanas ni el comportamiento de modelos actuales. El estudio de alfabetización de 2020 es anterior a la IA generativa de uso masivo y encontró efectos distintos entre poblaciones.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        },
+        {
+          "id": "DES02",
+          "claim": "Guess y colaboradores evaluaron una intervención de alfabetización mediática en Estados Unidos e India. Mejoró la distinción entre titulares verdaderos y falsos en algunas muestras; en una muestra de una zona mayormente rural del norte de India no encontraron efecto. La persistencia también varió.",
+          "sourceUrls": [
+            "https://www.pnas.org/content/pnas/117/27/15536.full.pdf"
+          ],
+          "locator": "PNAS: resumen, página 1 del PDF",
+          "scopeLimit": "El experimento con GPT-3 empleó textos breves y participantes angloparlantes reclutados en Facebook. No mide la credulidad de comunidades mexicanas ni el comportamiento de modelos actuales. El estudio de alfabetización de 2020 es anterior a la IA generativa de uso masivo y encontró efectos distintos entre poblaciones.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        },
+        {
+          "id": "DES03",
+          "claim": "El NIST examina técnicas para rastrear procedencia, etiquetar y detectar contenido sintético. Saber que un archivo fue generado o alterado no decide, por sí solo, si todas sus afirmaciones son falsas. La procedencia y el contraste del contenido aportan información diferente.",
+          "sourceUrls": [
+            "https://www.nist.gov/publications/reducing-risks-posed-synthetic-content-overview-technical-approaches-digital-content"
+          ],
+          "locator": "NIST AI 100-4: resumen; transparencia y procedencia, secciones 1–2",
+          "scopeLimit": "El experimento con GPT-3 empleó textos breves y participantes angloparlantes reclutados en Facebook. No mide la credulidad de comunidades mexicanas ni el comportamiento de modelos actuales. El estudio de alfabetización de 2020 es anterior a la IA generativa de uso masivo y encontró efectos distintos entre poblaciones.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        }
+      ]
+    },
+    {
+      "storyId": "lenguas",
+      "title": "La IA dice hablar tu lengua. ¿Quién revisa lo que realmente dice?",
+      "contentSha256": "afd3b4c8caf86429460884852d61666999e2480be162d9c62d44fff6a4fc26c8",
+      "hashMethod": "SHA-256 de JSON UTF-8 de la ficha de fuentes, claves ordenadas, sin espacios",
+      "humanReview": {
+        "reviewer": null,
+        "competence": null,
+        "conflicts": null,
+        "date": null,
+        "decision": null,
+        "approvedContentSha256": null
+      },
+      "claims": [
+        {
+          "id": "LEN01",
+          "claim": "AmericasNLP 2025 reúne investigaciones sobre traducción entre español y lenguas indígenas, generación de ejemplos educativos y métodos de evaluación. Su declaración ética indica que los sistemas del ejercicio son experimentos científicos y no están listos para resolver problemas reales.",
+          "sourceUrls": [
+            "https://aclanthology.org/2025.americasnlp-1.16.pdf"
+          ],
+          "locator": "AmericasNLP 2025: introducción pp.134–135 y declaración ética p.144",
+          "scopeLimit": "AmericasNLP evalúa tareas, sistemas y conjuntos de datos concretos. La revisión humana de 2024 descrita aquí corresponde al bribri; no valida traducciones al maya o al náhuatl. Los sistemas de 2025 se presentan como experimentales. Las variedades y las personas validadoras de CiudadanIA siguen por acordar.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        },
+        {
+          "id": "LEN02",
+          "claim": "El trabajo de AmericasNLP 2024 incluye evaluación humana de traducciones al bribri, con revisión de significado, fluidez y tipos de error. Es una tarea concreta en una lengua concreta: ese dictamen no valida una traducción al maya o al náhuatl.",
+          "sourceUrls": [
+            "https://aclanthology.org/2024.americasnlp-1.28/"
+          ],
+          "locator": "AmericasNLP 2024: ficha y Abstract, evaluación humana en bribri",
+          "scopeLimit": "AmericasNLP evalúa tareas, sistemas y conjuntos de datos concretos. La revisión humana de 2024 descrita aquí corresponde al bribri; no valida traducciones al maya o al náhuatl. Los sistemas de 2025 se presentan como experimentales. Las variedades y las personas validadoras de CiudadanIA siguen por acordar.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
+        },
+        {
+          "id": "LEN03",
+          "claim": "Los principios CARE, presentados por Carroll y colaboradores y difundidos por GIDA, orientan la gobernanza de datos indígenas hacia beneficio colectivo, autoridad para controlar, responsabilidad y ética. Es un marco conceptual para las decisiones sobre datos, no una licencia automática ni un dictamen jurídico del proyecto.",
+          "sourceUrls": [
+            "https://www.gida-global.org/s/dsj-1158_carroll.pdf",
+            "https://www.gida-global.org/careprinciples"
+          ],
+          "locator": "Carroll y colaboradores: definición de CARE; GIDA: enfoque en personas y propósito",
+          "scopeLimit": "AmericasNLP evalúa tareas, sistemas y conjuntos de datos concretos. La revisión humana de 2024 descrita aquí corresponde al bribri; no valida traducciones al maya o al náhuatl. Los sistemas de 2025 se presentan como experimentales. Las variedades y las personas validadoras de CiudadanIA siguen por acordar.",
+          "documentaryAssessment": "supported-with-stated-limits",
+          "humanDecision": null
         }
       ]
     }
@@ -185,5 +345,7 @@
       "result": "JRC: ficha y resumen públicos consultados; Trotta: repositorio v2 y aviso de aceptación consultados. No se afirma lectura del documento completo de JRC ni de la versión editorial de Trotta.",
       "blockingScope": "Cualquier afirmación más específica requiere abrir y revisar el texto pertinente."
     }
-  ]
+  ],
+  "extensionCheckedAt": "2026-10-28",
+  "extensionNote": "Seis artículos ampliados; tres nuevos sobre educación, desinformación y lenguas indígenas. Dictámenes humanos pendientes."
 }

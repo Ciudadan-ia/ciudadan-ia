@@ -4,9 +4,14 @@ import photo from '../assets/editorial/milton-noaa-2024.png';
 import data from '../data/portada-propuesta.json';
 import fullCss from '../styles/impact-draft.css?raw';
 import liteCss from '../styles/execution-lite.css?raw';
+import { articles, getStory, readingMinutes as articleReadingMinutes } from '../lib/divulgacion';
+import ArticleIllustration from '../components/ArticleIllustration.astro';
+const newArticles = articles.filter(article => article.image);
 const lite = Astro.url.pathname.startsWith('/lite/');
 const prefix = lite ? '/lite' : '';
 const [voice, weather, work] = data.stories;
+const articleFor = (id: string) => articles.find((article) => article.storyId === id)!;
+const articlePath = (id: string) => `${prefix}/historias/${articleFor(id).slug}/`;
 // Estimación editorial: 180 palabras/minuto, sin incluir actividades ni fuentes.
 const readingMinutes = (story: typeof voice) => Math.max(1, Math.ceil(
   [story.summary, story.evidence, story.limit].join(' ').trim().split(/\s+/u).length / 180));
@@ -26,7 +31,7 @@ const readingMinutes = (story: typeof voice) => Math.max(1, Math.ceil(
     <header class="shell">
       <div class="mast"><a class="brand" href={`${prefix}/portada/`}>ciudadan<span>IA</span></a><p>Ciencia que se cuenta.<br />Ideas que se comparten.</p></div>
       <nav class="nav" aria-label="Portada propuesta">
-        <a href="#historias">Historias que importan</a><a href="#guias">Para llevar a tu comunidad</a><a href={`${prefix}/aprender/`}>Aprender IA · en revisión</a><a href={`${prefix}/biblioteca/`}>Fuentes</a>
+        <a href={`${prefix}/historias/`}>Historias que importan</a><a href="#guias">Para llevar a tu comunidad</a><a href={`${prefix}/aprender/`}>Aprender IA · en revisión</a><a href={`${prefix}/biblioteca/`}>Fuentes</a>
       </nav>
     </header>
     <main id="main" class="shell">
@@ -35,8 +40,8 @@ const readingMinutes = (story: typeof voice) => Math.max(1, Math.ceil(
           <p class="eyebrow">IA en tu vida · Familia y confianza</p>
           <h1 id="titular">Suena como tu familia.<br /><em>Puede ser una voz clonada.</em></h1>
           <p class="intro">{voice.summary}</p>
-          <p class="meta">{voice.dateLabel} · {voice.sources.length} fuentes enlazadas · Lectura estimada: {readingMinutes(voice)} min · Borrador</p>
-          <div class="actions"><a class="button" href="#historia-voz">Entender la historia ↓</a><a class="text-link" href="#guias">Cómo contarlo a tu grupo ↗</a></div>
+          <p class="meta">{voice.dateLabel} · {voice.sources.length} fuentes enlazadas · Artículo: {articleReadingMinutes(articleFor(voice.id))} min · Borrador</p>
+          <div class="actions"><a class="button" href={articlePath(voice.id)}>Leer la historia completa →</a><a class="text-link" href="#historia-voz">Primero, la evidencia en breve ↓</a></div>
         </div>
         {!lite && <figure class="voice-art">
           <span class="art-label">Lo que oyes también puede fabricarse</span>
@@ -51,18 +56,20 @@ const readingMinutes = (story: typeof voice) => Math.max(1, Math.ceil(
       </article>
       <aside class="entry"><p><strong>Para docentes y divulgadores.</strong> Empieza con una historia que se sienta cercana. Abre una pregunta. Después, explica la IA que hay detrás.</p><a class="text-link" href="#guias">Prepara una conversación de 5 minutos →</a></aside>
       <section id="historias" class="section" aria-labelledby="historias-heading">
-        <div class="section-head"><h2 id="historias-heading">El mundo ya está cambiando.<br />Vamos a entenderlo.</h2><p>Asombro, oportunidades y riesgos cercanos. Estas son propuestas de historias con contexto, no noticias de última hora.</p></div>
+        <div class="section-head"><h2 id="historias-heading">El mundo ya está cambiando.<br />Vamos a entenderlo.</h2><p>Asombro, oportunidades y riesgos cercanos. Explicadores con contexto, no noticias de última hora. <a href={`${prefix}/historias/`}>Explorar las seis lecturas →</a></p></div>
         <div class="grid">
           <article class="story-card">
             {!lite && <figure class="card-image"><Image src={photo} alt="Vista satelital del huracán Milton sobre el golfo de México, el 9 de octubre de 2024." width={640} widths={[320,640]} sizes="(max-width:720px) 100vw, 550px" format="webp" quality={72} loading="lazy" /><figcaption>Archivo: Milton, 9 oct 2024 · NOAA / USGS · Dominio público. La imagen no muestra una predicción de IA. <a href="https://www.usgs.gov/media/images/hurricane-milton-noaa-satellite-image">Origen y crédito</a>.</figcaption></figure>}
-            <p class="eyebrow">{weather.topic}</p><h3><a href="#historia-tiempo">{weather.title}</a></h3><p>{weather.summary}</p><p class="meta">{weather.dateLabel}</p><a class="text-link" href="#historia-tiempo">Explorar la evidencia y sus límites ↓</a>
+            <p class="eyebrow">{weather.topic}</p><h3><a href={articlePath(weather.id)}>{weather.title}</a></h3><p>{weather.summary}</p><p class="meta">{weather.dateLabel} · {articleReadingMinutes(articleFor(weather.id))} min</p><a class="text-link" href={articlePath(weather.id)}>Abrir el artículo y su actividad →</a>
           </article>
           <article class="story-card">
             {!lite && <div class="work-art" role="img" aria-label="Ilustración editorial: las tareas redactar, decidir y explicar forman parte del trabajo."><span>redactar</span><span>decidir</span><span>explicar</span></div>}
-            <p class="eyebrow">{work.topic}</p><h3><a href="#historia-trabajo">{work.title}</a></h3><p>{work.summary}</p><p class="meta">{work.dateLabel}</p><a class="text-link" href="#historia-trabajo">Distinguir una posibilidad de una promesa ↓</a>
+            <p class="eyebrow">{work.topic}</p><h3><a href={articlePath(work.id)}>{work.title}</a></h3><p>{work.summary}</p><p class="meta">{work.dateLabel} · {articleReadingMinutes(articleFor(work.id))} min</p><a class="text-link" href={articlePath(work.id)}>Abrir el artículo y su actividad →</a>
           </article>
         </div>
       </section>
+      <section class="section" aria-labelledby="nuevas-heading"><div class="section-head"><h2 id="nuevas-heading">Aprender. Contrastar.<br />Hacernos escuchar.</h2><p>Tres lecturas nuevas para conversar sobre educación, desinformación y lenguas indígenas. Borradores con investigación y actividades.</p></div><div class="reading-grid">{newArticles.map(article => <article class={`reading-card reading-card-${article.storyId}`}>
+        {!lite && article.image && <ArticleIllustration kind={article.image.kind} caption={article.image.caption} />}<p class="eyebrow">{getStory(article.storyId).topic}</p><h3><a href={`${prefix}/historias/${article.slug}/`}>{article.title}</a></h3><p>{article.deck}</p><p class="meta">{articleReadingMinutes(article)} min de lectura · actividad de {article.activity.minutes} min · Borrador</p><a class="text-link" href={`${prefix}/historias/${article.slug}/`}>Leer y llevar a mi grupo →</a></article>)}</div></section>
       <section class="section" id="guias" aria-labelledby="guias-heading">
         <div class="teaching">
           <div><p class="eyebrow">Del asombro al aprendizaje</p><h2 id="guias-heading">Una historia puede abrir toda una clase.</h2><p>No hace falta empezar con palabras difíciles. Lleva esta secuencia a una conversación breve y adapta los ejemplos con tu comunidad.</p><a class="button" href={`${prefix}/aprender/`}>Explorar las 10 lecciones en revisión →</a></div>
@@ -73,7 +80,7 @@ const readingMinutes = (story: typeof voice) => Math.max(1, Math.ceil(
         <div class="section-head"><h2 id="evidencia-heading">Abre la historia.<br />Mira lo que la sostiene.</h2><p>Síntesis asistidas por IA. Selección de portada, revisión científica y pedagógica, y validación maya/náhuatl pendientes de responsables humanos.</p></div>
         {data.stories.map(story=><details open class="dossier" id={`historia-${story.id}`}>
           <summary><span>{story.title}</span><span>Historia + guía ↓</span></summary>
-          <div class="inside"><span class="pill">BORRADOR · revisión pendiente</span><p class="meta">Lectura estimada: {readingMinutes(story)} min · Actividad adicional a tu ritmo.</p><h3>Qué está documentado</h3><p>{story.evidence}</p><h3>Hasta dónde llega la evidencia</h3><p>{story.limit}</p><h3>Pregunta para tu grupo</h3><p>{story.question}</p><h3>Actividad breve propuesta</h3><p>{story.activity}</p><p><strong>Versión en audio:</strong> narración por hablante pendiente. Este texto permite preparar la narración; todavía no hay audio disponible ni recepción de grabaciones abierta.</p><h3>Fuentes consultadas · 27 oct 2026</h3><ul class="sources">{story.sources.map(source=><li><a href={source.url}>{source.name} ↗</a><small>{source.type} · {source.date}</small></li>)}</ul><div class="learning"><p><strong>La IA detrás de esta historia</strong></p><p><a href={`${prefix}/aprender/#${story.lesson}`}>{story.lessonTitle} →</a></p><p>Lección en revisión. Traducciones nuevas pendientes de validación.</p></div></div>
+          <div class="inside"><span class="pill">BORRADOR · revisión pendiente</span><p class="meta">Resumen: {readingMinutes(story)} min · Artículo completo: {articleReadingMinutes(articleFor(story.id))} min.</p><p><a class="text-link" href={articlePath(story.id)}>Leer la explicación completa, el glosario y la actividad →</a></p><h3>Qué está documentado</h3><p>{story.evidence}</p><h3>Hasta dónde llega la evidencia</h3><p>{story.limit}</p><h3>Pregunta para tu grupo</h3><p>{story.question}</p><h3>Actividad breve propuesta</h3><p>{story.activity}</p><p><strong>Versión en audio:</strong> narración por hablante pendiente. Este texto permite preparar la narración; todavía no hay audio disponible ni recepción de grabaciones abierta.</p><h3>Fuentes consultadas · 27 oct 2026</h3><ul class="sources">{story.sources.map(source=><li><a href={source.url}>{source.name} ↗</a><small>{source.type} · {source.date}</small></li>)}</ul><div class="learning"><p><strong>La IA detrás de esta historia</strong></p><p><a href={`${prefix}/aprender/#${story.lesson}`}>{story.lessonTitle} →</a></p><p>Lección en revisión. Traducciones nuevas pendientes de validación.</p></div></div>
         </details>)}
       </section>
       <section class="section" aria-labelledby="video-heading"><p class="eyebrow">De la web a la charla, el audio y el video</p><h2 id="video-heading">También se puede contar en 45 segundos.</h2><p>Guion propuesto para la historia de voces clonadas. Pendiente de revisión y producción; todavía no hay un video grabado.</p><details class="video-script"><summary>Abrir el guion y la propuesta visual</summary><ol><li><strong>0–5 s · El gancho.</strong> Teléfono ilustrado. Texto: «Suena como tu familia. ¿Sabes quién llama?» Sin grabaciones de familiares ni dramatización de víctimas.</li><li><strong>5–15 s · Lo que ocurre.</strong> Dos ondas esquemáticas. Narración: «La IA puede imitar voces. Las autoridades han advertido de su uso para inventar emergencias y pedir dinero».</li><li><strong>15–30 s · La evidencia y la pausa.</strong> Mostrar FTC y FBI con fechas. Explicar que reconocer una voz no confirma la identidad; contrastar por un canal conocido según la recomendación de la FTC.</li><li><strong>30–45 s · Abre el aprendizaje.</strong> Preguntar: «¿Qué comprobarías antes de compartir o actuar?». Cerrar con la lección de verificación y las fuentes.</li></ol><p>Antes de producir: revisar el texto completo, preparar subtítulos y transcripción, elegir una voz con permiso y adaptar con hablantes. El video cargará solo al solicitarlo, con controles y sin reproducción automática.</p></details></section>
